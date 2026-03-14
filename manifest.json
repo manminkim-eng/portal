@@ -1,0 +1,23 @@
+{
+  "name": "NFTC 소방시설 통합 계산 포털",
+  "short_name": "MANMIN 소방",
+  "description": "화재안전기술기준(NFTC) 기반 소방설비 펌프 용량·수원·배관 마찰손실 자동 계산 — Engineer Kim Manmin",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0a0f1e",
+  "theme_color": "#C88214",
+  "lang": "ko",
+  "categories": ["utilities","productivity"],
+  "icons": [
+    {"src":"icons/icon-72.png",  "sizes":"72x72",   "type":"image/png","purpose":"any"},
+    {"src":"icons/icon-96.png",  "sizes":"96x96",   "type":"image/png","purpose":"any"},
+    {"src":"icons/icon-128.png", "sizes":"128x128", "type":"image/png","purpose":"any"},
+    {"src":"icons/icon-144.png", "sizes":"144x144", "type":"image/png","purpose":"any"},
+    {"src":"icons/icon-152.png", "sizes":"152x152", "type":"image/png","purpose":"any"},
+    {"src":"icons/icon-192.png", "sizes":"192x192", "type":"image/png","purpose":"any maskable"},
+    {"src":"icons/icon-384.png", "sizes":"384x384", "type":"image/png","purpose":"any"},
+    {"src":"icons/icon-512.png", "sizes":"512x512", "type":"image/png","purpose":"any maskable"}
+  ]
+}
