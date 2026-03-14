@@ -1,51 +1,84 @@
-/* ═══════════════════════════════════════════════════
-   MANMIN NFTC Portal — Service Worker v2.1
-   manminkim-eng.github.io/portal/
-   ═══════════════════════════════════════════════════ */
-const CACHE    = 'manmin-portal-v2.1';
-const RT_CACHE = 'manmin-rt-v2.1';
+/* ═══════════════════════════════════════════════════════════
+   MANMIN Fire Calc — Service Worker  v2.0
+   Engineer Kim Manmin · portal
+═══════════════════════════════════════════════════════════ */
 
+const CACHE_NAME   = 'manmin-portal-v2';
+const OFFLINE_URL  = './';
+
+/* 캐시할 파일 목록 */
 const PRECACHE = [
-  './', './index.html', './manifest.json', './favicon.ico',
-  './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png',
+  './',
+  './index.html',
+  './manifest.json',
+  /* Pretendard CDN (중요 폰트만) */
+  'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css',
 ];
-const CDN = ['cdn.jsdelivr.net','fonts.googleapis.com','fonts.gstatic.com','unpkg.com'];
 
-self.addEventListener('install', e =>
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(PRECACHE)).then(() => self.skipWaiting()))
-);
-self.addEventListener('activate', e =>
-  e.waitUntil(
-    caches.keys()
-      .then(ks => Promise.all(ks.filter(k => k!==CACHE && k!==RT_CACHE).map(k => caches.delete(k))))
-      .then(() => self.clients.claim())
-  )
-);
-self.addEventListener('fetch', e => {
-  const url = new URL(e.request.url);
-  if (url.origin === self.location.origin)      { e.respondWith(cacheFirst(e.request));    return; }
-  if (url.hostname.endsWith('github.io'))       { e.respondWith(networkFirst(e.request));  return; }
-  if (CDN.some(h => url.hostname.includes(h))) { e.respondWith(staleRevalidate(e.request)); return; }
-  e.respondWith(fetch(e.request).catch(() => caches.match('./index.html')));
+/* ── Install ── */
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(function(cache) {
+      return cache.addAll(PRECACHE.map(function(url) {
+        return new Request(url, { mode: 'no-cors' });
+      })).catch(function(err) {
+        console.warn('[SW] precache partial fail:', err);
+      });
+    }).then(function() {
+      console.log('[SW] install complete — cache:', CACHE_NAME);
+      return self.skipWaiting();
+    })
+  );
 });
 
-async function cacheFirst(req) {
-  const hit = await caches.match(req);
-  if (hit) return hit;
-  try {
-    const r = await fetch(req);
-    if (r.ok) { const c = await caches.open(CACHE); c.put(req, r.clone()); }
-    return r;
-  } catch { return caches.match('./index.html'); }
-}
-async function networkFirst(req) {
-  const c = await caches.open(RT_CACHE);
-  try { const r = await fetch(req); if (r.ok) c.put(req, r.clone()); return r; }
-  catch { return (await c.match(req)) || caches.match('./index.html'); }
-}
-async function staleRevalidate(req) {
-  const c = await caches.open(RT_CACHE);
-  const hit = await c.match(req);
-  const fp = fetch(req).then(r => { if (r.ok) c.put(req, r.clone()); return r; }).catch(() => null);
-  return hit || fp;
-}
+/* ── Activate ── */
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys().then(function(keys) {
+      return Promise.all(
+        keys.filter(function(k) { return k !== CACHE_NAME; })
+            .map(function(k) {
+              console.log('[SW] deleting old cache:', k);
+              return caches.delete(k);
+            })
+      );
+    }).then(function() {
+      console.log('[SW] activate complete');
+      return self.clients.claim();
+    })
+  );
+});
+
+/* ── Fetch — Network First, Cache Fallback ── */
+self.addEventListener('fetch', function(event) {
+  /* POST 등 캐시 불필요한 요청은 그냥 통과 */
+  if (event.request.method !== 'GET') return;
+
+  /* Chrome extension 등 무시 */
+  if (!event.request.url.startsWith('http')) return;
+
+  event.respondWith(
+    fetch(event.request)
+      .then(function(response) {
+        /* 정상 응답이면 캐시에도 저장 */
+        if (response && response.status === 200 && response.type !== 'opaque') {
+          var responseClone = response.clone();
+          caches.open(CACHE_NAME).then(function(cache) {
+            cache.put(event.request, responseClone);
+          });
+        }
+        return response;
+      })
+      .catch(function() {
+        /* 오프라인 — 캐시에서 꺼내기 */
+        return caches.match(event.request).then(function(cached) {
+          if (cached) return cached;
+          /* HTML 페이지 요청이면 포털 홈 반환 */
+          if (event.request.headers.get('accept') &&
+              event.request.headers.get('accept').includes('text/html')) {
+            return caches.match(OFFLINE_URL);
+          }
+        });
+      })
+  );
+});
