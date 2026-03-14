@@ -2,1001 +2,1302 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
-<title>NFTC 소방시설 통합 계산 포털 — MANMIN v2.1</title>
-
-<!-- SEO -->
-<meta name="description" content="화재안전기술기준(NFTC) 기반 소방설비 펌프 용량·수원·배관 마찰손실 자동 계산 — Engineer Kim Manmin"/>
-<meta name="keywords" content="소방,NFTC,옥내소화전,스프링클러,간이스프링클러,옥외소화전,펌프계산,화재안전기준"/>
-<meta name="author" content="Engineer Kim Manmin"/>
-
-<!-- PWA 핵심 -->
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>MANMIN · 소방 펌프 계산서 통합 포털</title>
 <link rel="manifest" href="manifest.json"/>
-<meta name="theme-color" content="#C88214"/>
-<meta name="mobile-web-app-capable" content="yes"/>
-
-<!-- iOS Safari PWA -->
+<meta name="theme-color" content="#0a150a"/>
+<meta name="description" content="소방 펌프 용량 계산서 통합 포털 — NFTC 102/103/103A/109 기준 적용"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-title" content="MANMIN 소방"/>
+<meta name="apple-mobile-web-app-title" content="소방계산서"/>
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png"/>
-<link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png"/>
-<link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png"/>
-
-<!-- 파비콘 -->
-<link rel="icon" type="image/x-icon" href="favicon.ico"/>
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"/>
-<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png"/>
 
-<!-- OG / SNS -->
-<meta property="og:type"        content="website"/>
-<meta property="og:title"       content="NFTC 소방시설 통합 계산 포털 — MANMIN"/>
-<meta property="og:description" content="NFTC 최신 기준 소방설비 펌프 자동 계산 포털"/>
-<meta property="og:image"       content="icons/icon-512.png"/>
-<meta name="twitter:card"       content="summary"/>
-
-<!-- 폰트 -->
+<!-- Pretendard -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+<!-- Orbitron (브랜드 로고용 유지) -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet"/>
-
-<!-- React -->
-<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Noto+Sans+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
 
 <style>
-/* ══ 기본 ══ */
+/* ══════════════════════════════════════════════
+   RESET & CSS VARS
+══════════════════════════════════════════════ */
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{height:100%;font-family:'Pretendard',sans-serif;background:#0a0f1e;
-  -webkit-font-smoothing:antialiased;overflow:hidden;}
-#root{height:100%;display:flex;flex-direction:column;}
-
-/* ══ iOS Safe Area ══ */
-body{padding-top:env(safe-area-inset-top);}
-
-/* ══ 상단 네비게이션 바 ══ */
-#topnav{
-  flex-shrink:0;height:50px;
-  background:linear-gradient(135deg,#0a0f1e,#0f172a);
-  border-bottom:1px solid rgba(255,255,255,0.08);
-  display:flex;align-items:center;
-  padding:0 12px;gap:5px;
-  overflow-x:auto;overflow-y:hidden;
-  padding-left:max(12px,env(safe-area-inset-left));
-  padding-right:max(12px,env(safe-area-inset-right));
+:root{
+  --font:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif;
+  --mono:'Noto Sans Mono',ui-monospace,monospace;
+  --bg:#080f08;
+  --bg1:#0c160c;
+  --surface:#0f1e0f;
+  --surface2:#13251a;
+  --border:rgba(34,197,94,.15);
+  --border2:rgba(34,197,94,.35);
+  --border3:rgba(34,197,94,.55);
+  --green:#15803d;
+  --green2:#16a34a;
+  --green3:#22c55e;
+  --green4:#4ade80;
+  --text:#f0f4f0;
+  --text2:#a3b4a3;
+  --text3:#607060;
+  --muted:#4a5e4a;
+  /* system colours */
+  --c-green:#22c55e;   --c-green-b:rgba(34,197,94,.12);
+  --c-teal:#2dd4bf;    --c-teal-b:rgba(45,212,191,.12);
+  --c-blue:#60a5fa;    --c-blue-b:rgba(96,165,250,.12);
+  --c-amber:#fbbf24;   --c-amber-b:rgba(251,191,36,.12);
+  --c-purple:#a78bfa;  --c-purple-b:rgba(167,139,250,.12);
+  --c-rose:#fb7185;    --c-rose-b:rgba(251,113,133,.12);
+  --c-cyan:#22d3ee;    --c-cyan-b:rgba(34,211,238,.12);
+  --radius:18px;
+  --radius-sm:12px;
+  --radius-xs:8px;
+  --shadow:0 2px 24px rgba(0,0,0,.55);
+  --shadow-hover:0 12px 48px rgba(0,0,0,.7),0 0 0 1px rgba(34,197,94,.1);
 }
-#topnav::-webkit-scrollbar{height:2px;}
-#topnav::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.12);border-radius:2px;}
-
-.tn-logo{
-  font-family:'Orbitron',sans-serif;font-weight:900;
-  font-size:10.5px;color:rgba(255,255,255,0.3);
-  letter-spacing:0.14em;white-space:nowrap;
-  flex-shrink:0;margin-right:4px;
-  padding-right:10px;border-right:1px solid rgba(255,255,255,0.09);
-}
-.tn-logo b{color:#C88214;}
-
-.tn-home{
-  width:30px;height:30px;border-radius:8px;flex-shrink:0;
-  border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);
-  color:rgba(255,255,255,0.4);font-size:15px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;transition:all 0.2s;
-}
-.tn-home:hover{background:rgba(200,130,20,0.15);border-color:rgba(200,130,20,0.4);color:#C88214;}
-
-.tn-sep{width:1px;height:18px;background:rgba(255,255,255,0.08);flex-shrink:0;margin:0 2px;}
-
-.tn-btn{
-  padding:5px 10px;border-radius:7px;flex-shrink:0;
-  border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);
-  color:rgba(255,255,255,0.48);font-size:11px;font-weight:600;
-  cursor:pointer;white-space:nowrap;transition:all 0.2s;
-  font-family:'Pretendard',sans-serif;
-}
-.tn-btn:hover{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);}
-.tn-btn.active{border-color:var(--ac);background:rgba(var(--acr),0.12);color:var(--ac);font-weight:700;}
-
-/* ══ 콘텐츠 영역 ══ */
-#content-area{
-  flex:1;position:relative;overflow:hidden;
-  padding-bottom:env(safe-area-inset-bottom);
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
 }
 
-/* ══ 홈 화면 스크롤 ══ */
-#home-screen{
-  position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;
-  background:radial-gradient(ellipse at 20% 15%,rgba(239,68,68,0.07) 0%,transparent 50%),
-             radial-gradient(ellipse at 80% 85%,rgba(59,130,246,0.07) 0%,transparent 50%),#0a0f1e;
+/* ══════════════════════════════════════════════
+   BACKGROUND FX
+══════════════════════════════════════════════ */
+.bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.bg-grid{
+  background-image:
+    linear-gradient(rgba(34,197,94,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(34,197,94,.035) 1px,transparent 1px);
+  background-size:40px 40px;
 }
-#home-screen::-webkit-scrollbar{width:5px;}
-#home-screen::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.13);border-radius:3px;}
+.bg-radial{
+  background:
+    radial-gradient(ellipse 90% 50% at 50% -8%,rgba(21,128,61,.2),transparent 65%),
+    radial-gradient(ellipse 50% 40% at 85% 100%,rgba(21,128,61,.06),transparent 55%);
+}
+.bg-vignette{
+  background:radial-gradient(ellipse 100% 100% at 50% 50%,transparent 60%,rgba(0,0,0,.6) 100%);
+}
 
-/* ══ iframe ══ */
-#calc-frame{
-  position:absolute;inset:0;border:none;display:none;
-  background:#f1f5f9;
+/* ══════════════════════════════════════════════
+   LAYOUT
+══════════════════════════════════════════════ */
+.wrapper{
+  position:relative;z-index:1;
+  max-width:1120px;margin:0 auto;
+  padding:0 24px 100px;
 }
 
-/* ══ 로딩 오버레이 ══ */
-#loader{
-  position:absolute;inset:0;background:#0a0f1e;z-index:10;
-  display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+/* ══════════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════════ */
+.header{
+  padding:60px 0 0;text-align:center;
+  animation:fadeDown .7s cubic-bezier(.22,.68,0,1.2) both;
 }
-#loader.show{display:flex;}
-.loader-ring{
-  width:42px;height:42px;border-radius:50%;
-  border:3px solid rgba(255,255,255,0.06);border-top-color:#C88214;
-  animation:spin .8s linear infinite;
+.header-pill{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(34,197,94,.08);
+  border:1px solid rgba(74,222,128,.28);
+  border-radius:100px;padding:5px 16px 5px 12px;
+  font-size:11px;font-weight:600;letter-spacing:.1em;
+  color:var(--green4);margin-bottom:20px;text-transform:uppercase;
 }
+.pulse-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--green3);
+  animation:pulse 2.2s ease infinite;
+  flex-shrink:0;
+}
+.header-logo{
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(28px,5.5vw,56px);
+  font-weight:900;letter-spacing:.07em;line-height:1;
+  background:linear-gradient(140deg,#86efac 0%,#22c55e 40%,#15803d 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;margin-bottom:14px;
+}
+.header-tagline{
+  font-size:clamp(14px,2.2vw,20px);font-weight:700;
+  color:var(--text2);letter-spacing:.02em;margin-bottom:10px;
+}
+.header-desc{
+  font-size:13.5px;color:var(--text3);
+  line-height:1.85;max-width:560px;margin:0 auto 40px;
+}
+.header-line{
+  height:1px;margin-bottom:44px;
+  background:linear-gradient(90deg,transparent,var(--border2),transparent);
+}
+
+/* ══════════════════════════════════════════════
+   STATS BAR
+══════════════════════════════════════════════ */
+.stats-bar{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;margin-bottom:48px;
+  animation:fadeUp .5s ease both;animation-delay:.1s;
+}
+.stat-box{
+  background:var(--surface);
+  border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:16px 8px;text-align:center;
+}
+.stat-num{
+  font-family:'Orbitron',sans-serif;
+  font-size:20px;font-weight:900;
+  color:var(--green3);line-height:1;margin-bottom:7px;
+}
+.stat-lbl{font-size:10px;color:var(--text2);font-weight:600;letter-spacing:.04em;line-height:1.4;}
+
+/* ══════════════════════════════════════════════
+   TAB FILTER
+══════════════════════════════════════════════ */
+.tab-wrap{
+  display:flex;align-items:center;justify-content:center;
+  gap:6px;margin-bottom:36px;
+  animation:fadeUp .5s ease both;animation-delay:.15s;
+}
+.tab-btn{
+  padding:9px 22px;border-radius:100px;
+  border:1px solid var(--border2);
+  background:transparent;
+  color:var(--text2);
+  font-family:var(--font);font-size:13px;font-weight:600;
+  cursor:pointer;letter-spacing:.02em;
+  transition:all .2s ease;
+  position:relative;overflow:hidden;
+}
+.tab-btn::before{
+  content:'';position:absolute;inset:0;
+  background:var(--green);opacity:0;
+  transition:opacity .2s;border-radius:inherit;
+}
+.tab-btn:hover{color:var(--text);border-color:var(--border3);}
+.tab-btn.active{
+  background:var(--green);border-color:var(--green2);
+  color:#fff;font-weight:700;
+  box-shadow:0 0 20px rgba(21,128,61,.4);
+}
+.tab-count{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:18px;height:18px;border-radius:100px;
+  background:rgba(255,255,255,.18);
+  font-size:10px;font-weight:800;
+  margin-left:5px;
+}
+.tab-btn.active .tab-count{background:rgba(255,255,255,.25);}
+
+/* ══════════════════════════════════════════════
+   SECTION HEADER
+══════════════════════════════════════════════ */
+.sec-head{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:18px;
+  animation:fadeUp .5s ease both;
+}
+.sec-tag{
+  font-family:'Orbitron',sans-serif;
+  font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  padding:3px 10px;border-radius:5px;flex-shrink:0;
+}
+.sec-label{font-size:15px;font-weight:800;color:var(--text);letter-spacing:.01em;}
+.sec-line{flex:1;height:1px;background:var(--border);}
+
+/* ══════════════════════════════════════════════
+   CARD GRID
+══════════════════════════════════════════════ */
+.grid-4{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;margin-bottom:44px;
+}
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;margin-bottom:44px;
+}
+
+/* ══════════════════════════════════════════════
+   CALC CARD
+══════════════════════════════════════════════ */
+.calc-card{
+  position:relative;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  text-decoration:none;display:block;
+  cursor:pointer;
+  transition:transform .25s cubic-bezier(.22,.68,0,1.15),
+             border-color .25s,box-shadow .25s;
+  animation:fadeUp .5s ease both;
+}
+.calc-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--border2);
+  box-shadow:var(--shadow-hover);
+}
+/* top accent bar */
+.card-accent{height:3px;width:100%;flex-shrink:0;}
+/* glow blob */
+.card-glow{
+  position:absolute;top:-60px;right:-60px;
+  width:160px;height:160px;border-radius:50%;
+  filter:blur(60px);opacity:.1;
+  transition:opacity .3s;pointer-events:none;
+  z-index:0;
+}
+.calc-card:hover .card-glow{opacity:.25;}
+/* body */
+.card-body{padding:18px 18px 16px;position:relative;z-index:1;}
+.card-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;}
+.card-ico{
+  width:44px;height:44px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.card-meta{flex:1;min-width:0;}
+.card-badge{
+  font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:2px 8px;border-radius:100px;display:inline-block;margin-bottom:5px;
+  font-family:var(--mono);
+}
+.card-title{font-size:16px;font-weight:800;color:var(--text);line-height:1.2;letter-spacing:-.01em;}
+.card-title-en{font-size:10px;color:var(--text3);margin-top:3px;letter-spacing:.04em;font-weight:500;}
+/* desc */
+.card-desc{
+  font-size:11.5px;color:var(--text2);line-height:1.75;
+  padding-bottom:13px;margin-bottom:13px;
+  border-bottom:1px solid var(--border);
+}
+/* spec hover preview */
+.spec-bars{
+  overflow:hidden;max-height:0;
+  transition:max-height .35s cubic-bezier(.4,0,.2,1),opacity .3s;
+  opacity:0;
+}
+.calc-card:hover .spec-bars{max-height:120px;opacity:1;}
+.spec-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+.spec-label{font-size:10px;font-weight:700;color:var(--text2);width:56px;flex-shrink:0;letter-spacing:.02em;}
+.spec-track{flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:100px;overflow:hidden;}
+.spec-fill{
+  height:100%;border-radius:100px;
+  width:0;
+  transition:width .6s cubic-bezier(.4,0,.2,1);
+  transition-delay:.05s;
+}
+.calc-card:hover .spec-fill{width:var(--w);}
+.spec-val{font-size:10px;font-weight:700;font-family:var(--mono);width:72px;text-align:right;flex-shrink:0;}
+/* footer row */
+.card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:12px;}
+.card-law{font-size:10px;color:var(--text3);font-family:var(--mono);letter-spacing:.02em;}
+.card-go{
+  width:28px;height:28px;border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;transition:transform .2s;
+}
+.calc-card:hover .card-go{transform:translateX(4px);}
+
+/* ══ Colour themes ══ */
+/* GREEN */
+.t-green .card-accent{background:linear-gradient(90deg,#15803d,#4ade80);}
+.t-green .card-glow{background:#15803d;}
+.t-green .card-ico{background:var(--c-green-b);}
+.t-green .card-badge{background:var(--c-green-b);color:var(--c-green);}
+.t-green .card-go{background:var(--c-green-b);color:var(--c-green);}
+.t-green .spec-fill{background:linear-gradient(90deg,#15803d,#4ade80);}
+.t-green .spec-val{color:var(--c-green);}
+/* TEAL */
+.t-teal .card-accent{background:linear-gradient(90deg,#0d9488,#2dd4bf);}
+.t-teal .card-glow{background:#0d9488;}
+.t-teal .card-ico{background:var(--c-teal-b);}
+.t-teal .card-badge{background:var(--c-teal-b);color:var(--c-teal);}
+.t-teal .card-go{background:var(--c-teal-b);color:var(--c-teal);}
+.t-teal .spec-fill{background:linear-gradient(90deg,#0d9488,#2dd4bf);}
+.t-teal .spec-val{color:var(--c-teal);}
+/* BLUE */
+.t-blue .card-accent{background:linear-gradient(90deg,#1d4ed8,#60a5fa);}
+.t-blue .card-glow{background:#2563eb;}
+.t-blue .card-ico{background:var(--c-blue-b);}
+.t-blue .card-badge{background:var(--c-blue-b);color:var(--c-blue);}
+.t-blue .card-go{background:var(--c-blue-b);color:var(--c-blue);}
+.t-blue .spec-fill{background:linear-gradient(90deg,#1d4ed8,#60a5fa);}
+.t-blue .spec-val{color:var(--c-blue);}
+/* AMBER */
+.t-amber .card-accent{background:linear-gradient(90deg,#b45309,#fbbf24);}
+.t-amber .card-glow{background:#d97706;}
+.t-amber .card-ico{background:var(--c-amber-b);}
+.t-amber .card-badge{background:var(--c-amber-b);color:var(--c-amber);}
+.t-amber .card-go{background:var(--c-amber-b);color:var(--c-amber);}
+.t-amber .spec-fill{background:linear-gradient(90deg,#b45309,#fbbf24);}
+.t-amber .spec-val{color:var(--c-amber);}
+/* PURPLE */
+.t-purple .card-accent{background:linear-gradient(90deg,#6d28d9,#a78bfa);}
+.t-purple .card-glow{background:#7c3aed;}
+.t-purple .card-ico{background:var(--c-purple-b);}
+.t-purple .card-badge{background:var(--c-purple-b);color:var(--c-purple);}
+.t-purple .card-go{background:var(--c-purple-b);color:var(--c-purple);}
+.t-purple .spec-fill{background:linear-gradient(90deg,#6d28d9,#a78bfa);}
+.t-purple .spec-val{color:var(--c-purple);}
+/* ROSE */
+.t-rose .card-accent{background:linear-gradient(90deg,#be123c,#fb7185);}
+.t-rose .card-glow{background:#e11d48;}
+.t-rose .card-ico{background:var(--c-rose-b);}
+.t-rose .card-badge{background:var(--c-rose-b);color:var(--c-rose);}
+.t-rose .card-go{background:var(--c-rose-b);color:var(--c-rose);}
+.t-rose .spec-fill{background:linear-gradient(90deg,#be123c,#fb7185);}
+.t-rose .spec-val{color:var(--c-rose);}
+/* CYAN */
+.t-cyan .card-accent{background:linear-gradient(90deg,#0e7490,#22d3ee);}
+.t-cyan .card-glow{background:#0891b2;}
+.t-cyan .card-ico{background:var(--c-cyan-b);}
+.t-cyan .card-badge{background:var(--c-cyan-b);color:var(--c-cyan);}
+.t-cyan .card-go{background:var(--c-cyan-b);color:var(--c-cyan);}
+.t-cyan .spec-fill{background:linear-gradient(90deg,#0e7490,#22d3ee);}
+.t-cyan .spec-val{color:var(--c-cyan);}
+
+/* card stagger */
+.calc-card:nth-child(1){animation-delay:.07s;}
+.calc-card:nth-child(2){animation-delay:.12s;}
+.calc-card:nth-child(3){animation-delay:.17s;}
+.calc-card:nth-child(4){animation-delay:.22s;}
+.calc-card:nth-child(5){animation-delay:.27s;}
+.calc-card:nth-child(6){animation-delay:.32s;}
+.calc-card:nth-child(7){animation-delay:.37s;}
+
+/* ══════════════════════════════════════════════
+   COMPARISON TABLE
+══════════════════════════════════════════════ */
+.compare-wrap{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;
+  margin-bottom:48px;overflow-x:auto;
+  animation:fadeUp .5s ease both;animation-delay:.28s;
+}
+.compare-table{width:100%;border-collapse:collapse;font-size:12px;min-width:680px;}
+.compare-table thead tr{background:var(--surface2);}
+.compare-table th{
+  padding:11px 14px;text-align:left;
+  border-bottom:1px solid var(--border);
+  color:var(--text2);font-size:10.5px;font-weight:700;
+  letter-spacing:.04em;white-space:nowrap;text-transform:uppercase;
+}
+.compare-table td{
+  padding:11px 14px;
+  border-bottom:1px solid rgba(34,197,94,.05);
+  vertical-align:middle;
+}
+.compare-table tr:last-child td{border-bottom:none;}
+.compare-table tbody tr:hover td{background:rgba(34,197,94,.04);}
+.td-link{text-decoration:none;color:var(--text);display:flex;align-items:center;gap:8px;}
+.td-chip{
+  font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  padding:2px 7px;border-radius:5px;flex-shrink:0;font-family:var(--mono);
+}
+.td-name{font-size:13px;font-weight:700;}
+.td-mono{font-family:var(--mono);font-size:11px;color:var(--text2);}
+.hi-g{color:#4ade80;font-weight:700;font-family:var(--mono);font-size:11px;}
+.hi-a{color:#fbbf24;font-weight:700;font-family:var(--mono);font-size:11px;}
+.hi-r{color:#fb7185;font-weight:700;font-family:var(--mono);font-size:11px;}
+
+/* ══════════════════════════════════════════════
+   LAW SECTION
+══════════════════════════════════════════════ */
+.law-section{margin-bottom:48px;animation:fadeUp .5s ease both;animation-delay:.33s;}
+.law-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px;}
+.law-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:18px 20px;
+  position:relative;overflow:hidden;
+  transition:border-color .2s;
+}
+.law-card:hover{border-color:var(--border2);}
+.law-card-accent{
+  position:absolute;top:0;left:0;right:0;height:2px;
+}
+.law-card-num{
+  font-family:'Orbitron',sans-serif;
+  font-size:12px;font-weight:900;letter-spacing:.08em;
+  margin-bottom:4px;
+}
+.law-card-title{font-size:13px;font-weight:800;color:var(--text);margin-bottom:6px;line-height:1.3;}
+.law-card-date{
+  display:inline-block;
+  font-size:10px;font-weight:700;font-family:var(--mono);
+  padding:2px 8px;border-radius:5px;
+  background:rgba(255,255,255,.06);color:var(--text2);
+  margin-bottom:12px;
+}
+.law-card-rows{display:flex;flex-direction:column;gap:5px;}
+.law-row{display:flex;align-items:baseline;gap:8px;font-size:11px;color:var(--text2);line-height:1.5;}
+.law-row-key{
+  font-size:10px;font-weight:700;font-family:var(--mono);
+  color:var(--text3);flex-shrink:0;width:64px;
+}
+.law-row-val{color:var(--text);font-weight:600;}
+.law-row-note{font-size:10px;color:var(--text3);}
+
+/* formula box */
+.formula-box{
+  background:var(--bg1);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:18px 22px;
+}
+.formula-title{
+  font-size:12px;font-weight:800;color:var(--green3);
+  margin-bottom:14px;display:flex;align-items:center;gap:8px;
+  letter-spacing:.03em;
+}
+.formula-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.formula-item{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:var(--radius-xs);padding:12px 14px;}
+.formula-label{font-size:10px;font-weight:700;color:var(--text2);margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase;}
+.formula-eq{
+  font-family:var(--mono);font-size:11.5px;color:var(--green4);
+  font-weight:700;line-height:1.6;
+}
+.formula-sub{font-size:10px;color:var(--text3);margin-top:5px;line-height:1.5;}
+
+/* ══════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════ */
+footer{
+  text-align:center;padding:28px 0 16px;
+  border-top:1px solid var(--border);
+  animation:fadeUp .5s ease both;animation-delay:.42s;
+}
+.footer-brand{
+  font-family:'Orbitron',sans-serif;
+  font-size:13px;font-weight:900;letter-spacing:.12em;
+  color:var(--green);margin-bottom:7px;
+}
+.footer-copy{font-size:11px;color:var(--text3);}
+
+/* ══════════════════════════════════════════════
+   PWA BANNER
+══════════════════════════════════════════════ */
+.pwa-outer{
+  position:fixed;bottom:16px;left:16px;right:16px;
+  max-width:460px;margin:0 auto;z-index:9999;
+  display:none;
+  animation:slideUp .4s ease both;
+}
+.pwa-inner{
+  background:linear-gradient(135deg,#14532d,#0c2010);
+  border:1px solid rgba(74,222,128,.3);
+  border-radius:var(--radius);padding:14px 16px;
+  display:flex;align-items:center;gap:12px;
+  box-shadow:0 10px 40px rgba(0,0,0,.7);
+}
+.pwa-ico{width:42px;height:42px;border-radius:10px;background:rgba(21,128,61,.25);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.pwa-txt{flex:1;}
+.pwa-h{font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;}
+.pwa-s{font-size:10px;color:#86efac;font-weight:600;}
+.pwa-btns{display:flex;gap:8px;flex-shrink:0;}
+.pwa-no{font-size:11px;font-weight:700;color:rgba(255,255,255,.45);background:none;border:none;cursor:pointer;padding:8px 10px;border-radius:8px;font-family:var(--font);}
+.pwa-yes{font-size:11px;font-weight:900;color:#14532d;background:#fff;border:none;cursor:pointer;padding:8px 14px;border-radius:8px;font-family:var(--font);box-shadow:0 2px 8px rgba(0,0,0,.25);}
+
+/* ══════════════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════════════ */
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes slideUp{from{transform:translateY(120%);opacity:0;}to{transform:translateY(0);opacity:1;}}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
 @keyframes spin{to{transform:rotate(360deg);}}
-.loader-txt{color:rgba(255,255,255,0.38);font-size:12px;font-weight:600;}
 
-/* ══ 애니메이션 ══ */
-@keyframes floatUp{0%{transform:translateY(0) rotate(0deg);opacity:0;}10%{opacity:.4;}90%{opacity:.08;}100%{transform:translateY(-100vh) rotate(720deg);opacity:0;}}
-@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.06);}}
-@keyframes shimmer{0%{background-position:-200% center;}100%{background-position:200% center;}}
-@keyframes slideInUp{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
-@keyframes alertPulse{0%,100%{box-shadow:0 0 0 0 rgba(234,179,8,.4);}50%{box-shadow:0 0 0 6px rgba(234,179,8,0);}}
-
-/* ══ 카드 공통 ══ */
-.card-enter{animation:slideInUp .45s ease-out both;}
-.card-enter:nth-child(1){animation-delay:.04s;}.card-enter:nth-child(2){animation-delay:.08s;}
-.card-enter:nth-child(3){animation-delay:.12s;}.card-enter:nth-child(4){animation-delay:.16s;}
-.card-enter:nth-child(5){animation-delay:.20s;}.card-enter:nth-child(6){animation-delay:.24s;}
-.card-enter:nth-child(7){animation-delay:.28s;}
-
-.sys-card{
-  position:relative;background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.09);border-radius:20px;
-  cursor:pointer;transition:all .35s cubic-bezier(.4,0,.2,1);overflow:hidden;
-  display:flex;flex-direction:column;
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════ */
+@media(max-width:1000px){
+  .grid-4{grid-template-columns:repeat(2,1fr);}
 }
-.sys-card:hover{transform:translateY(-6px) scale(1.013);border-color:rgba(255,255,255,0.2);
-  box-shadow:0 20px 56px rgba(0,0,0,.5);}
-.sys-card .card-glow{position:absolute;inset:0;border-radius:20px;opacity:0;transition:opacity .35s;pointer-events:none;}
-.sys-card:hover .card-glow{opacity:1;}
-
-.nftc-badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;
-  font-size:9.5px;font-weight:700;letter-spacing:.06em;font-family:'Orbitron',sans-serif;}
-.new-badge{padding:2px 7px;border-radius:5px;font-size:9px;font-weight:900;
-  background:linear-gradient(135deg,#f59e0b,#ef4444);color:white;display:inline-block;}
-.upd-badge{padding:1px 6px;border-radius:4px;font-size:9px;font-weight:700;
-  background:rgba(34,197,94,.18);color:#4ade80;border:1px solid rgba(34,197,94,.25);display:inline-block;}
-
-/* 스펙 그리드 */
-.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:11px 15px;}
-.spec-item{background:rgba(255,255,255,.05);border-radius:8px;padding:7px 9px;border:1px solid rgba(255,255,255,.06);}
-.spec-label{font-size:9px;color:rgba(255,255,255,.4);margin-bottom:2px;}
-.spec-value{font-family:'Noto Sans Mono',monospace;font-size:13px;font-weight:700;color:white;}
-.stat-bar{height:3px;border-radius:2px;background:rgba(255,255,255,.06);overflow:hidden;margin-top:3px;}
-.stat-fill{height:100%;border-radius:2px;transition:width 1s ease-out;}
-
-/* 태그 */
-.tag-chip{padding:2px 7px;border-radius:5px;font-size:9.5px;font-weight:600;
-  background:rgba(255,255,255,.07);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.08);}
-
-/* 개정 박스 */
-.change-box{margin:8px 15px;padding:9px 12px;background:rgba(234,179,8,.07);
-  border:1px solid rgba(234,179,8,.22);border-radius:9px;}
-.chg-dot-n{width:6px;height:6px;border-radius:50%;background:#f59e0b;flex-shrink:0;margin-top:4px;}
-.chg-dot-u{width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0;margin-top:4px;}
-
-/* 실행 버튼 */
-.launch-btn{
-  display:flex;align-items:center;justify-content:center;gap:7px;
-  padding:12px 16px;border:none;cursor:pointer;
-  font-family:'Pretendard',sans-serif;font-size:13px;font-weight:700;
-  transition:all .25s;letter-spacing:.03em;
+@media(max-width:700px){
+  .wrapper{padding:0 14px 80px;}
+  .header{padding:36px 0 0;}
+  .grid-4{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .grid-3{grid-template-columns:repeat(1,1fr);gap:10px;}
+  .stats-bar{grid-template-columns:repeat(3,1fr);}
+  .stats-bar .stat-box:nth-child(4),.stats-bar .stat-box:nth-child(5){display:none;}
+  .law-grid{grid-template-columns:1fr;}
+  .formula-grid{grid-template-columns:1fr;}
+  .tab-wrap{flex-wrap:wrap;}
 }
-.launch-btn:active{transform:scale(.97);}
-
-/* 겸용 카드 */
-.combo-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
-  border-radius:15px;overflow:hidden;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);}
-.combo-card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.18);box-shadow:0 16px 44px rgba(0,0,0,.45);}
-
-/* 섹션 구분선 */
-.section-divider{display:flex;align-items:center;gap:14px;margin:28px 0 16px;}
-.section-divider::before,.section-divider::after{content:'';flex:1;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);}
-.section-divider span{font-size:11px;font-weight:700;color:rgba(255,255,255,.33);
-  letter-spacing:.07em;white-space:nowrap;}
-
-/* 개정 배너 */
-.revision-banner{background:linear-gradient(135deg,rgba(234,179,8,.1),rgba(239,68,68,.07));
-  border:1px solid rgba(234,179,8,.25);border-radius:13px;padding:12px 15px;margin-bottom:18px;
-  cursor:pointer;animation:alertPulse 3s ease-in-out infinite;}
-
-/* 히어로 */
-.hero-title{
-  background:linear-gradient(135deg,#fff 0%,#fbbf24 40%,#ef4444 80%);
-  background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;animation:shimmer 4s linear infinite;
+@media(max-width:440px){
+  .grid-4{grid-template-columns:1fr;}
+  .grid-3{grid-template-columns:1fr;}
+  .stats-bar{grid-template-columns:repeat(2,1fr);}
 }
 
-/* 통계 */
-.stat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
-  border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:11px;}
+/* hide/show via tab */
+.card-group{transition:opacity .25s;}
+.card-group.hidden{display:none;}
 
-/* 법령 */
-.law-card{padding:10px 12px;border-radius:9px;}
-
-/* 파티클 */
-.particle{position:fixed;bottom:-20px;border-radius:50%;pointer-events:none;animation:floatUp linear infinite;}
-
-/* PWA 설치 배너 */
-#pwa-banner{
-  display:none;position:fixed;bottom:20px;left:16px;right:16px;z-index:9999;
-  background:linear-gradient(135deg,#6b3600,#C88214 50%,#6b3600);
-  border:1px solid rgba(255,215,100,.3);border-radius:18px;
-  padding:13px 15px;box-shadow:0 8px 32px rgba(0,0,0,.6);
-  align-items:center;gap:11px;
-  animation:bUp .4s cubic-bezier(.4,0,.2,1);
+@media print{
+  .pwa-outer,.tab-wrap{display:none!important;}
+  body{background:#fff!important;color:#000!important;}
 }
-#pwa-banner.show{display:flex;}
-@keyframes bUp{from{transform:translateY(110%);opacity:0;}to{transform:translateY(0);opacity:1;}}
-.pwa-logo-img{width:44px;height:44px;border-radius:11px;flex-shrink:0;overflow:hidden;}
-.pwa-logo-img img{width:100%;height:100%;object-fit:cover;}
-.pwa-text{flex:1;min-width:0;}
-.pwa-text b{display:block;color:#fff;font-size:13px;font-weight:800;}
-.pwa-text small{display:block;color:rgba(255,240,180,.72);font-size:10px;margin-top:2px;}
-.pwa-close{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);
-  border-radius:8px;padding:7px 10px;font-size:11px;font-weight:600;cursor:pointer;
-  flex-shrink:0;font-family:'Pretendard',sans-serif;}
-.pwa-inst{background:#fff;color:#7a4000;border:none;border-radius:9px;
-  padding:8px 14px;font-size:12px;font-weight:900;cursor:pointer;
-  flex-shrink:0;font-family:'Pretendard',sans-serif;}
-
-/* 업데이트 토스트 */
-.upd-toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);z-index:9999;
-  background:#0f172a;border:1px solid rgba(200,130,20,.5);border-radius:10px;
-  padding:9px 18px;color:#fff;font-size:12px;font-weight:600;
-  box-shadow:0 4px 20px rgba(0,0,0,.5);display:flex;align-items:center;gap:11px;
-  white-space:nowrap;animation:toastIn .3s ease-out;}
-@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(-10px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
-
-/* 반응형 */
-@media(max-width:640px){
-  .grid-4{grid-template-columns:repeat(2,1fr)!important;}
-  .grid-3{grid-template-columns:repeat(2,1fr)!important;}
-  .stats-row{grid-template-columns:repeat(2,1fr)!important;}
-}
-@media(max-width:380px){
-  .grid-4,.grid-3{grid-template-columns:1fr!important;}
-}
-@media print{body{display:none!important;}}
 </style>
 </head>
 <body>
 
-<!-- ══ 상단 네비게이션 ══ -->
-<div id="topnav">
-  <div class="tn-logo">🔥 <b>MAN</b>MIN</div>
-  <button class="tn-home" id="btn-home" title="홈">⌂</button>
+<!-- BG layers -->
+<div class="bg-layer bg-grid"></div>
+<div class="bg-layer bg-radial"></div>
+<div class="bg-layer bg-vignette"></div>
 
-  <!-- 단독 시스템 -->
-  <button class="tn-btn" id="btn-indoor"
-    style="--ac:#ef4444;--acr:239,68,68">옥내소화전</button>
-  <button class="tn-btn" id="btn-outdoor"
-    style="--ac:#22c55e;--acr:34,197,94">옥외소화전</button>
-  <button class="tn-btn" id="btn-sprinkler"
-    style="--ac:#3b82f6;--acr:59,130,246">스프링클러</button>
-  <button class="tn-btn" id="btn-simple"
-    style="--ac:#14b8a6;--acr:20,184,166">간이스프링클러</button>
+<div class="wrapper">
 
-  <div class="tn-sep"></div>
+  <!-- ══ HEADER ══ -->
+  <header class="header">
+    <div class="header-pill">
+      <span class="pulse-dot"></span>
+      NFTC 최신 기준 적용 &nbsp;·&nbsp; 2026.3.1 시행
+    </div>
+    <div class="header-logo">MANMIN FIRE CALC</div>
+    <div class="header-tagline">소방 펌프 용량 계산서 통합 포털</div>
+    <p class="header-desc">
+      옥내소화전 · 옥외소화전 · 스프링클러 · 간이스프링클러 및 겸용 시스템의<br/>
+      펌프 용량을 NFTC 화재안전기술기준에 따라 정밀 계산합니다.
+    </p>
+    <div class="header-line"></div>
+  </header>
 
-  <!-- 겸용 펌프 -->
-  <button class="tn-btn" id="btn-combo1"
-    style="--ac:#a855f7;--acr:168,85,247">겸용 옥내+스프링</button>
-  <button class="tn-btn" id="btn-combo2"
-    style="--ac:#f97316;--acr:249,115,22">겸용 간이+옥내</button>
-  <button class="tn-btn" id="btn-combo3"
-    style="--ac:#eab308;--acr:234,179,8">겸용 옥내+옥외</button>
+  <!-- ══ STATS ══ -->
+  <div class="stats-bar">
+    <div class="stat-box"><div class="stat-num">7</div><div class="stat-lbl">계산서 종류</div></div>
+    <div class="stat-box"><div class="stat-num">NFTC</div><div class="stat-lbl">최신 기술기준</div></div>
+    <div class="stat-box"><div class="stat-num">H·W</div><div class="stat-lbl">Hazen-Williams</div></div>
+    <div class="stat-box"><div class="stat-num">PWA</div><div class="stat-lbl">오프라인 지원</div></div>
+    <div class="stat-box"><div class="stat-num">A4</div><div class="stat-lbl">인쇄 최적화</div></div>
+  </div>
+
+  <!-- ══ TAB FILTER ══ -->
+  <div class="tab-wrap" role="tablist">
+    <button class="tab-btn active" data-tab="all" role="tab" aria-selected="true">
+      전체 보기 <span class="tab-count">7</span>
+    </button>
+    <button class="tab-btn" data-tab="single" role="tab" aria-selected="false">
+      단독 설비 <span class="tab-count">4</span>
+    </button>
+    <button class="tab-btn" data-tab="combo" role="tab" aria-selected="false">
+      겸용 설비 <span class="tab-count">3</span>
+    </button>
+  </div>
+
+  <!-- ══════════════ 단독 설비 ══════════════ -->
+  <div class="card-group" id="group-single">
+    <div class="sec-head" style="animation-delay:.18s;">
+      <span class="sec-tag" style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);color:var(--green3);">단독 설비</span>
+      <span class="sec-label">단일 소방 설비 계산서</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="grid-4">
+
+      <!-- 옥내소화전 -->
+      <a class="calc-card t-green" href="./fire-hydrant-calc/" aria-label="옥내소화전 계산서">
+        <div class="card-glow"></div>
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-ico">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="7" y="9" width="10" height="12" rx="2"/><path d="M12 2v7"/><path d="M9 5h6"/><path d="M5 14h2"/><path d="M17 14h2"/><circle cx="12" cy="15" r="2"/>
+              </svg>
+            </div>
+            <div class="card-meta">
+              <span class="card-badge">NFTC 102</span>
+              <div class="card-title">옥내소화전</div>
+              <div class="card-title-en">Indoor Fire Hydrant</div>
+            </div>
+          </div>
+          <div class="card-desc">
+            방수압 0.17 MPa↑ · 방수량 130 ℓ/min↑<br/>동시 최대 5개 · 수원 2.6 m³/개↑
+          </div>
+          <!-- spec bars -->
+          <div class="spec-bars">
+            <div class="spec-row">
+              <span class="spec-label">방수압</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:42%"></div></div>
+              <span class="spec-val">0.17 MPa</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">방수량</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:37%"></div></div>
+              <span class="spec-val">130 ℓ/min</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">수원</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:26%"></div></div>
+              <span class="spec-val">2.6 m³/개</span>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="card-law">시행 2022.12.1</span>
+            <div class="card-go">→</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 옥외소화전 -->
+      <a class="calc-card t-teal" href="./outdoor-hydrant-calc/" aria-label="옥외소화전 계산서">
+        <div class="card-glow"></div>
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-ico">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 22V10a4 4 0 018 0v12"/><path d="M5 10h14"/><path d="M12 2v4"/><circle cx="12" cy="16" r="2"/>
+              </svg>
+            </div>
+            <div class="card-meta">
+              <span class="card-badge">NFTC 109</span>
+              <div class="card-title">옥외소화전</div>
+              <div class="card-title-en">Outdoor Fire Hydrant</div>
+            </div>
+          </div>
+          <div class="card-desc">
+            방수압 0.25 MPa↑ · 방수량 350 ℓ/min↑<br/>동시 최대 2개 · 수원 7 m³/개↑
+          </div>
+          <div class="spec-bars">
+            <div class="spec-row">
+              <span class="spec-label">방수압</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:62%"></div></div>
+              <span class="spec-val">0.25 MPa</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">방수량</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:100%"></div></div>
+              <span class="spec-val">350 ℓ/min</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">수원</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:70%"></div></div>
+              <span class="spec-val">7 m³/개</span>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="card-law">시행 2026.3.1</span>
+            <div class="card-go">→</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 스프링클러 -->
+      <a class="calc-card t-blue" href="./fire-sprinkler-calc/" aria-label="스프링클러 계산서">
+        <div class="card-glow"></div>
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-ico">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round">
+                <circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+                <path d="M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              </svg>
+            </div>
+            <div class="card-meta">
+              <span class="card-badge">NFTC 103</span>
+              <div class="card-title">스프링클러</div>
+              <div class="card-title-en">Fire Sprinkler System</div>
+            </div>
+          </div>
+          <div class="card-desc">
+            방수압 0.1 MPa↑ · 헤드 80 ℓ/min↑<br/>기준개수 최대 30개 · 헤드 종류별 설계
+          </div>
+          <div class="spec-bars">
+            <div class="spec-row">
+              <span class="spec-label">방수압</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:25%"></div></div>
+              <span class="spec-val">0.1 MPa</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">방수량</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:23%"></div></div>
+              <span class="spec-val">80 ℓ/min</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">기준개수</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:100%"></div></div>
+              <span class="spec-val">최대 30개</span>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="card-law">시행 2026.3.1</span>
+            <div class="card-go">→</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 간이스프링클러 -->
+      <a class="calc-card t-amber" href="./simple-sprinkler-calc/" aria-label="간이스프링클러 계산서">
+        <div class="card-glow"></div>
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-ico">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round">
+                <circle cx="12" cy="10" r="2"/><path d="M12 2v6M12 14v8"/><path d="M6 10h4M14 10h4"/>
+                <path d="M8 6l2 2M14 6l-2 2M8 14l2-2M14 14l-2-2"/>
+              </svg>
+            </div>
+            <div class="card-meta">
+              <span class="card-badge">NFTC 103A</span>
+              <div class="card-title">간이스프링클러</div>
+              <div class="card-title-en">Simplified Sprinkler</div>
+            </div>
+          </div>
+          <div class="card-desc">
+            방수압 0.1 MPa↑ · 헤드 50 ℓ/min↑<br/>기준개수 최대 5개 · 소규모 시설 적용
+          </div>
+          <div class="spec-bars">
+            <div class="spec-row">
+              <span class="spec-label">방수압</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:25%"></div></div>
+              <span class="spec-val">0.1 MPa</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">방수량</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:14%"></div></div>
+              <span class="spec-val">50 ℓ/min</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">기준개수</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:17%"></div></div>
+              <span class="spec-val">최대 5개</span>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="card-law">시행 2024.12.1</span>
+            <div class="card-go">→</div>
+          </div>
+        </div>
+      </a>
+
+    </div><!-- /grid-4 -->
+  </div><!-- /group-single -->
+
+  <!-- ══════════════ 겸용 설비 ══════════════ -->
+  <div class="card-group" id="group-combo">
+    <div class="sec-head" style="animation-delay:.22s;">
+      <span class="sec-tag" style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);color:var(--c-purple);">겸용 설비</span>
+      <span class="sec-label">복합 설비 겸용 펌프 계산서</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="grid-3">
+
+      <!-- 겸용 옥내+스프링클러 -->
+      <a class="calc-card t-purple" href="./combo-pump-calc/" aria-label="겸용 옥내+스프링클러">
+        <div class="card-glow"></div>
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-ico">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round">
+                <rect x="3" y="11" width="7" height="10" rx="1"/><circle cx="16" cy="11" r="2"/>
+                <path d="M16 3v6M12 16h8M16 16v5"/><path d="M3 8V5a1 1 0 011-1h3a1 1 0 011 1v4"/>
+              </svg>
+            </div>
+            <div class="card-meta">
+              <span class="card-badge">겸용 102 · 103</span>
+              <div class="card-title" style="font-size:14px;">옥내소화전<br/>+ 스프링클러</div>
+              <div class="card-title-en">Indoor + Sprinkler</div>
+            </div>
+          </div>
+          <div class="card-desc">
+            NFTC 102 · 103 동시 적용<br/>두 설비 최대값으로 펌프 선정
+          </div>
+          <div class="spec-bars">
+            <div class="spec-row">
+              <span class="spec-label">옥내 Q</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:65%"></div></div>
+              <span class="spec-val">650 ℓ/min</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">SP Q</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:68%"></div></div>
+              <span class="spec-val">2,400 ℓ/min</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">채택</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:100%"></div></div>
+              <span class="spec-val">MAX 선정</span>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="card-law">/combo-pump-calc/</span>
+            <div class="card-go">→</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 겸용 간이+옥내 -->
+      <a class="calc-card t-rose" href="./combo-easy-fire-calc/" aria-label="겸용 간이+옥내">
+        <div class="card-glow"></div>
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-ico">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fb7185" stroke-width="1.8" stroke-linecap="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <div class="card-meta">
+              <span class="card-badge">겸용 103A · 102</span>
+              <div class="card-title" style="font-size:14px;">간이스프링클러<br/>+ 옥내소화전</div>
+              <div class="card-title-en">Simple SP + Indoor</div>
+            </div>
+          </div>
+          <div class="card-desc">
+            NFTC 103A · 102 동시 적용<br/>소규모 복합 건물 최적 설계
+          </div>
+          <div class="spec-bars">
+            <div class="spec-row">
+              <span class="spec-label">간이 Q</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:25%"></div></div>
+              <span class="spec-val">250 ℓ/min</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">옥내 Q</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:65%"></div></div>
+              <span class="spec-val">650 ℓ/min</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">채택</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:65%"></div></div>
+              <span class="spec-val">MAX 선정</span>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="card-law">/combo-easy-fire-calc/</span>
+            <div class="card-go">→</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 겸용 옥내+옥외 -->
+      <a class="calc-card t-cyan" href="./combo-indoor-outdoor-calc/" aria-label="겸용 옥내+옥외">
+        <div class="card-glow"></div>
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-ico">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.8" stroke-linecap="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </div>
+            <div class="card-meta">
+              <span class="card-badge">겸용 102 · 109</span>
+              <div class="card-title" style="font-size:14px;">옥내소화전<br/>+ 옥외소화전</div>
+              <div class="card-title-en">Indoor + Outdoor</div>
+            </div>
+          </div>
+          <div class="card-desc">
+            NFTC 102 · 109 동시 적용<br/>실내외 복합 소화설비 통합 계산
+          </div>
+          <div class="spec-bars">
+            <div class="spec-row">
+              <span class="spec-label">옥내 Q</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:65%"></div></div>
+              <span class="spec-val">650 ℓ/min</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">옥외 Q</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:100%"></div></div>
+              <span class="spec-val">700 ℓ/min</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">채택</span>
+              <div class="spec-track"><div class="spec-fill" style="--w:100%"></div></div>
+              <span class="spec-val">MAX 선정</span>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="card-law">/combo-indoor-outdoor-calc/</span>
+            <div class="card-go">→</div>
+          </div>
+        </div>
+      </a>
+
+    </div><!-- /grid-3 -->
+  </div><!-- /group-combo -->
+
+  <!-- ══ COMPARISON TABLE ══ -->
+  <div class="sec-head" style="animation-delay:.26s;margin-top:0;">
+    <span class="sec-tag" style="background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.2);color:var(--c-amber);">설계 기준</span>
+    <span class="sec-label">설비별 NFTC 설계 기준 비교표</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="compare-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>설비 명칭</th>
+          <th>NFTC</th>
+          <th>시행일</th>
+          <th>방수압</th>
+          <th>방수량</th>
+          <th>동시 개수</th>
+          <th>수원 (개당)</th>
+          <th>방사 시간</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a class="td-link" href="./fire-hydrant-calc/"><span class="td-chip" style="background:var(--c-green-b);color:var(--c-green);">단독</span><span class="td-name">옥내소화전</span></a></td>
+          <td><span class="td-mono">102</span></td>
+          <td><span class="td-mono" style="color:#a3b4a3;">2022.12.1</span></td>
+          <td><span class="hi-g">0.17 MPa↑</span></td>
+          <td><span class="hi-g">130 ℓ/min↑</span></td>
+          <td><span class="td-mono">최대 5개</span></td>
+          <td><span class="td-mono">2.6 m³↑</span></td>
+          <td><span class="td-mono">20 min</span></td>
+        </tr>
+        <tr>
+          <td><a class="td-link" href="./outdoor-hydrant-calc/"><span class="td-chip" style="background:var(--c-teal-b);color:var(--c-teal);">단독</span><span class="td-name">옥외소화전</span></a></td>
+          <td><span class="td-mono">109</span></td>
+          <td><span class="td-mono" style="color:var(--c-green);">2026.3.1</span></td>
+          <td><span class="hi-a">0.25 MPa↑</span></td>
+          <td><span class="hi-a">350 ℓ/min↑</span></td>
+          <td><span class="td-mono">최대 2개</span></td>
+          <td><span class="td-mono">7 m³↑</span></td>
+          <td><span class="td-mono">20 min</span></td>
+        </tr>
+        <tr>
+          <td><a class="td-link" href="./fire-sprinkler-calc/"><span class="td-chip" style="background:var(--c-blue-b);color:var(--c-blue);">단독</span><span class="td-name">스프링클러</span></a></td>
+          <td><span class="td-mono">103</span></td>
+          <td><span class="td-mono" style="color:var(--c-green);">2026.3.1</span></td>
+          <td><span class="hi-g">0.1 MPa↑</span></td>
+          <td><span class="hi-g">80 ℓ/min↑</span></td>
+          <td><span class="td-mono">최대 30개</span></td>
+          <td><span class="td-mono">1.6 m³↑</span></td>
+          <td><span class="td-mono">20~60 min</span></td>
+        </tr>
+        <tr>
+          <td><a class="td-link" href="./simple-sprinkler-calc/"><span class="td-chip" style="background:var(--c-amber-b);color:var(--c-amber);">단독</span><span class="td-name">간이스프링클러</span></a></td>
+          <td><span class="td-mono">103A</span></td>
+          <td><span class="td-mono" style="color:#fbbf24;">2024.12.1</span></td>
+          <td><span class="hi-g">0.1 MPa↑</span></td>
+          <td><span class="hi-g">50 ℓ/min↑</span></td>
+          <td><span class="td-mono">최대 5개</span></td>
+          <td><span class="td-mono">1.0 m³↑</span></td>
+          <td><span class="td-mono">10 min</span></td>
+        </tr>
+        <tr>
+          <td><a class="td-link" href="./combo-pump-calc/"><span class="td-chip" style="background:var(--c-purple-b);color:var(--c-purple);">겸용</span><span class="td-name">옥내+스프링클러</span></a></td>
+          <td><span class="td-mono">102·103</span></td>
+          <td><span class="td-mono" style="color:#a3b4a3;">복합</span></td>
+          <td><span class="hi-a">Max</span></td>
+          <td><span class="hi-a">Max</span></td>
+          <td><span class="td-mono">설비별 적용</span></td>
+          <td><span class="td-mono">Max 선정</span></td>
+          <td><span class="td-mono">겸용 선정</span></td>
+        </tr>
+        <tr>
+          <td><a class="td-link" href="./combo-easy-fire-calc/"><span class="td-chip" style="background:var(--c-rose-b);color:var(--c-rose);">겸용</span><span class="td-name">간이+옥내</span></a></td>
+          <td><span class="td-mono">103A·102</span></td>
+          <td><span class="td-mono" style="color:#a3b4a3;">복합</span></td>
+          <td><span class="hi-a">Max</span></td>
+          <td><span class="hi-a">Max</span></td>
+          <td><span class="td-mono">설비별 적용</span></td>
+          <td><span class="td-mono">Max 선정</span></td>
+          <td><span class="td-mono">겸용 선정</span></td>
+        </tr>
+        <tr>
+          <td><a class="td-link" href="./combo-indoor-outdoor-calc/"><span class="td-chip" style="background:var(--c-cyan-b);color:var(--c-cyan);">겸용</span><span class="td-name">옥내+옥외</span></a></td>
+          <td><span class="td-mono">102·109</span></td>
+          <td><span class="td-mono" style="color:#a3b4a3;">복합</span></td>
+          <td><span class="hi-a">0.25 MPa↑</span></td>
+          <td><span class="hi-a">Max</span></td>
+          <td><span class="td-mono">설비별 적용</span></td>
+          <td><span class="td-mono">Max 선정</span></td>
+          <td><span class="td-mono">겸용 선정</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══ LAW SECTION ══ -->
+  <div class="sec-head" style="animation-delay:.3s;">
+    <span class="sec-tag" style="background:rgba(96,165,250,.07);border:1px solid rgba(96,165,250,.2);color:var(--c-blue);">법령 기준</span>
+    <span class="sec-label">NFTC 화재안전기술기준 시행일 안내</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="law-section">
+    <div class="law-grid">
+
+      <!-- NFTC 102 -->
+      <div class="law-card">
+        <div class="law-card-accent" style="background:linear-gradient(90deg,#15803d,#4ade80);"></div>
+        <div class="law-card-num" style="color:#4ade80;">NFTC 102</div>
+        <div class="law-card-title">옥내소화전설비의 화재안전기술기준</div>
+        <div class="law-card-date">시행 2022. 12. 1.</div>
+        <div class="law-card-rows">
+          <div class="law-row">
+            <span class="law-row-key">방수압</span>
+            <span class="law-row-val">0.17 MPa 이상</span>
+            <span class="law-row-note">(노즐 선단)</span>
+          </div>
+          <div class="law-row">
+            <span class="law-row-key">방수량</span>
+            <span class="law-row-val">130 ℓ/min 이상</span>
+            <span class="law-row-note">(개당)</span>
+          </div>
+          <div class="law-row">
+            <span class="law-row-key">동시사용</span>
+            <span class="law-row-val">최대 5개</span>
+            <span class="law-row-note">(29층 이하)</span>
+          </div>
+          <div class="law-row">
+            <span class="law-row-key">수원</span>
+            <span class="law-row-val">2.6 m³ × N 이상</span>
+            <span class="law-row-note">(N: 동시사용개수)</span>
+          </div>
+          <div class="law-row">
+            <span class="law-row-key">호스</span>
+            <span class="law-row-val">40 mm 호스</span>
+            <span class="law-row-note">(구경)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NFTC 109 -->
+      <div class="law-card">
+        <div class="law-card-accent" style="background:linear-gradient(90deg,#0d9488,#2dd4bf);"></div>
+        <div class="law-card-num" style="color:#2dd4bf;">NFTC 109</div>
+        <div class="law-card-title">옥외소화전설비의 화재안전기술기준</div>
+        <div class="law-card-date" style="color:#4ade80;">시행 2026. 3. 1. ★ 최신</div>
+        <div class="law-card-rows">
+          <div class="law-row">
+            <span class="law-row-key">방수압</span>
+            <span class="law-row-val">0.25 MPa 이상</span>
+            <span class="law-row-note">(노즐 선단)</span>
+          </div>
+          <div class="law-row">
+            <span class="law-row-key">방수량</span>
+            <span class="law-row-val">350 ℓ/min 이상</span>
+            <span class="law-row-note">(개당)</span>
+          </div>
+          <div class="law-row">
+            <span class="law-row-key">동시사용</span>
+            <span class="law-row-val">최대 2개</span>
+            <span class="law-row-note"></span>
+          </div>
+          <div class="law-row">
+            <span class="law-row-key">수원</span>
+            <span class="law-row-val">7 m³ × N 이상</span>
+            <span class="law-row-note">(N: 동시사용개수)</span>
+          </div>
+          <div class="law-row">
+            <span class="law-row-key">호스</span>
+            <span class="law-row-val">65 mm 호스</span>
+            <span class="law-row-note">(구경)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NFTC 103 -->
+      <div class="law-card">
+        <div class="law-card-accent" style="background:linear-gradient(90deg,#1d4ed8,#60a5fa);"></div>
+        <div class="law-card-num" style="color:#60a5fa;">NFTC 103</div>
+        <div class="law-card-title">스프링클러설비의 화재안전기술기준</div>
+        <div class="law-card-date" style="color:#4ade80;">시행 2026. 3. 1. ★ 최신</div>
+        <div class="law-card-rows">
+          <div class="law-row">
+            <span class="law-row-key">방수압</span>
+            <span class="law-row-val">0.1 MPa 이상</span>
+            <span class="law-row-note">(헤드 선단)</span>
+          </div>
+          <div class="law-row">
+            <span class="law-row-key">방수량</span>
+            <span class="law-row-val">80 ℓ/min 이상</span>
+            <span class="law-row-note">(헤드당)</span>
+          </div>
+          <div class="law-row">
+            <span class="law-row-key">기준개수</span>
+            <span class="law-row-val">최대 30개</span>
+            <span class="law-row-note">(용도·구조별)</span>
+          </div>
+          <div class="law-row">
+            <span class="law-row-key">수원</span>
+            <span class="law-row-val">1.6 m³ × N 이상</span>
+            <span class="law-row-note">(폐쇄형 기준)</span>
+          </div>
+          <div class="law-row">
+            <span class="law-row-key">방사시간</span>
+            <span class="law-row-val">20 ~ 60 min</span>
+            <span class="law-row-note">(용도별)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NFTC 103A -->
+      <div class="law-card">
+        <div class="law-card-accent" style="background:linear-gradient(90deg,#b45309,#fbbf24);"></div>
+        <div class="law-card-num" style="color:#fbbf24;">NFTC 103A</div>
+        <div class="law-card-title">간이스프링클러설비의 화재안전기술기준</div>
+        <div class="law-card-date" style="color:#fbbf24;">시행 2024. 12. 1.</div>
+        <div class="law-card-rows">
+          <div class="law-row">
+            <span class="law-row-key">방수압</span>
+            <span class="law-row-val">0.1 MPa 이상</span>
+            <span class="law-row-note">(헤드 선단)</span>
+          </div>
+          <div class="law-row">
+            <span class="law-row-key">방수량</span>
+            <span class="law-row-val">50 ℓ/min 이상</span>
+            <span class="law-row-note">(헤드당)</span>
+          </div>
+          <div class="law-row">
+            <span class="law-row-key">기준개수</span>
+            <span class="law-row-val">최대 5개</span>
+            <span class="law-row-note">(설치장소별)</span>
+          </div>
+          <div class="law-row">
+            <span class="law-row-key">수원</span>
+            <span class="law-row-val">1.0 m³ × N 이상</span>
+            <span class="law-row-note">(최소 1 m³)</span>
+          </div>
+          <div class="law-row">
+            <span class="law-row-key">방사시간</span>
+            <span class="law-row-val">10 min 이상</span>
+            <span class="law-row-note"></span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /law-grid -->
+
+    <!-- formula box -->
+    <div class="formula-box">
+      <div class="formula-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        계산식 안내 — Hazen-Williams 공식 &amp; 전동기 동력 산정
+      </div>
+      <div class="formula-grid">
+        <div class="formula-item">
+          <div class="formula-label">배관 마찰손실 (H-W)</div>
+          <div class="formula-eq">h = 10.67 × L<br/>÷ (C¹·⁸⁵² × D⁴·⁸⁷)<br/>× Q¹·⁸⁵²</div>
+          <div class="formula-sub">C: 조도계수 (KS D3507 → 120<br/>STS KS D3595 → 150)</div>
+        </div>
+        <div class="formula-item">
+          <div class="formula-label">펌프 전양정 (H)</div>
+          <div class="formula-eq">H = h₁ + h₂<br/>+ h₃ + h₄</div>
+          <div class="formula-sub">h₁: 낙차 h₂: 배관마찰<br/>h₃: 호스마찰 h₄: 방수압 환산</div>
+        </div>
+        <div class="formula-item">
+          <div class="formula-label">전동기 출력 (P)</div>
+          <div class="formula-eq">P = 0.163 × Q<br/>× H × K ÷ η</div>
+          <div class="formula-sub">K: 전달계수 (직결 1.1 / 원동기 1.15)<br/>η: 펌프효율 (구경별 0.40~0.70)</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /law-section -->
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-brand">MANMIN · Ver-2.0</div>
+    <p class="footer-copy">소방시설 설계 전용 계산서 &nbsp;·&nbsp; © 2025 MANMIN Engineering &nbsp;·&nbsp; All rights reserved</p>
+  </footer>
+
+</div><!-- /wrapper -->
+
+<!-- PWA BANNER -->
+<div class="pwa-outer" id="pwa-wrap">
+  <div class="pwa-inner">
+    <div class="pwa-ico">🔥</div>
+    <div class="pwa-txt">
+      <div class="pwa-h">홈 화면에 설치하시겠습니까?</div>
+      <div class="pwa-s">오프라인에서도 사용 가능합니다</div>
+    </div>
+    <div class="pwa-btns">
+      <button class="pwa-no" id="pwa-no">닫기</button>
+      <button class="pwa-yes" id="pwa-yes">설치</button>
+    </div>
+  </div>
 </div>
 
-<!-- ══ 콘텐츠 ══ -->
-<div id="content-area">
-
-  <!-- 로딩 -->
-  <div id="loader">
-    <div class="loader-ring"></div>
-    <div class="loader-txt">계산기 불러오는 중…</div>
-  </div>
-
-  <!-- 계산기 iframe -->
-  <iframe id="calc-frame" src="" allow="print" title="소방시설 계산기"></iframe>
-
-  <!-- 홈 화면 (React 렌더링) -->
-  <div id="home-screen">
-    <div id="react-root"></div>
-  </div>
-
-</div><!-- /content-area -->
-
-<!-- ══ PWA 설치 배너 ══ -->
-<div id="pwa-banner">
-  <div class="pwa-logo-img"><img src="icons/icon-192.png" alt="MANMIN"/></div>
-  <div class="pwa-text">
-    <b>홈 화면에 설치</b>
-    <small>오프라인에서도 포털을 사용할 수 있습니다</small>
-  </div>
-  <button class="pwa-close" id="pwa-close-btn">닫기</button>
-  <button class="pwa-inst"  id="pwa-inst-btn">설치</button>
-</div>
-
-<!-- ══════════════════════════════════════════════
-     React 포털 홈 화면
-══════════════════════════════════════════════ -->
-<script type="text/babel">
-const {useState, useEffect} = React;
-
-/* ═══ 확정 GitHub Pages URL ═══
-   manminkim-eng.github.io 기준 — 실제 활성화된 레포명 */
-const BASE = "https://manminkim-eng.github.io";
-const CALC_URLS = {
-  indoor   : BASE + "/fire-hydrant-calc/",
-  outdoor  : BASE + "/outdoor-hydrant-calc/",
-  sprinkler: BASE + "/fire-sprinkler-calc/",
-  simple   : BASE + "/simple-sprinkler-calc/",
-  combo1   : BASE + "/combo-pump-calc/",
-  combo2   : BASE + "/combo-easy-fire-calc/",
-  combo3   : BASE + "/combo-indoor-outdoor-calc/",
-};
-
-/* ═══ NFTC 개정 데이터 ═══ */
-const REVISION_NOTICES = [
-  { nftc:"NFTC 103", date:"2026.3.1.", color:"#3b82f6",
-    changes:[
-      {type:"new",text:"지하주차장 스프링클러설비 습식 원칙 (2.5.15 신설)"},
-      {type:"new",text:"내화구조 헤드 수평거리 2.3m 이하 (2.7.3.2 신설)"},
-      {type:"new",text:"전기차 충전구역 조기반응형 헤드 의무화 (2.7.5)"},
-      {type:"new",text:"전기적 신호개방밸브 송수구 방호구역별 2차측 (2.8.1.5)"},
-    ]},
-  { nftc:"NFTC 109", date:"2026.3.1.", color:"#22c55e",
-    changes:[
-      {type:"new",text:"소화전 수평거리 40m 이하 (2.3.1.1 신설)"},
-      {type:"new",text:"호스접결구 높이 0.5~1.0m (2.3.1.2 신설)"},
-      {type:"new",text:"특수가연물 750배 이상 방수총 의무 (2.3.1.3 신설)"},
-    ]},
-  { nftc:"NFTC 103A", date:"2024.12.1.", color:"#14b8a6",
-    changes:[
-      {type:"new",text:"주택전용 간이스프링클러설비 신설 (2.11)"},
-      {type:"new",text:"연립·다세대 상수도 직결방식 허용"},
-      {type:"new",text:"주택전용 가압송수장치·제어반 미적용 가능"},
-    ]},
-];
-
-/* ═══ 시스템 데이터 ═══ */
-const SYSTEMS = [
-  {
-    id:"indoor", key:"indoor", label:"옥내소화전", sublabel:"Indoor Hydrant",
-    nftc:"NFTC 102", revDate:"2022.12.1.", hasChanges:false,
-    color:"#ef4444", colorLight:"rgba(239,68,68,0.13)",
-    gradient:"linear-gradient(135deg,#ef4444,#dc2626)",
-    specs:[
-      {label:"방사량",value:"130 ℓ/min",bar:52},
-      {label:"방수압",value:"0.17 MPa",bar:34},
-      {label:"방사시간",value:"20 분",bar:66},
-      {label:"최대개수",value:"2개 (N≤5)",bar:40},
-    ],
-    waterVol:"N × 2.6 m³",
-    description:"NFTC 102 기준 옥내소화전 펌프 용량·수원·배관 마찰손실 자동 계산",
-    changes:[],
-    keyPoints:["방수구 수평거리: 25m 이하","토출측 유속: 4m/s 이하","가지배관: 40mm 이상","수직배관: 50mm 이상"],
-    tags:["가압송수장치","호스릴 대응","2022 현행"],
-  },
-  {
-    id:"outdoor", key:"outdoor", label:"옥외소화전", sublabel:"Outdoor Hydrant",
-    nftc:"NFTC 109", revDate:"2026.3.1.", hasChanges:true,
-    color:"#22c55e", colorLight:"rgba(34,197,94,0.13)",
-    gradient:"linear-gradient(135deg,#22c55e,#16a34a)",
-    specs:[
-      {label:"방사량",value:"350 ℓ/min",bar:85},
-      {label:"방수압",value:"0.25 MPa",bar:50},
-      {label:"방사시간",value:"20 분",bar:66},
-      {label:"최대개수",value:"2개 동시",bar:20},
-    ],
-    waterVol:"N × 7.0 m³",
-    description:"NFTC 109 기준 옥외소화전 펌프 용량·수원·배관 마찰손실 자동 계산",
-    changes:[
-      {type:"new",text:"수평거리 40m 이하 (§2.3.1.1)"},
-      {type:"new",text:"호스접결구 높이 0.5~1m (§2.3.1.2)"},
-      {type:"new",text:"특수가연물 방수총 의무 (§2.3.1.3)"},
-    ],
-    keyPoints:["수원: 2개 × 7.0 m³","방수압: 0.25 MPa","수평거리: 40m 이하 ★신설","호스: 65mm"],
-    tags:["대용량 방사","2026 개정","방수총 신설"],
-  },
-  {
-    id:"sprinkler", key:"sprinkler", label:"스프링클러", sublabel:"Sprinkler System",
-    nftc:"NFTC 103", revDate:"2026.3.1.", hasChanges:true,
-    color:"#3b82f6", colorLight:"rgba(59,130,246,0.13)",
-    gradient:"linear-gradient(135deg,#3b82f6,#2563eb)",
-    specs:[
-      {label:"헤드방사량",value:"80 ℓ/min",bar:64},
-      {label:"방수압",value:"0.10 MPa",bar:20},
-      {label:"방사시간",value:"20 분",bar:66},
-      {label:"헤드당수원",value:"1.6 m³",bar:45},
-    ],
-    waterVol:"기준개수 × 1.6 m³",
-    description:"NFTC 103 기준 스프링클러설비 펌프 용량·수원·헤드 방사 계산",
-    changes:[
-      {type:"new",text:"지하주차장 습식 원칙 (§2.5.15)"},
-      {type:"new",text:"내화구조 헤드 수평거리 2.3m (§2.7.3.2)"},
-      {type:"new",text:"전기차 충전구역 조기반응형 (§2.7.5)"},
-    ],
-    keyPoints:["헤드 방수압: 0.1~1.2 MPa","기준개수: 용도별 10~30개","내화구조 2.3m ★신설","지하주차장 습식 ★신설"],
-    tags:["자동살수","2026 개정","전기차 충전구역"],
-  },
-  {
-    id:"simple", key:"simple", label:"간이스프링클러", sublabel:"Simple Sprinkler",
-    nftc:"NFTC 103A", revDate:"2024.12.1.", hasChanges:true,
-    color:"#14b8a6", colorLight:"rgba(20,184,166,0.13)",
-    gradient:"linear-gradient(135deg,#14b8a6,#0d9488)",
-    specs:[
-      {label:"헤드방사량",value:"50 ℓ/min",bar:40},
-      {label:"방수압",value:"0.10 MPa",bar:20},
-      {label:"방사시간",value:"10~20분",bar:55},
-      {label:"기준헤드",value:"2~5 개",bar:35},
-    ],
-    waterVol:"기준별 산정",
-    description:"NFTC 103A 기준 간이스프링클러설비 펌프 용량 계산 (일반·특수·주차장·주택전용)",
-    changes:[
-      {type:"new",text:"주택전용 간이스프링클러 신설 (§2.11)"},
-      {type:"new",text:"연립·다세대 상수도 직결방식"},
-      {type:"new",text:"가압송수장치·제어반 미적용 가능"},
-    ],
-    keyPoints:["일반형: 2헤드×10분","특수형: 5헤드×20분","주차장: 1헤드×80L×10분","주택전용 ★2024 신설"],
-    tags:["소규모시설","주택전용 신설","2024 개정"],
-  },
-];
-
-const COMBOS = [
-  {
-    id:"combo1", key:"combo1",
-    combo:"옥내소화전 + 스프링클러",
-    gradient:"linear-gradient(135deg,#ef4444,#3b82f6)",
-    colorA:"#ef4444", colorB:"#3b82f6",
-    nftc:"NFTC 102 + 103",
-    desc:"옥내소화전과 스프링클러 겸용 펌프의 토출량·양정·동력 통합 계산",
-    tags:["NFTC 102","NFTC 103","겸용"],
-  },
-  {
-    id:"combo2", key:"combo2",
-    combo:"간이스프링클러 + 옥내소화전",
-    gradient:"linear-gradient(135deg,#14b8a6,#ef4444)",
-    colorA:"#14b8a6", colorB:"#ef4444",
-    nftc:"NFTC 103A + 102",
-    desc:"간이스프링클러와 옥내소화전 겸용 펌프의 토출량·양정·동력 통합 계산",
-    tags:["NFTC 103A","NFTC 102","겸용"],
-  },
-  {
-    id:"combo3", key:"combo3",
-    combo:"옥내소화전 + 옥외소화전",
-    gradient:"linear-gradient(135deg,#ef4444,#22c55e)",
-    colorA:"#ef4444", colorB:"#22c55e",
-    nftc:"NFTC 102 + 109",
-    desc:"옥내소화전과 옥외소화전 겸용 펌프의 토출량·양정·동력 통합 계산",
-    tags:["NFTC 102","NFTC 109 ★2026","겸용"],
-  },
-];
-
-/* ═══ 아이콘 ═══ */
-const IconFire=({c="#fff",s=24})=><svg width={s} height={s} viewBox="0 0 28 28" fill="none"><path d="M14 3C14 3 8 10 8 17C8 21 11 24 14 24C11 21 11 18 13 15C14.5 19 17 21 19 19C20 22 18 26 14 26C20 26 26 21 26 17C26 12 21 8 18 6C20 9 19 13 17 14C16 11 15 7 14 3Z" fill={c} opacity=".9"/></svg>;
-const IconDrop=({c="#fff",s=24})=><svg width={s} height={s} viewBox="0 0 28 28" fill="none"><path d="M14 4L8 14C8 18.4 10.7 22 14 22C17.3 22 20 18.4 20 14L14 4Z" fill={c} opacity=".85"/></svg>;
-const IconSpr=({c="#fff",s=24})=><svg width={s} height={s} viewBox="0 0 28 28" fill="none"><circle cx="14" cy="11" r="4" fill={c} opacity=".85"/><rect x="13" y="2" width="2" height="6" rx="1" fill={c} opacity=".7"/>{[0,60,120,180,240,300].map((a,i)=>{const r=a*Math.PI/180;return<line key={i} x1={14+7*Math.cos(r)} y1={11+7*Math.sin(r)} x2={14+10*Math.cos(r)} y2={11+10*Math.sin(r)} stroke={c} strokeWidth="1.5" strokeLinecap="round" opacity=".4"/>})}<circle cx="14" cy="11" r="1.5" fill={c}/></svg>;
-const IconCombo=({c="#fff",s=24})=><svg width={s} height={s} viewBox="0 0 28 28" fill="none"><circle cx="9" cy="10" r="4" fill={c} opacity=".7"/><circle cx="19" cy="10" r="4" fill={c} opacity=".7"/><path d="M5 22 Q14 17 23 22" stroke={c} strokeWidth="2.5" strokeLinecap="round" fill="none" opacity=".65"/><circle cx="14" cy="19" r="3" fill={c} opacity=".9"/></svg>;
-
-const SYS_ICONS = {indoor:IconFire,outdoor:IconDrop,sprinkler:IconSpr,simple:IconSpr};
-
-/* ═══ 파티클 ═══ */
-function Particles(){
-  const ps=Array.from({length:8},(_,i)=>({id:i,left:`${Math.random()*100}%`,size:Math.random()*5+2,dur:Math.random()*14+8,del:Math.random()*8,col:["rgba(239,68,68,.3)","rgba(251,146,60,.22)","rgba(250,204,21,.18)"][i%3]}));
-  return <div style={{position:"fixed",inset:0,pointerEvents:"none",zIndex:0}}>{ps.map(p=><div key={p.id} className="particle" style={{left:p.left,width:p.size,height:p.size,background:p.col,animationDuration:`${p.dur}s`,animationDelay:`${p.del}s`}}/>)}</div>;
-}
-
-/* ═══ SystemCard ═══ */
-function SystemCard({sys, onOpen}){
-  const [hovered,setHovered]=useState(false);
-  const [tab,setTab]=useState("spec");
-  const Icon=SYS_ICONS[sys.id]||IconFire;
-
-  return(
-    <div className="sys-card card-enter"
-      onMouseEnter={()=>setHovered(true)}
-      onMouseLeave={()=>setHovered(false)}
-    >
-      <div className="card-glow" style={{background:`radial-gradient(circle at 50% 0%,${sys.colorLight},transparent 70%)`}}/>
-      <div style={{height:4,background:sys.gradient,borderRadius:"20px 20px 0 0"}}/>
-
-      {/* 헤더 */}
-      <div style={{padding:"15px 15px 0",display:"flex",alignItems:"flex-start",justifyContent:"space-between",gap:9}}>
-        <div style={{display:"flex",alignItems:"center",gap:11}}>
-          <div style={{width:48,height:48,borderRadius:13,background:sys.gradient,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-            <Icon c="white" s={24}/>
-          </div>
-          <div>
-            <div style={{display:"flex",alignItems:"center",gap:5,flexWrap:"wrap"}}>
-              <span style={{color:"white",fontWeight:800,fontSize:15.5,letterSpacing:"-0.02em"}}>{sys.label}</span>
-              {sys.hasChanges ? <span className="new-badge">2026 개정</span> : <span className="upd-badge">현행</span>}
-            </div>
-            <div style={{color:"rgba(255,255,255,0.38)",fontSize:10,marginTop:1}}>{sys.sublabel}</div>
-          </div>
-        </div>
-        <div style={{textAlign:"right",flexShrink:0}}>
-          <span className="nftc-badge" style={{background:sys.colorLight,color:sys.color,border:`1px solid ${sys.color}40`}}>{sys.nftc}</span>
-          <div style={{fontSize:9,color:"rgba(255,255,255,0.28)",marginTop:2}}>{sys.revDate}</div>
-        </div>
-      </div>
-
-      {/* 설명 */}
-      <div style={{padding:"7px 15px 0",fontSize:10.5,color:"rgba(255,255,255,0.42)",lineHeight:1.55}}>{sys.description}</div>
-
-      {/* 탭 */}
-      <div style={{display:"flex",gap:4,padding:"8px 15px 0"}}>
-        {[{k:"spec",l:"설계 스펙"},...(sys.hasChanges?[{k:"change",l:`개정 ${sys.changes.length}건`}]:[]),{k:"key",l:"핵심 요점"}].map(t=>(
-          <button key={t.k} onClick={e=>{e.stopPropagation();setTab(t.k);}} style={{
-            padding:"3px 9px",borderRadius:6,fontSize:10,fontWeight:700,cursor:"pointer",
-            border:"1px solid",fontFamily:"'Pretendard',sans-serif",transition:"all .2s",
-            background:tab===t.k?sys.colorLight:"rgba(255,255,255,.04)",
-            borderColor:tab===t.k?`${sys.color}50`:"rgba(255,255,255,.08)",
-            color:tab===t.k?sys.color:"rgba(255,255,255,.42)",
-          }}>{t.l}</button>
-        ))}
-      </div>
-
-      {/* 탭 내용 */}
-      {tab==="spec"&&(
-        <div className="spec-grid">
-          {sys.specs.map((sp,i)=>(
-            <div key={i} className="spec-item">
-              <div className="spec-label">{sp.label}</div>
-              <div className="spec-value" style={{color:hovered?sys.color:"white",transition:"color .3s"}}>{sp.value}</div>
-              <div className="stat-bar"><div className="stat-fill" style={{width:hovered?`${sp.bar}%`:"0%",background:sys.gradient}}/></div>
-            </div>
-          ))}
-        </div>
-      )}
-      {tab==="change"&&sys.hasChanges&&(
-        <div className="change-box">
-          <div style={{fontSize:9.5,color:"rgba(255,255,255,.38)",fontWeight:700,marginBottom:6}}>🔔 {sys.nftc} 주요 변경</div>
-          {sys.changes.map((c,i)=>(
-            <div key={i} style={{display:"flex",alignItems:"flex-start",gap:6,padding:"2px 0",fontSize:10.5,lineHeight:1.5,color:"rgba(255,255,255,.72)"}}>
-              <div className={c.type==="new"?"chg-dot-n":"chg-dot-u"}/>
-              <span>{c.text}</span>
-            </div>
-          ))}
-        </div>
-      )}
-      {tab==="key"&&(
-        <div style={{margin:"8px 15px",padding:"9px 12px",background:"rgba(255,255,255,.04)",borderRadius:9,border:"1px solid rgba(255,255,255,.07)"}}>
-          {sys.keyPoints.map((kp,i)=>(
-            <div key={i} style={{display:"flex",alignItems:"flex-start",gap:6,padding:"2px 0",fontSize:10.5,lineHeight:1.5,color:kp.includes("★")?"rgba(255,220,80,.9)":"rgba(255,255,255,.62)"}}>
-              <span style={{color:sys.color,flexShrink:0}}>▸</span><span>{kp}</span>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* 수원 + 태그 */}
-      <div style={{flex:1}}/>
-      <div style={{margin:"6px 15px 0",padding:"6px 10px",background:"rgba(255,255,255,.04)",borderRadius:8,border:"1px solid rgba(255,255,255,.06)",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-        <span style={{fontSize:9.5,color:"rgba(255,255,255,.37)"}}>수원 기준</span>
-        <span style={{fontFamily:"'Noto Sans Mono',monospace",fontSize:11.5,fontWeight:700,color:"rgba(255,255,255,.72)"}}>{sys.waterVol}</span>
-      </div>
-      <div style={{padding:"7px 15px",display:"flex",flexWrap:"wrap",gap:4}}>
-        {sys.tags.map((t,i)=><span key={i} className="tag-chip">{t}</span>)}
-      </div>
-
-      {/* 실행 버튼 */}
-      <div className="launch-btn" onClick={()=>onOpen(sys.key)}
-        style={{
-          background:hovered?sys.gradient:"rgba(255,255,255,.05)",
-          color:hovered?"white":sys.color,
-          borderRadius:"0 0 20px 20px",
-          borderTop:`1px solid ${hovered?sys.color+"50":"rgba(255,255,255,.07)"}`,
-        }}
-      >
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 .5a6.5 6.5 0 100 13A6.5 6.5 0 007 .5zm3.25 7L6.75 9.8a.5.5 0 01-.75-.44V4.64a.5.5 0 01.75-.44l3.5 2.3a.5.5 0 010 .87z"/></svg>
-        계산 시작
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M2 6h8M7 3l3 3-3 3"/></svg>
-      </div>
-    </div>
-  );
-}
-
-/* ═══ ComboCard ═══ */
-function ComboCard({sys, onOpen}){
-  const [hovered,setHovered]=useState(false);
-  return(
-    <div className="combo-card card-enter" onClick={()=>onOpen(sys.key)}
-      onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)}>
-      <div style={{height:3,background:sys.gradient}}/>
-      <div style={{padding:"14px 16px"}}>
-        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:9}}>
-          <div style={{display:"flex",alignItems:"center",gap:10}}>
-            <div style={{width:42,height:42,borderRadius:12,background:sys.gradient,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-              <IconCombo c="white" s={22}/>
-            </div>
-            <div>
-              <div style={{fontSize:9.5,color:"rgba(255,255,255,.33)",marginBottom:2}}>겸용 펌프 계산</div>
-              <div style={{fontSize:14,fontWeight:800,color:"white"}}>{sys.combo}</div>
-            </div>
-          </div>
-          <div style={{width:28,height:28,borderRadius:8,background:hovered?sys.gradient:"rgba(255,255,255,.07)",display:"flex",alignItems:"center",justifyContent:"center",color:"white",fontSize:13,transition:"all .3s",flexShrink:0}}>→</div>
-        </div>
-        <div style={{fontSize:10.5,color:"rgba(255,255,255,.4)",lineHeight:1.55,marginBottom:9}}>{sys.desc}</div>
-        <div style={{display:"flex",flexWrap:"wrap",gap:4,marginBottom:9}}>
-          {sys.tags.map((t,i)=>(
-            <span key={i} style={{padding:"2px 7px",borderRadius:5,fontSize:9.5,fontWeight:600,
-              background:i<2?"rgba(255,255,255,.06)":"rgba(255,255,255,.1)",
-              color:i<2?"rgba(255,255,255,.45)":"rgba(255,255,255,.8)",
-              border:"1px solid rgba(255,255,255,.08)",
-              fontFamily:i<2?"'Orbitron',sans-serif":"inherit",
-              letterSpacing:i<2?".04em":"0",
-            }}>{t}</span>
-          ))}
-        </div>
-        <div style={{display:"flex",alignItems:"center",gap:7}}>
-          <div style={{flex:1,padding:"5px 8px",borderRadius:7,background:`${sys.colorA}15`,border:`1px solid ${sys.colorA}30`,textAlign:"center",fontSize:10,fontWeight:700,color:sys.colorA}}>{sys.combo.split("+")[0].trim()}</div>
-          <span style={{color:"rgba(255,255,255,.22)",fontSize:13}}>⊕</span>
-          <div style={{flex:1,padding:"5px 8px",borderRadius:7,background:`${sys.colorB}15`,border:`1px solid ${sys.colorB}30`,textAlign:"center",fontSize:10,fontWeight:700,color:sys.colorB}}>{sys.combo.split("+")[1].trim()}</div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ═══ RevBanner ═══ */
-function RevBanner(){
-  const [open,setOpen]=useState(false);
-  return(
-    <div className="revision-banner" onClick={()=>setOpen(!open)}>
-      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-        <div style={{display:"flex",alignItems:"center",gap:9}}>
-          <div style={{width:30,height:30,borderRadius:9,background:"rgba(234,179,8,.2)",border:"1px solid rgba(234,179,8,.4)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:15,flexShrink:0}}>⚡</div>
-          <div>
-            <div style={{color:"#fbbf24",fontSize:11.5,fontWeight:800}}>화재안전기술기준(NFTC) 최신 개정 반영 — 2026.3.1. 시행</div>
-            <div style={{color:"rgba(255,255,255,.4)",fontSize:10.5,marginTop:1}}>NFTC 103·109 개정 (2026.3.1) / NFTC 103A (2024.12.1) — 클릭하여 상세</div>
-          </div>
-        </div>
-        <div style={{color:"rgba(255,255,255,.35)",fontSize:16,transition:"transform .3s",transform:open?"rotate(180deg)":"none"}}>▾</div>
-      </div>
-      {open&&(
-        <div style={{marginTop:12,display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(240px,1fr))",gap:8}}>
-          {REVISION_NOTICES.map((n,ni)=>(
-            <div key={ni} style={{background:"rgba(0,0,0,.25)",borderRadius:9,padding:"10px 12px",border:`1px solid ${n.color}22`}}>
-              <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:9,fontWeight:700,color:n.color,marginBottom:6}}>{n.nftc} · {n.date}</div>
-              {n.changes.map((c,ci)=>(
-                <div key={ci} style={{display:"flex",alignItems:"flex-start",gap:5,fontSize:10,color:"rgba(255,255,255,.62)",lineHeight:1.55,marginBottom:2}}>
-                  <span style={{color:c.type==="new"?"#f59e0b":"#4ade80",flexShrink:0}}>●</span><span>{c.text}</span>
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-/* ═══ 메인 App ═══ */
-function PortalApp(){
-  const [filter,setFilter]=useState("all");
-  const [search,setSearch]=useState("");
-  const [now,setNow]=useState(new Date());
-
-  useEffect(()=>{const t=setInterval(()=>setNow(new Date()),1000);return()=>clearInterval(t);},[]);
-  const fmt=d=>`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,"0")}.${String(d.getDate()).padStart(2,"0")} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}:${String(d.getSeconds()).padStart(2,"0")}`;
-
-  const fSingle = SYSTEMS.filter(s=>{
-    if(filter==="combo") return false;
-    if(search && !s.label.includes(search) && !s.nftc.includes(search)) return false;
-    return true;
-  });
-  const fCombo = COMBOS.filter(s=>{
-    if(filter==="single") return false;
-    if(search && !s.combo.includes(search) && !s.nftc.includes(search)) return false;
-    return true;
-  });
-
-  const handleOpen = (key) => {
-    if(window._portalOpenCalc) window._portalOpenCalc(key);
-  };
-
-  return(
-    <div style={{minHeight:"100%",position:"relative"}}>
-      <Particles/>
-      <div style={{position:"relative",zIndex:1,maxWidth:1320,margin:"0 auto",padding:"0 18px 56px"}}>
-
-        {/* 상단 바 */}
-        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"10px 0",borderBottom:"1px solid rgba(255,255,255,.06)"}}>
-          <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:10,fontWeight:900,color:"rgba(255,255,255,.22)",letterSpacing:".14em"}}>NFTC PORTAL · V2.1</div>
-          <div style={{fontFamily:"'Noto Sans Mono',monospace",fontSize:10,color:"rgba(255,255,255,.22)"}}>{fmt(now)}</div>
-        </div>
-
-        {/* 히어로 */}
-        <div style={{textAlign:"center",padding:"36px 16px 26px"}}>
-          <div style={{width:64,height:64,margin:"0 auto 16px",background:"linear-gradient(135deg,#ef4444,#f97316)",borderRadius:20,display:"flex",alignItems:"center",justifyContent:"center",fontSize:28,boxShadow:"0 0 30px rgba(239,68,68,.4)",animation:"pulse 3s ease-in-out infinite"}}>🔥</div>
-          <h1 className="hero-title" style={{fontSize:"clamp(22px,4vw,36px)",fontWeight:900,letterSpacing:"-0.03em",marginBottom:5}}>소방시설 통합 계산 포털</h1>
-          <p style={{fontSize:"clamp(11px,2vw,13px)",color:"rgba(255,255,255,.38)",marginBottom:12}}>NFTC 최신 개정 기반 · 펌프 용량 · 수원 · 배관 마찰손실 자동 계산</p>
-          <div style={{display:"flex",justifyContent:"center",flexWrap:"wrap",gap:6}}>
-            {[{t:"NFTC 102",c:"#ef4444",d:"2022"},{t:"NFTC 103",c:"#3b82f6",d:"2026★"},{t:"NFTC 103A",c:"#14b8a6",d:"2024★"},{t:"NFTC 109",c:"#22c55e",d:"2026★"}].map((x,i)=>(
-              <div key={i} style={{textAlign:"center"}}>
-                <span style={{padding:"3px 10px",borderRadius:20,fontFamily:"'Orbitron',sans-serif",fontSize:9,fontWeight:700,letterSpacing:".06em",background:`${x.c}18`,color:x.c,border:`1px solid ${x.c}35`}}>{x.t}</span>
-                <div style={{fontSize:8,color:"rgba(255,255,255,.25)",marginTop:2}}>{x.d}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* 통계 */}
-        <div className="stats-row" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))",gap:9,marginBottom:20}}>
-          {[{ic:"🏗️",l:"총 시스템",v:"7 종",s:"단독 4 + 겸용 3",c:"#f59e0b"},
-            {ic:"📋",l:"최신 기준",v:"2026.3.1.",s:"NFTC 103·109 개정",c:"#3b82f6"},
-            {ic:"⚡",l:"계산 방식",v:"자동산정",s:"Hazen-Williams",c:"#22c55e"},
-            {ic:"🖨️",l:"출력 지원",v:"A4 인쇄",s:"계산서 자동 생성",c:"#a855f7"},
-          ].map((s,i)=>(
-            <div key={i} className="stat-card">
-              <div style={{width:38,height:38,borderRadius:10,background:`${s.c}18`,border:`1px solid ${s.c}30`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:17,flexShrink:0}}>{s.ic}</div>
-              <div>
-                <div style={{color:"rgba(255,255,255,.38)",fontSize:9.5,marginBottom:1}}>{s.l}</div>
-                <div style={{color:"white",fontWeight:800,fontSize:14,fontFamily:"'Noto Sans Mono',monospace"}}>{s.v}</div>
-                <div style={{color:"rgba(255,255,255,.27)",fontSize:9,marginTop:1}}>{s.s}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* 개정 배너 */}
-        <RevBanner/>
-
-        {/* 검색 + 필터 */}
-        <div style={{display:"flex",gap:9,flexWrap:"wrap",alignItems:"center",marginBottom:6}}>
-          <div style={{position:"relative",flex:1,minWidth:180}}>
-            <input value={search} onChange={e=>setSearch(e.target.value)}
-              placeholder="시스템 검색 (예: 스프링클러, NFTC 103)"
-              style={{width:"100%",padding:"8px 12px 8px 30px",background:"rgba(255,255,255,.05)",
-                border:"1px solid rgba(255,255,255,.09)",borderRadius:10,color:"white",
-                fontSize:12,outline:"none",fontFamily:"'Pretendard',sans-serif"}}/>
-            <span style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",fontSize:13,opacity:.35}}>🔍</span>
-          </div>
-          <div style={{display:"flex",gap:5}}>
-            {[{k:"all",l:"전체"},{k:"single",l:"단독"},{k:"combo",l:"겸용"}].map(f=>(
-              <button key={f.k} onClick={()=>setFilter(f.k)} style={{padding:"7px 12px",borderRadius:8,fontSize:11.5,fontWeight:700,border:"1px solid",cursor:"pointer",transition:"all .2s",fontFamily:"'Pretendard',sans-serif",
-                borderColor:filter===f.k?"rgba(239,68,68,.5)":"rgba(255,255,255,.09)",
-                background:filter===f.k?"rgba(239,68,68,.12)":"rgba(255,255,255,.04)",
-                color:filter===f.k?"#ef4444":"rgba(255,255,255,.48)",
-              }}>{f.l}</button>
-            ))}
-          </div>
-        </div>
-
-        {/* 단독 시스템 */}
-        {fSingle.length>0&&(
-          <>
-            <div className="section-divider"><span>🔥 단독 소화 시스템 — {fSingle.length}종</span></div>
-            <div className="grid-4" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(265px,1fr))",gap:15}}>
-              {fSingle.map(s=><SystemCard key={s.id} sys={s} onOpen={handleOpen}/>)}
-            </div>
-          </>
-        )}
-
-        {/* 겸용 펌프 */}
-        {fCombo.length>0&&(
-          <>
-            <div className="section-divider"><span>⚙️ 겸용 펌프 계산 시스템 — {fCombo.length}종</span></div>
-            <div className="grid-3" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(265px,1fr))",gap:13}}>
-              {fCombo.map(s=><ComboCard key={s.id} sys={s} onOpen={handleOpen}/>)}
-            </div>
-          </>
-        )}
-
-        {fSingle.length===0&&fCombo.length===0&&(
-          <div style={{textAlign:"center",padding:"56px 20px",color:"rgba(255,255,255,.25)"}}>
-            <div style={{fontSize:32,marginBottom:8}}>🔍</div>
-            <div style={{fontSize:13,fontWeight:600}}>검색 결과가 없습니다</div>
-          </div>
-        )}
-
-        {/* 법령 기준 */}
-        <div style={{marginTop:40,background:"rgba(255,255,255,.025)",border:"1px solid rgba(255,255,255,.07)",borderRadius:14,padding:"18px 20px"}}>
-          <div style={{fontSize:11,fontWeight:700,color:"rgba(255,255,255,.4)",letterSpacing:".06em",marginBottom:12,display:"flex",alignItems:"center",gap:7}}>
-            <span style={{width:18,height:18,background:"rgba(239,68,68,.18)",borderRadius:5,display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:10}}>📋</span>
-            적용 법령 및 기술기준
-          </div>
-          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(265px,1fr))",gap:8,marginBottom:12}}>
-            {[
-              {code:"NFPC 102 / NFTC 102",name:"옥내소화전설비",color:"#ef4444",date:"2022.12.01.",badge:"현행",changes:[]},
-              {code:"NFPC 103 / NFTC 103",name:"스프링클러설비",color:"#3b82f6",date:"2026.03.01.",badge:"최신",changes:["지하주차장 습식 원칙","내화구조 헤드 2.3m","전기차 충전구역"]},
-              {code:"NFPC 103A / NFTC 103A",name:"간이스프링클러설비",color:"#14b8a6",date:"2024.12.01.",badge:"최신",changes:["주택전용 간이스프링클러 신설"]},
-              {code:"NFPC 109 / NFTC 109",name:"옥외소화전설비",color:"#22c55e",date:"2026.03.01.",badge:"최신",changes:["수평거리 40m 이하","방수총 설치 신설"]},
-            ].map((l,i)=>(
-              <div key={i} className="law-card" style={{background:`${l.color}10`,border:`1px solid ${l.color}25`}}>
-                <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:3}}>
-                  <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:8.5,fontWeight:700,color:l.color}}>{l.code}</div>
-                  <span style={{padding:"1px 5px",borderRadius:3,fontSize:8.5,fontWeight:700,background:l.badge==="최신"?"rgba(34,197,94,.2)":"rgba(255,255,255,.08)",color:l.badge==="최신"?"#4ade80":"rgba(255,255,255,.4)"}}>{l.badge}</span>
-                </div>
-                <div style={{fontSize:11.5,color:"rgba(255,255,255,.72)",fontWeight:600,marginBottom:2}}>{l.name}</div>
-                <div style={{fontSize:9,color:"rgba(255,255,255,.28)",marginBottom:l.changes.length?5:0}}>시행 {l.date}</div>
-                {l.changes.map((c,ci)=><div key={ci} style={{fontSize:9.5,color:"rgba(255,255,255,.5)",marginTop:2}}>● {c}</div>)}
-              </div>
-            ))}
-          </div>
-          <div style={{padding:"8px 11px",background:"rgba(255,255,255,.03)",borderRadius:8,border:"1px solid rgba(255,255,255,.06)",fontSize:10,color:"rgba(255,255,255,.33)",lineHeight:1.8}}>
-            ※ 배관 마찰손실: <b style={{color:"rgba(255,255,255,.5)"}}>Hazen-Williams 공식</b> — KS D3507(C=120), KS D3562(C=120), KS D3595(C=150), CPVC(C=150)<br/>
-            ※ 전동기 출력: <b style={{color:"rgba(255,255,255,.5)"}}>P = 0.163 × Q × H × K / η</b>
-          </div>
-        </div>
-
-        {/* 푸터 */}
-        <div style={{marginTop:24,textAlign:"center",borderTop:"1px solid rgba(255,255,255,.05)",paddingTop:16}}>
-          <div style={{fontFamily:"'Orbitron',sans-serif",fontWeight:900,fontSize:12,color:"rgba(255,255,255,.1)",letterSpacing:".2em"}}>MANMIN · Ver-2.1</div>
-          <div style={{fontSize:9.5,color:"rgba(255,255,255,.16)",marginTop:4}}>소방시설 설계 전용 — NFTC 102 / 103 / 103A / 109 최신 기준 적용</div>
-        </div>
-
-      </div>
-    </div>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById("react-root")).render(<PortalApp/>);
-</script>
-
-<!-- ══════════════════════════════════════════════
-     네비게이션 + iframe 제어 스크립트
-══════════════════════════════════════════════ -->
 <script>
-/* ═══ 확정 URL (React와 동일하게 유지) ═══ */
-const BASE_URL = "https://manminkim-eng.github.io";
-const CALC_MAP = {
-  indoor   : BASE_URL + "/fire-hydrant-calc/",
-  outdoor  : BASE_URL + "/outdoor-hydrant-calc/",
-  sprinkler: BASE_URL + "/fire-sprinkler-calc/",
-  simple   : BASE_URL + "/simple-sprinkler-calc/",
-  combo1   : BASE_URL + "/combo-pump-calc/",
-  combo2   : BASE_URL + "/combo-easy-fire-calc/",
-  combo3   : BASE_URL + "/combo-indoor-outdoor-calc/",
-};
+(function(){
+  'use strict';
 
-let _activeBtn = null;
+  /* ── 탭 필터 ── */
+  var tabs   = document.querySelectorAll('.tab-btn');
+  var gSingle = document.getElementById('group-single');
+  var gCombo  = document.getElementById('group-combo');
 
-/* React에서 호출하는 열기 함수 */
-window._portalOpenCalc = function(key) {
-  openCalc(key, document.getElementById('btn-' + key));
-};
-
-function openCalc(key, btn) {
-  const url = CALC_MAP[key];
-  if (!url) return;
-
-  const frame  = document.getElementById('calc-frame');
-  const home   = document.getElementById('home-screen');
-  const loader = document.getElementById('loader');
-
-  /* 로딩 표시 */
-  home.style.display  = 'none';
-  frame.style.display = 'none';
-  loader.classList.add('show');
-
-  /* iframe 로드 */
-  frame.onload = () => {
-    loader.classList.remove('show');
-    frame.style.display = 'block';
-  };
-  frame.src = url;
-
-  /* 버튼 활성화 */
-  if (_activeBtn) _activeBtn.classList.remove('active');
-  if (btn) { btn.classList.add('active'); _activeBtn = btn; }
-
-  /* URL 히스토리 */
-  history.pushState({ key }, '', '?app=' + key);
-}
-
-function goHome() {
-  const frame  = document.getElementById('calc-frame');
-  const home   = document.getElementById('home-screen');
-  const loader = document.getElementById('loader');
-
-  loader.classList.remove('show');
-  frame.style.display = 'none';
-  frame.src = '';
-  home.style.display  = 'block';
-
-  if (_activeBtn) _activeBtn.classList.remove('active');
-  _activeBtn = null;
-
-  history.pushState({}, '', location.pathname);
-}
-
-/* 네비게이션 버튼 이벤트 */
-document.getElementById('btn-home').addEventListener('click', goHome);
-['indoor','outdoor','sprinkler','simple','combo1','combo2','combo3'].forEach(key => {
-  const btn = document.getElementById('btn-' + key);
-  if (btn) btn.addEventListener('click', () => openCalc(key, btn));
-});
-
-/* 뒤로가기 */
-window.addEventListener('popstate', e => {
-  if (e.state && e.state.key) {
-    openCalc(e.state.key, document.getElementById('btn-' + e.state.key));
-  } else {
-    goHome();
+  function setTab(target){
+    tabs.forEach(function(t){
+      t.classList.toggle('active', t.dataset.tab === target);
+      t.setAttribute('aria-selected', t.dataset.tab === target);
+    });
+    if(target === 'all'){
+      gSingle.classList.remove('hidden');
+      gCombo.classList.remove('hidden');
+    } else if(target === 'single'){
+      gSingle.classList.remove('hidden');
+      gCombo.classList.add('hidden');
+    } else {
+      gSingle.classList.add('hidden');
+      gCombo.classList.remove('hidden');
+    }
   }
-});
 
-/* URL 파라미터 직접 진입 */
-const initKey = new URLSearchParams(location.search).get('app');
-if (initKey && CALC_MAP[initKey]) {
-  openCalc(initKey, document.getElementById('btn-' + initKey));
-}
-
-/* ═══ PWA — Service Worker ═══ */
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg => {
-        console.log('[SW] 등록 완료:', reg.scope);
-        reg.addEventListener('updatefound', () => {
-          const nw = reg.installing;
-          nw.addEventListener('statechange', () => {
-            if (nw.state === 'installed' && navigator.serviceWorker.controller) {
-              _showUpdateToast();
-            }
-          });
-        });
-      })
-      .catch(e => console.warn('[SW] 등록 실패:', e));
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ setTab(t.dataset.tab); });
+    t.addEventListener('keydown', function(e){
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); setTab(t.dataset.tab); }
+    });
   });
-}
 
-/* ═══ PWA — 설치 배너 ═══ */
-let _deferredPrompt = null;
+  /* ── PWA 설치 ── */
+  var deferredPrompt = null;
+  var banner = document.getElementById('pwa-wrap');
 
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  _deferredPrompt = e;
-  if (!window.matchMedia('(display-mode: standalone)').matches) {
-    document.getElementById('pwa-banner').classList.add('show');
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    deferredPrompt = e;
+    banner.style.display = 'block';
+  });
+
+  document.getElementById('pwa-no').addEventListener('click', function(){
+    banner.style.display = 'none';
+  });
+  document.getElementById('pwa-yes').addEventListener('click', function(){
+    if(!deferredPrompt) return;
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function(){
+      deferredPrompt = null;
+      banner.style.display = 'none';
+    });
+  });
+
+  /* ── Service Worker ── */
+  if('serviceWorker' in navigator){
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('./sw.js')
+        .then(function(r){ console.log('[PWA] SW 등록 완료 — scope:', r.scope); })
+        .catch(function(e){ console.warn('[PWA] SW 등록 실패:', e); });
+    });
   }
-});
 
-window.addEventListener('appinstalled', () => {
-  document.getElementById('pwa-banner').classList.remove('show');
-  _deferredPrompt = null;
-  console.log('[PWA] 설치 완료');
-});
+  /* ── 스펙 바 리셋 (호버 떠날 때) ── */
+  /* CSS :hover만으로 충분하므로 추가 JS 없음 */
 
-document.getElementById('pwa-inst-btn').addEventListener('click', async () => {
-  if (!_deferredPrompt) return;
-  _deferredPrompt.prompt();
-  await _deferredPrompt.userChoice;
-  _deferredPrompt = null;
-  document.getElementById('pwa-banner').classList.remove('show');
-});
-
-document.getElementById('pwa-close-btn').addEventListener('click', () => {
-  document.getElementById('pwa-banner').classList.remove('show');
-});
-
-/* 업데이트 토스트 */
-function _showUpdateToast() {
-  const t = document.createElement('div');
-  t.className = 'upd-toast';
-  t.innerHTML =
-    '<span>🔄 새 버전이 있습니다</span>' +
-    '<button onclick="location.reload()" style="background:#C88214;color:#fff;border:none;' +
-    'border-radius:7px;padding:5px 13px;font-size:11px;font-weight:800;cursor:pointer;' +
-    'font-family:Pretendard,sans-serif;">업데이트</button>' +
-    '<button onclick="this.parentElement.remove()" style="background:none;border:none;' +
-    'color:rgba(255,255,255,.35);font-size:16px;cursor:pointer;line-height:1;">✕</button>';
-  document.body.appendChild(t);
-}
+})();
 </script>
-
 </body>
 </html>
