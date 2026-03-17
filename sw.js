@@ -1,84 +1,87 @@
-/* ═══════════════════════════════════════════════════════════
-   MANMIN Fire Calc — Service Worker  v2.0
-   Engineer Kim Manmin · portal
-═══════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════
+   소방 펌프 계산서 통합 포털 — Service Worker
+   NFTC 102/103/103A/109 기준 | ENGINEER KIM MANMIN
+   전략: Cache-First (로컬 자산) + Network-First (외부 CDN)
+   ═══════════════════════════════════════════════════════════════ */
 
-const CACHE_NAME   = 'manmin-portal-v2';
-const OFFLINE_URL  = './';
+const CACHE_NAME   = 'fire-pump-portal-v1.0';
+const CDN_CACHE    = 'fire-pump-portal-cdn-v1.0';
+const OFFLINE_PAGE = './index.html';
 
-/* 캐시할 파일 목록 */
-const PRECACHE = [
-  './',
-  './index.html',
-  './manifest.json',
-  /* Pretendard CDN (중요 폰트만) */
-  'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css',
+const APP_SHELL = [
+  './index.html','./manifest.json',
+  './icons/icon-72.png','./icons/icon-96.png','./icons/icon-128.png',
+  './icons/icon-144.png','./icons/icon-152.png','./icons/icon-192.png',
+  './icons/icon-384.png','./icons/icon-512.png',
+  './icons/apple-touch-icon.png',
+  './icons/favicon-32.png','./icons/favicon-16.png','./icons/favicon.ico',
 ];
 
-/* ── Install ── */
-self.addEventListener('install', function(event) {
+const CDN_ORIGINS = [
+  'https://fonts.googleapis.com','https://fonts.gstatic.com',
+  'https://cdn.jsdelivr.net','https://cdnjs.cloudflare.com','https://unpkg.com',
+];
+
+self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(function(cache) {
-      return cache.addAll(PRECACHE.map(function(url) {
-        return new Request(url, { mode: 'no-cors' });
-      })).catch(function(err) {
-        console.warn('[SW] precache partial fail:', err);
-      });
-    }).then(function() {
-      console.log('[SW] install complete — cache:', CACHE_NAME);
-      return self.skipWaiting();
-    })
+    caches.open(CACHE_NAME).then(c=>c.addAll(APP_SHELL))
+      .then(()=>{ console.log('[SW] 프리캐시 완료'); return self.skipWaiting(); })
+      .catch(()=>self.skipWaiting())
   );
 });
 
-/* ── Activate ── */
-self.addEventListener('activate', function(event) {
+self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then(function(keys) {
-      return Promise.all(
-        keys.filter(function(k) { return k !== CACHE_NAME; })
-            .map(function(k) {
-              console.log('[SW] deleting old cache:', k);
-              return caches.delete(k);
-            })
-      );
-    }).then(function() {
-      console.log('[SW] activate complete');
-      return self.clients.claim();
-    })
+    caches.keys().then(keys=>Promise.all(
+      keys.filter(k=>![CACHE_NAME,CDN_CACHE].includes(k)).map(k=>caches.delete(k))
+    )).then(()=>self.clients.claim())
   );
 });
 
-/* ── Fetch — Network First, Cache Fallback ── */
-self.addEventListener('fetch', function(event) {
-  /* POST 등 캐시 불필요한 요청은 그냥 통과 */
-  if (event.request.method !== 'GET') return;
+self.addEventListener('fetch', (event) => {
+  const {request}=event;
+  if(request.method!=='GET'||!request.url.startsWith('http')) return;
+  const url=new URL(request.url);
+  const isCDN=CDN_ORIGINS.some(o=>url.origin===new URL(o).origin||request.url.startsWith(o));
+  event.respondWith(isCDN?networkFirstCDN(request):cacheFirstLocal(request));
+});
 
-  /* Chrome extension 등 무시 */
-  if (!event.request.url.startsWith('http')) return;
+async function cacheFirstLocal(request){
+  const cached=await caches.match(request);
+  if(cached) return cached;
+  try{
+    const res=await fetch(request);
+    if(res&&res.status===200&&res.type!=='opaque')
+      (await caches.open(CACHE_NAME)).put(request,res.clone());
+    return res;
+  }catch(_){
+    if(request.headers.get('accept')?.includes('text/html')){
+      const offline=await caches.match(OFFLINE_PAGE);
+      if(offline) return offline;
+    }
+    return new Response('오프라인 상태입니다.',{status:503,headers:{'Content-Type':'text/plain;charset=utf-8'}});
+  }
+}
 
-  event.respondWith(
-    fetch(event.request)
-      .then(function(response) {
-        /* 정상 응답이면 캐시에도 저장 */
-        if (response && response.status === 200 && response.type !== 'opaque') {
-          var responseClone = response.clone();
-          caches.open(CACHE_NAME).then(function(cache) {
-            cache.put(event.request, responseClone);
-          });
-        }
-        return response;
-      })
-      .catch(function() {
-        /* 오프라인 — 캐시에서 꺼내기 */
-        return caches.match(event.request).then(function(cached) {
-          if (cached) return cached;
-          /* HTML 페이지 요청이면 포털 홈 반환 */
-          if (event.request.headers.get('accept') &&
-              event.request.headers.get('accept').includes('text/html')) {
-            return caches.match(OFFLINE_URL);
-          }
-        });
-      })
-  );
+async function networkFirstCDN(request){
+  try{
+    const res=await fetch(request);
+    if(res&&res.status===200)(await caches.open(CDN_CACHE)).put(request,res.clone());
+    return res;
+  }catch(_){
+    return (await caches.match(request,{cacheName:CDN_CACHE}))||new Response('',{status:503});
+  }
+}
+
+self.addEventListener('message',(event)=>{
+  if(event.data?.type==='SKIP_WAITING'||event.data?.action==='SKIP_WAITING') self.skipWaiting();
+  if(event.data?.action==='CLEAR_CACHE')
+    caches.keys().then(keys=>Promise.all(keys.map(k=>caches.delete(k))));
+});
+
+self.addEventListener('push',(event)=>{
+  const data=event.data?.json()??{title:'소방계산서 포털',body:'업데이트가 있습니다.'};
+  event.waitUntil(self.registration.showNotification(data.title,{
+    body:data.body,icon:'./icons/icon-192.png',badge:'./icons/icon-72.png'
+  }));
 });
