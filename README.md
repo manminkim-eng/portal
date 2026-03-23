@@ -1,106 +1,68 @@
-# NFTC 소방시설 통합 계산 포털 PWA
-**Engineer Kim Manmin · manminkim-eng · Ver 2.1**
+# 🔥 소방 펌프 계산서 통합 포털 PWA
+### ENGINEER KIM MANMIN · MANMIN-Ver3.1
 
----
+> **Developer MANMIN** | 대성건축사사무소  
+> Blueprint Engineering Theme · Dark Green Edition
 
-## 📁 파일 구성 (19개)
+## 📦 파일 구성
 
 ```
-📁 portal/
-├── index.html                ← 포털 메인 (React + iframe + PWA 완전 통합)
-├── manifest.json             ← PWA 앱 정보
-├── sw.js                     ← Service Worker (오프라인·캐싱)
-├── favicon.ico               ← 브라우저 탭 아이콘
+total-portal-pwa/
+├── index.html          ← 메인 포털 앱 (Ver 3.1)
+├── manifest.json       ← PWA 매니페스트
+├── sw.js               ← 서비스 워커 (오프라인 지원 + 업데이트 감지)
 ├── README.md
-│
-└── 📁 icons/ (14개)
-    ├── icon-192.png          ← Android 홈화면
-    ├── icon-512.png          ← 스플래시 화면
-    ├── apple-touch-icon.png  ← iOS 홈화면
-    └── ...
+└── icons/              ← 아이콘 13종 (통합토탈 이미지 기반)
+    ├── favicon.ico
+    ├── favicon-16.png
+    ├── favicon-32.png
+    ├── apple-touch-icon.png
+    ├── icon-72 ~ 384.png
+    └── icon-512.png     ← 마스커블 / 스플래시
 ```
 
----
+## 🚀 GitHub Pages 배포 방법
 
-## ✅ 연동 확정 URL
+1. 이 폴더 전체를 GitHub 저장소 루트에 업로드
+2. `Settings` → `Pages` → `Source: main branch / (root)` 선택
+3. 배포된 **HTTPS URL** 로 접속 *(HTTP에서는 PWA 설치 불가)*
+4. 우하단 **📲 앱 설치** FAB 버튼 클릭 → 즉시 설치
 
-| 계산기 | 레포 | URL |
-|--------|------|-----|
-| 옥내소화전 | fire-hydrant-calc | https://manminkim-eng.github.io/fire-hydrant-calc/ |
-| 옥외소화전 | outdoor-hydrant-calc | https://manminkim-eng.github.io/outdoor-hydrant-calc/ |
-| 스프링클러 | fire-sprinkler-calc | https://manminkim-eng.github.io/fire-sprinkler-calc/ |
-| 간이스프링클러 | simple-sprinkler-calc | https://manminkim-eng.github.io/simple-sprinkler-calc/ |
-| 겸용 옥내+스프링 | combo-pump-calc | https://manminkim-eng.github.io/combo-pump-calc/ |
-| 겸용 간이+옥내 | combo-easy-fire-calc | https://manminkim-eng.github.io/combo-easy-fire-calc/ |
-| 겸용 옥내+옥외 | combo-indoor-outdoor-calc | https://manminkim-eng.github.io/combo-indoor-outdoor-calc/ |
+## 📱 PWA 설치 지원 환경
 
----
+| 환경 | 설치 방법 |
+|------|----------|
+| Android Chrome / Edge | 📲 앱 설치 FAB 버튼 또는 하단 배너 |
+| Windows Chrome / Edge | 주소창 우측 설치 아이콘 ⊕ |
+| macOS Chrome | 주소창 우측 설치 아이콘 ⊕ |
+| iOS Safari | 공유 버튼 → "홈 화면에 추가" *(FAB 미지원)* |
 
-## 🚀 portal 레포 업데이트 방법
+## 🆕 Ver 3.1 변경사항
 
-portal 레포가 이미 있으므로 **파일만 교체**하면 됩니다.
-
-### STEP 1 — 기존 파일 삭제 (필요시)
-```
-https://github.com/manminkim-eng/portal 접속
-→ 기존 index.html 있으면 삭제
-  (파일 클릭 → 우측 상단 삭제 버튼)
-```
-
-### STEP 2 — 새 파일 전체 업로드
-```
-portal 레포 → [Add file] → [Upload files]
-→ portal 폴더 안 파일 전체 드래그:
-  ✅ index.html
-  ✅ manifest.json
-  ✅ sw.js
-  ✅ favicon.ico
-  ✅ icons/ 폴더 전체  ← 반드시 폴더째로
-
-→ [Commit changes] 클릭
-```
-
-### STEP 3 — Pages 확인
-```
-Settings → Pages → main/(root) → Save
-→ 기존 설정 그대로면 변경 불필요
-```
-
-### STEP 4 — 캐시 초기화 후 접속
-```
-브라우저에서:
-Ctrl+Shift+R (PC) 또는 강제 새로고침
-
-https://manminkim-eng.github.io/portal/
-
-✅ 포털 홈 화면
-✅ 상단 네비게이션 7개 버튼
-✅ 버튼 클릭 → iframe으로 계산기 로드
-✅ 모바일 설치 배너
-```
-
----
-
-## ⚡ PWA 기능
-
-| 기능 | 내용 |
+| 항목 | 내용 |
 |------|------|
-| React 포털 홈 | 카드형 시스템 선택 화면 |
-| iframe 계산기 | 상단 네비게이션으로 전환 |
-| 뒤로가기 지원 | 브라우저 뒤로가기 정상 작동 |
-| URL 직접 진입 | /portal/?app=sprinkler 형식 지원 |
-| 오프라인 | 홈화면은 인터넷 없이 작동 |
-| 홈화면 설치 | Android·iOS·PC 설치 가능 |
-| 자동 업데이트 | 새 버전 배포 시 알림 |
-| iOS Safe Area | 노치·홈바 자동 대응 |
+| **📲 설치 FAB 버튼** | 우하단 앰버/갈색 고정 버튼, 팝-인 애니메이션 |
+| **🟢 NEW 뱃지** | 그린 색 펄싱 뱃지 (앱 테마와 통일) |
+| **배너 닫기 후 FAB 유지** | 배너를 닫아도 FAB 버튼은 우하단에 계속 표시 |
+| **sw.js 전면 업그레이드** | 단순 1줄 등록 → Network-First + 업데이트 감지 배너 |
+| **업데이트 배너** | 다크 그린 테마 배너 (그린 업데이트 버튼) |
+| **버전 스탬프** | MANMIN-Ver3.0 → Ver3.1 |
+
+## 🎯 이 앱의 특징
+
+이 앱은 개별 계산서 앱들의 **통합 포털**로, React 없이 순수 HTML/CSS/JS로 구현되어 있어 가장 빠른 로딩 속도를 자랑합니다.
+
+## 🎨 MANMIN 시리즈 FAB 색상 가이드
+
+| 앱 | 설치 FAB 색상 |
+|----|-------------|
+| 옥외소화전 | 🔵 파랑 `#1d4ed8` |
+| 스프링클러 | 🔵 파랑 `#1d4ed8` |
+| 간이스프링클러 | 🔵 파랑 `#1d4ed8` |
+| 겸용[옥내+스프] | 🟣 퍼플 `#7c3aed` |
+| 겸용[옥내+간이] | 🟢 틸 `#0d9488` |
+| 겸용[옥내+옥외] | 🌸 로즈 `#be185d` |
+| **통합 포털** | **🟤 앰버 `#b45309`** |
 
 ---
-
-## ❓ 문제 해결
-
-| 증상 | 해결 |
-|------|------|
-| 404 오류 | Settings→Pages→Save, 2~3분 대기 |
-| 계산기 안 열림 | 해당 레포 Public 설정 확인 |
-| 아이콘 없음 | icons 폴더 통째로 재업로드 |
-| 구버전 표시 | Ctrl+Shift+R 강제 새로고침 |
+*MANMIN · Blueprint Engineering Theme · Ver 3.1*

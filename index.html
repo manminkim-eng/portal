@@ -217,7 +217,41 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 }
 @media(max-width:440px){.grid-4{grid-template-columns:1fr;}.stats-bar{grid-template-columns:repeat(2,1fr);}}
 .card-group.hidden{display:none;}
-@media print{.pwa-outer,.tab-wrap{display:none!important;}body{background:#fff!important;color:#000!important;}}
+@media print{.pwa-outer,.tab-wrap,.pwa-install-fab{display:none!important;}body{background:#fff!important;color:#000!important;}}
+
+/* ── PWA 설치 FAB ── */
+.pwa-install-fab{
+  position:fixed;bottom:18px;right:18px;z-index:9998;
+  background:linear-gradient(135deg,#b45309 0%,#78350f 100%);
+  color:#fff;border:none;border-radius:16px;
+  padding:11px 15px;cursor:pointer;
+  box-shadow:0 4px 22px rgba(180,83,9,0.65);
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  font-family:var(--font);line-height:1.3;
+  transition:transform .15s,box-shadow .15s;
+  animation:fabPop 0.55s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+@keyframes fabPop{
+  from{opacity:0;transform:scale(0.3) rotate(-25deg);}
+  to{opacity:1;transform:scale(1) rotate(0deg);}
+}
+.pwa-install-fab:hover{transform:translateY(-3px) scale(1.06);box-shadow:0 8px 28px rgba(180,83,9,0.80);}
+.pwa-install-fab:active{transform:scale(0.97);}
+.pwa-install-fab span.fab-icon{font-size:20px;line-height:1;}
+.pwa-install-fab span.fab-label{font-size:10px;font-weight:800;letter-spacing:0.04em;}
+.pwa-install-fab span.fab-sub{font-size:9px;opacity:0.8;}
+.pwa-install-fab-badge{
+  position:absolute;top:-7px;right:-7px;
+  background:#22c55e;color:#052e16;font-size:8px;font-weight:900;
+  width:19px;height:19px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--bg);
+  animation:badgePing 2.2s ease-in-out infinite;
+}
+@keyframes badgePing{
+  0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(34,197,94,0.7);}
+  50%{transform:scale(1.2);box-shadow:0 0 0 6px rgba(34,197,94,0);}
+}
 </style>
 </head>
 <body>
@@ -444,7 +478,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-brand">ENGINEER KIM MANMIN · MANMIN-Ver3.0</div>
+  <div class="footer-brand">ENGINEER KIM MANMIN · MANMIN-Ver3.1</div>
   <p class="footer-copy">소방시설 설계 전용 계산서 &nbsp;·&nbsp; © 2025 Engineer Kim Manmin &nbsp;·&nbsp; All rights reserved</p>
 </footer>
 </div>
@@ -458,9 +492,18 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   </div>
 </div>
 
+<!-- PWA 설치 FAB -->
+<button class="pwa-install-fab" id="pwa-fab" style="display:none;" aria-label="앱 설치 바로가기">
+  <div class="pwa-install-fab-badge">NEW</div>
+  <span class="fab-icon">📲</span>
+  <span class="fab-label">앱 설치</span>
+  <span class="fab-sub">바로가기</span>
+</button>
+
 <script>
 (function(){
   'use strict';
+  /* ── 탭 전환 ── */
   var tabs=document.querySelectorAll('.tab-btn');
   var gS=document.getElementById('group-single');
   var gC=document.getElementById('group-combo');
@@ -471,11 +514,92 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
     else{gS.classList.add('hidden');gC.classList.remove('hidden');}
   }
   tabs.forEach(function(b){b.addEventListener('click',function(){setTab(b.dataset.tab);});});
-  var dp=null,banner=document.getElementById('pwa-wrap');
-  window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;banner.style.display='block';});
-  document.getElementById('pwa-no').addEventListener('click',function(){banner.style.display='none';});
-  document.getElementById('pwa-yes').addEventListener('click',function(){if(!dp)return;dp.prompt();dp.userChoice.then(function(){dp=null;banner.style.display='none';});});
-  if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js').then(function(r){console.log('[PWA] SW:',r.scope);}).catch(function(e){console.warn('[PWA] SW fail:',e);});});}
+
+  /* ── PWA 설치 배너 & FAB ── */
+  var dp=null;
+  var banner=document.getElementById('pwa-wrap');
+  var fab=document.getElementById('pwa-fab');
+
+  window.addEventListener('beforeinstallprompt',function(e){
+    e.preventDefault();
+    dp=e;
+    /* 배너 표시 (standalone 아닐 때만) */
+    if(!window.matchMedia('(display-mode:standalone)').matches){
+      banner.style.display='block';
+    }
+    /* FAB 버튼 표시 */
+    fab.style.display='flex';
+  });
+
+  document.getElementById('pwa-no').addEventListener('click',function(){
+    banner.style.display='none';
+    /* 배너 닫아도 FAB는 유지 */
+  });
+
+  function doInstall(){
+    if(!dp)return;
+    dp.prompt();
+    dp.userChoice.then(function(r){
+      if(r.outcome==='accepted') console.log('[PWA] 설치 완료');
+      dp=null;
+      banner.style.display='none';
+      fab.style.display='none';
+    });
+  }
+
+  document.getElementById('pwa-yes').addEventListener('click', doInstall);
+  fab.addEventListener('click', doInstall);
+
+  /* ── Service Worker Ver 3.1 ── */
+  if('serviceWorker' in navigator){
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('./sw.js', {updateViaCache:'none'})
+        .then(function(reg){
+          console.log('[PWA] SW 등록 — scope:', reg.scope);
+
+          reg.addEventListener('updatefound', function(){
+            var nw = reg.installing;
+            nw.addEventListener('statechange', function(){
+              if(nw.state === 'installed' && navigator.serviceWorker.controller)
+                _showUpdateBanner();
+            });
+          });
+
+          setInterval(function(){ reg.update(); }, 60 * 60 * 1000);
+        })
+        .catch(function(e){ console.warn('[PWA] SW 등록 실패:', e); });
+
+      var _ref = false;
+      navigator.serviceWorker.addEventListener('controllerchange', function(){
+        if(!_ref){ _ref = true; location.reload(); }
+      });
+    });
+  }
+
+  function _showUpdateBanner(){
+    if(document.getElementById('sw-update-banner')) return;
+    var b = document.createElement('div');
+    b.id = 'sw-update-banner';
+    b.style.cssText = [
+      'position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:99999',
+      'background:#14532d;color:white;border-radius:14px;padding:12px 18px',
+      'display:flex;align-items:center;gap:12px;box-shadow:0 8px 32px rgba(0,0,0,.5)',
+      'font-family:var(--font,"sans-serif");font-size:13px;white-space:nowrap',
+      'animation:slideUp .35s ease-out',
+      'border:1px solid rgba(74,222,128,.3)',
+    ].join(';');
+    b.innerHTML =
+      '<span>🔄 새 버전이 있습니다</span>' +
+      '<button onclick="(function(){' +
+        'document.getElementById(\'sw-update-banner\').remove();' +
+        'navigator.serviceWorker.ready.then(function(r){r.waiting&&r.waiting.postMessage({type:\'SKIP_WAITING\'});});' +
+      '})()" style="background:#22c55e;color:#052e16;border:none;border-radius:8px;' +
+        'padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer;">업데이트</button>' +
+      '<button onclick="document.getElementById(\'sw-update-banner\').remove()" ' +
+        'style="background:rgba(255,255,255,.12);color:white;border:none;border-radius:8px;' +
+        'padding:6px 10px;font-size:11px;cursor:pointer;">나중에</button>';
+    document.body.appendChild(b);
+  }
 })();
 </script>
 </body>
