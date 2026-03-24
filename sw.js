@@ -1,10 +1,10 @@
 /* ═══════════════════════════════════════════════════════════════
    Service Worker — 소방 펌프 계산서 통합 포털
-   Engineer Kim Manmin · MANMIN-Ver3.1
+   Engineer Kim Manmin · MANMIN-Ver3.3
 ═══════════════════════════════════════════════════════════════ */
 
-const CACHE_NAME   = 'manmin-total-portal-v3.1';
-const STATIC_CACHE = 'manmin-total-portal-static-v3.1';
+const CACHE_NAME   = 'manmin-total-portal-v3.3';
+const STATIC_CACHE = 'manmin-total-portal-static-v3.3';
 
 const PRECACHE_URLS = [
   './',
@@ -20,7 +20,7 @@ const PRECACHE_URLS = [
 
 /* ── INSTALL ── */
 self.addEventListener('install', (event) => {
-  console.log('[SW] Installing total-portal-v3.1...');
+  console.log('[SW] Installing total-portal-v3.3...');
   event.waitUntil(
     caches.open(STATIC_CACHE)
       .then((cache) => cache.addAll(PRECACHE_URLS).catch((e) => console.warn('[SW] Pre-cache 일부 실패:', e)))
