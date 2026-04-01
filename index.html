@@ -381,7 +381,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 
 <!-- STATS -->
 <div class="stats-bar">
-  <div class="stat-box"><div class="stat-num">7</div><div class="stat-lbl">계산서 종류</div></div>
+  <div class="stat-box"><div class="stat-num">9</div><div class="stat-lbl">계산서 종류</div></div>
   <div class="stat-box"><div class="stat-num">NFTC</div><div class="stat-lbl">최신 기술기준</div></div>
   <div class="stat-box"><div class="stat-num">H·W</div><div class="stat-lbl">Hazen-Williams</div></div>
   <div class="stat-box"><div class="stat-num">PWA</div><div class="stat-lbl">오프라인 지원</div></div>
@@ -390,9 +390,10 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 
 <!-- TAB FILTER -->
 <div class="tab-wrap" role="tablist">
-  <button class="tab-btn active" data-tab="all" role="tab" aria-selected="true">전체 보기 <span class="tab-count">7</span></button>
+  <button class="tab-btn active" data-tab="all" role="tab" aria-selected="true">전체 보기 <span class="tab-count">9</span></button>
   <button class="tab-btn" data-tab="single" role="tab" aria-selected="false">단독 설비 <span class="tab-count">4</span></button>
   <button class="tab-btn" data-tab="combo" role="tab" aria-selected="false">겸용 설비 <span class="tab-count">3</span></button>
+  <button class="tab-btn" data-tab="extra" role="tab" aria-selected="false">기타 설비 <span class="tab-count">2</span></button>
 </div>
 
 <!-- 단독 설비 -->
@@ -536,7 +537,51 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   </div>
 </div>
 
-<!-- COMPARE TABLE -->
+<!-- 기타 설비 (제연 + 비상발전기) -->
+<div class="card-group" id="group-extra">
+  <div class="sec-head" style="animation-delay:.26s;">
+    <span class="sec-tag" style="background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2);color:var(--c-cyan);">기타 설비</span>
+    <span class="sec-label">제연설비 · 비상발전기 설비 계산서</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="grid-3">
+
+    <a class="calc-card t-cyan" href="https://manminkim-eng.github.io/Smoke-Control-System/" target="_blank" rel="noopener" aria-label="제연설비 설계 계산서">
+      <div class="card-glow"></div><div class="card-accent"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <div class="card-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"><path d="M3 3c0 0 3 2 3 6s-2 4-2 8"/><path d="M9 3c0 0 3 2 3 6s-2 4-2 8"/><path d="M15 3c0 0 3 2 3 6s-2 4-2 8"/><rect x="2" y="19" width="20" height="2" rx="1"/></svg></div>
+          <div class="card-meta"><span class="card-badge">NFTC 501</span><div class="card-title">제연설비</div><div class="card-title-en">Smoke Control System</div></div>
+        </div>
+        <div class="card-desc">제연구역 급기·배기 풍량 산정<br/>수직풍도·팬 용량 자동 계산</div>
+        <div class="spec-bars">
+          <div class="spec-row"><span class="spec-label">풍량</span><div class="spec-track"><div class="spec-fill" style="--w:70%"></div></div><span class="spec-val">급배기 m³/h</span></div>
+          <div class="spec-row"><span class="spec-label">차압</span><div class="spec-track"><div class="spec-fill" style="--w:50%"></div></div><span class="spec-val">50 Pa 이상</span></div>
+          <div class="spec-row"><span class="spec-label">팬</span><div class="spec-track"><div class="spec-fill" style="--w:65%"></div></div><span class="spec-val">kW 자동산정</span></div>
+        </div>
+        <div class="card-foot"><span class="card-law">manminkim-eng.github.io</span><div class="card-go">↗</div></div>
+      </div>
+    </a>
+
+    <a class="calc-card t-amber" href="https://manminkim-eng.github.io/Emergency-Generator/" target="_blank" rel="noopener" aria-label="비상발전기 설비 용량산정">
+      <div class="card-glow"></div><div class="card-accent"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <div class="card-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <div class="card-meta"><span class="card-badge">KEC / NFTC</span><div class="card-title">비상발전기</div><div class="card-title-en">Emergency Generator</div></div>
+        </div>
+        <div class="card-desc">비상발전기 필요 용량 자동 산정<br/>부하 합산 · 역률 · 수용률 적용</div>
+        <div class="spec-bars">
+          <div class="spec-row"><span class="spec-label">출력</span><div class="spec-track"><div class="spec-fill" style="--w:80%"></div></div><span class="spec-val">kVA 산정</span></div>
+          <div class="spec-row"><span class="spec-label">역률</span><div class="spec-track"><div class="spec-fill" style="--w:80%"></div></div><span class="spec-val">0.8 기준</span></div>
+          <div class="spec-row"><span class="spec-label">부하</span><div class="spec-track"><div class="spec-fill" style="--w:90%"></div></div><span class="spec-val">자동 합산</span></div>
+        </div>
+        <div class="card-foot"><span class="card-law">manminkim-eng.github.io</span><div class="card-go">↗</div></div>
+      </div>
+    </a>
+
+  </div>
+</div>
 <div class="sec-head" style="animation-delay:.26s;">
   <span class="sec-tag" style="background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.2);color:var(--c-amber);">설계 기준</span>
   <span class="sec-label">설비별 NFTC 설계 기준 비교표</span>
@@ -582,7 +627,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-brand">ENGINEER KIM MANMIN · MANMIN-Ver3.3</div>
+  <div class="footer-brand">ENGINEER KIM MANMIN · MANMIN-Ver3.4</div>
   <p class="footer-copy">소방시설 설계 전용 계산서 &nbsp;·&nbsp; © 2025 Engineer Kim Manmin &nbsp;·&nbsp; All rights reserved</p>
 </footer>
 </div>
@@ -610,7 +655,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
       <div class="fml-hd-row">
         <div>
           <div style="font-size:15px;font-weight:900;letter-spacing:.04em;margin-bottom:3px;color:#86efac;">📐 계산식 안내 &amp; 이용방법</div>
-          <div style="font-size:10px;color:rgba(134,239,172,.6);font-weight:500;">소방 펌프 통합 포털 · NFTC 최신 기준 · MANMIN Ver-3.3</div>
+          <div style="font-size:10px;color:rgba(134,239,172,.6);font-weight:500;">소방 펌프 통합 포털 · NFTC 최신 기준 · MANMIN Ver-3.4</div>
         </div>
         <button class="fml-close-btn" onclick="closeFml()" aria-label="닫기">✕</button>
       </div>
@@ -629,7 +674,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
       <div class="fml-panel" id="tab-howto">
         <div style="background:linear-gradient(140deg,#052e16,#14532d,#15803d);border-radius:13px;padding:16px 18px;margin-bottom:16px;">
           <div style="font-size:13px;font-weight:900;color:#86efac;margin-bottom:5px;display:flex;align-items:center;gap:8px;"><span style="font-size:20px;">🚒</span> 소방 펌프 계산서 통합 포털 이용방법</div>
-          <div style="font-size:10.5px;color:rgba(134,239,172,.75);line-height:1.7;">NFTC 102/103/103A/109 최신 기준 적용 · Hazen-Williams 공식 · MANMIN Ver-3.3<br/>원하는 계산서를 선택하고 순서에 따라 입력하면 펌프 용량이 자동 산출됩니다.</div>
+          <div style="font-size:10.5px;color:rgba(134,239,172,.75);line-height:1.7;">NFTC 102/103/103A/109 최신 기준 적용 · Hazen-Williams 공식 · MANMIN Ver-3.4<br/>원하는 계산서를 선택하고 순서에 따라 입력하면 펌프 용량이 자동 산출됩니다.</div>
         </div>
         <div style="display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.15);border-left:4px solid #15803d;border-radius:10px;padding:13px 14px;margin-bottom:9px;">
           <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#15803d,#052e16);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff;flex-shrink:0;">1</div>
@@ -743,11 +788,13 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   var tabs=document.querySelectorAll('.tab-btn');
   var gS=document.getElementById('group-single');
   var gC=document.getElementById('group-combo');
+  var gE=document.getElementById('group-extra');
   function setTab(t){
     tabs.forEach(function(b){b.classList.toggle('active',b.dataset.tab===t);b.setAttribute('aria-selected',b.dataset.tab===t);});
-    if(t==='all'){gS.classList.remove('hidden');gC.classList.remove('hidden');}
-    else if(t==='single'){gS.classList.remove('hidden');gC.classList.add('hidden');}
-    else{gS.classList.add('hidden');gC.classList.remove('hidden');}
+    if(t==='all'){gS.classList.remove('hidden');gC.classList.remove('hidden');gE.classList.remove('hidden');}
+    else if(t==='single'){gS.classList.remove('hidden');gC.classList.add('hidden');gE.classList.add('hidden');}
+    else if(t==='combo'){gS.classList.add('hidden');gC.classList.remove('hidden');gE.classList.add('hidden');}
+    else{gS.classList.add('hidden');gC.classList.add('hidden');gE.classList.remove('hidden');}
   }
   tabs.forEach(function(b){b.addEventListener('click',function(){setTab(b.dataset.tab);});});
 
@@ -804,7 +851,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   window.switchFml=switchFml;
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeFml();});
 
-  /* ── Service Worker Ver 3.3 ── */
+  /* ── Service Worker Ver 3.4 ── */
   if('serviceWorker' in navigator){
     window.addEventListener('load', function(){
       navigator.serviceWorker.register('./sw.js', {updateViaCache:'none'})
