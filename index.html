@@ -357,6 +357,8 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   50%{transform:scale(1.2);box-shadow:0 0 0 6px rgba(34,197,94,0);}
 }
 .fml-panel.hidden{display:none;}
+/* v5.2.0 — 카드별 사용자 매뉴얼 링크(카드 링크 안 중첩 a 금지 → span + 스크립트) */
+.card-man{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.08);color:#e2e8f0;border:1px solid rgba(255,255,255,.18);margin-left:auto;margin-right:8px;cursor:pointer;white-space:nowrap}.card-man:hover,.card-man:focus{background:rgba(255,255,255,.18);outline:none}
 </style>
 </head>
 <body>
@@ -367,7 +369,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 
 <!-- HEADER -->
 <header class="header">
-  <div class="header-pill"><span class="pulse-dot"></span>NFTC 최신 기준 적용 &nbsp;·&nbsp; 2026.7.1 시행</div>
+  <div class="header-pill"><span class="pulse-dot"></span>NFPC · NFTC 원문 대조 2026-10-16 &nbsp;·&nbsp; 102 · 103 2026.7.1 시행</div>
   <div class="header-logo-wrap">
     <img class="header-logo-img" src="data:image/webp;base64,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" alt="Engineer Kim Manmin Logo"/>
     <div class="header-logo-text">
@@ -377,12 +379,13 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   </div>
   <div class="header-tagline">소방 펌프 용량 계산서 통합 포털</div>
   <p class="header-desc">옥내소화전 · 옥외소화전 · 스프링클러 · 간이스프링클러 및 겸용 시스템의<br/>펌프 용량을 NFTC 화재안전기술기준에 따라 정밀 계산합니다.</p>
+  <div style="margin-top:12px"><span class="card-man" role="link" tabindex="0" data-href="https://manminkim-eng.github.io/portal/manual/" style="margin:0;font-size:12px;padding:6px 14px" aria-label="포털 사용자 매뉴얼">📘 포털 사용자 매뉴얼</span></div>
   <div class="header-line"></div>
 </header>
 
 <!-- STATS -->
 <div class="stats-bar">
-  <div class="stat-box"><div class="stat-num">9</div><div class="stat-lbl">계산서 종류</div></div>
+  <div class="stat-box"><div class="stat-num">9</div><div class="stat-lbl">도구 종류(펌프 7 · 기타 2)</div></div>
   <div class="stat-box"><div class="stat-num">NFTC</div><div class="stat-lbl">최신 기술기준</div></div>
   <div class="stat-box"><div class="stat-num">H·W</div><div class="stat-lbl">Hazen-Williams</div></div>
   <div class="stat-box"><div class="stat-num">PWA</div><div class="stat-lbl">오프라인 지원</div></div>
@@ -413,13 +416,13 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
           <div class="card-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round"><rect x="7" y="9" width="10" height="12" rx="2"/><path d="M12 2v7"/><path d="M9 5h6"/><path d="M5 14h2"/><path d="M17 14h2"/><circle cx="12" cy="15" r="2"/></svg></div>
           <div class="card-meta"><span class="card-badge">NFTC 102</span><div class="card-title">옥내소화전</div><div class="card-title-en">Indoor Fire Hydrant</div></div>
         </div>
-        <div class="card-desc">방수압 0.17 MPa↑ · 방수량 130 ℓ/min↑<br/>동시 최대 2개(고층 5개) · 수원 2.6 m³/개↑</div>
+        <div class="card-desc">방수압 0.17 MPa↑ · 방수량 130 ℓ/min↑<br/>동시 최대 2개(고층 5개) · 수원 2.6 m³/개↑(고층 5.2 · 7.8)</div>
         <div class="spec-bars">
           <div class="spec-row"><span class="spec-label">방수압</span><div class="spec-track"><div class="spec-fill" style="--w:42%"></div></div><span class="spec-val">0.17 MPa</span></div>
           <div class="spec-row"><span class="spec-label">방수량</span><div class="spec-track"><div class="spec-fill" style="--w:37%"></div></div><span class="spec-val">130 ℓ/min</span></div>
           <div class="spec-row"><span class="spec-label">수원</span><div class="spec-track"><div class="spec-fill" style="--w:26%"></div></div><span class="spec-val">2.6 m³/개</span></div>
         </div>
-        <div class="card-foot"><span class="card-law">시행 2026.7.1</span><div class="card-go">→</div></div>
+        <div class="card-foot"><span class="card-law">시행 2026.7.1</span><span class="card-man" role="link" tabindex="0" data-href="../fire-hydrant-calc/manual/" aria-label="사용자 매뉴얼">📘 매뉴얼</span><div class="card-go">→</div></div>
       </div>
     </a>
 
@@ -436,7 +439,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
           <div class="spec-row"><span class="spec-label">방수량</span><div class="spec-track"><div class="spec-fill" style="--w:100%"></div></div><span class="spec-val">350 ℓ/min</span></div>
           <div class="spec-row"><span class="spec-label">수원</span><div class="spec-track"><div class="spec-fill" style="--w:70%"></div></div><span class="spec-val">7 m³/개</span></div>
         </div>
-        <div class="card-foot"><span class="card-law">시행 2026.3.1</span><div class="card-go">→</div></div>
+        <div class="card-foot"><span class="card-law">시행 2026.3.1</span><span class="card-man" role="link" tabindex="0" data-href="../outdoor-hydrant-calc/manual/" aria-label="사용자 매뉴얼">📘 매뉴얼</span><div class="card-go">→</div></div>
       </div>
     </a>
 
@@ -453,7 +456,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
           <div class="spec-row"><span class="spec-label">방수량</span><div class="spec-track"><div class="spec-fill" style="--w:23%"></div></div><span class="spec-val">80 ℓ/min</span></div>
           <div class="spec-row"><span class="spec-label">기준개수</span><div class="spec-track"><div class="spec-fill" style="--w:100%"></div></div><span class="spec-val">최대 30개</span></div>
         </div>
-        <div class="card-foot"><span class="card-law">시행 2026.7.1</span><div class="card-go">→</div></div>
+        <div class="card-foot"><span class="card-law">시행 2026.7.1</span><span class="card-man" role="link" tabindex="0" data-href="../fire-sprinkler-calc/manual/" aria-label="사용자 매뉴얼">📘 매뉴얼</span><div class="card-go">→</div></div>
       </div>
     </a>
 
@@ -464,13 +467,13 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
           <div class="card-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="10" r="2"/><path d="M12 2v6M12 14v8"/><path d="M6 10h4M14 10h4"/><path d="M8 6l2 2M14 6l-2 2M8 14l2-2M14 14l-2-2"/></svg></div>
           <div class="card-meta"><span class="card-badge">NFTC 103A</span><div class="card-title">간이스프링클러</div><div class="card-title-en">Simplified Sprinkler</div></div>
         </div>
-        <div class="card-desc">방수압 0.1 MPa↑ · 헤드 50 ℓ/min↑<br/>기준개수 최대 5개 · 수원 0.5~1.0 m³↑</div>
+        <div class="card-desc">방수압 0.1 MPa↑ · 헤드 50 ℓ/min↑<br/>간이헤드 2개 × 10분(1.0 m³) · 5개 × 20분(5.0 m³)</div>
         <div class="spec-bars">
           <div class="spec-row"><span class="spec-label">방수압</span><div class="spec-track"><div class="spec-fill" style="--w:25%"></div></div><span class="spec-val">0.1 MPa</span></div>
           <div class="spec-row"><span class="spec-label">방수량</span><div class="spec-track"><div class="spec-fill" style="--w:14%"></div></div><span class="spec-val">50 ℓ/min</span></div>
-          <div class="spec-row"><span class="spec-label">기준개수</span><div class="spec-track"><div class="spec-fill" style="--w:17%"></div></div><span class="spec-val">최대 5개</span></div>
+          <div class="spec-row"><span class="spec-label">기준개수</span><div class="spec-track"><div class="spec-fill" style="--w:17%"></div></div><span class="spec-val">2 · 5개</span></div>
         </div>
-        <div class="card-foot"><span class="card-law">시행 2024.12.1</span><div class="card-go">→</div></div>
+        <div class="card-foot"><span class="card-law">시행 2024.12.1</span><span class="card-man" role="link" tabindex="0" data-href="../simple-sprinkler-calc/manual/" aria-label="사용자 매뉴얼">📘 매뉴얼</span><div class="card-go">→</div></div>
       </div>
     </a>
   </div>
@@ -492,13 +495,13 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
           <div class="card-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="7" height="10" rx="1"/><circle cx="16" cy="11" r="2"/><path d="M16 3v6M12 16h8M16 16v5"/><path d="M3 8V5a1 1 0 011-1h3a1 1 0 011 1v4"/></svg></div>
           <div class="card-meta"><span class="card-badge">겸용 102 · 103</span><div class="card-title" style="font-size:14px;">옥내소화전<br/>+ 스프링클러</div><div class="card-title-en">Indoor + Sprinkler</div></div>
         </div>
-        <div class="card-desc">NFTC 102 · 103 동시 적용<br/>두 설비 최대값으로 펌프 선정</div>
+        <div class="card-desc">NFTC 102 2.9 · 103 2.13 겸용<br/>토출량 · 수원 합산(방화벽 구획 단서 시 최대값) · 양정 큰 값</div>
         <div class="spec-bars">
-          <div class="spec-row"><span class="spec-label">옥내 Q</span><div class="spec-track"><div class="spec-fill" style="--w:65%"></div></div><span class="spec-val">650 ℓ/min</span></div>
+          <div class="spec-row"><span class="spec-label">옥내 Q</span><div class="spec-track"><div class="spec-fill" style="--w:65%"></div></div><span class="spec-val">260 ℓ/min</span></div>
           <div class="spec-row"><span class="spec-label">SP Q</span><div class="spec-track"><div class="spec-fill" style="--w:68%"></div></div><span class="spec-val">2,400 ℓ/min</span></div>
-          <div class="spec-row"><span class="spec-label">채택</span><div class="spec-track"><div class="spec-fill" style="--w:100%"></div></div><span class="spec-val">MAX 선정</span></div>
+          <div class="spec-row"><span class="spec-label">양정</span><div class="spec-track"><div class="spec-fill" style="--w:100%"></div></div><span class="spec-val">큰 값 채택</span></div>
         </div>
-        <div class="card-foot"><span class="card-law">/combo-pump-calc/</span><div class="card-go">→</div></div>
+        <div class="card-foot"><span class="card-law">겸용 계산서</span><span class="card-man" role="link" tabindex="0" data-href="../combo-pump-calc/manual/" aria-label="사용자 매뉴얼">📘 매뉴얼</span><div class="card-go">→</div></div>
       </div>
     </a>
 
@@ -509,13 +512,13 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
           <div class="card-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fb7185" stroke-width="1.8" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
           <div class="card-meta"><span class="card-badge">겸용 103A · 102</span><div class="card-title" style="font-size:14px;">간이스프링클러<br/>+ 옥내소화전</div><div class="card-title-en">Simple SP + Indoor</div></div>
         </div>
-        <div class="card-desc">NFTC 103A · 102 동시 적용<br/>소규모 복합 건물 최적 설계</div>
+        <div class="card-desc">NFTC 103A 2.10 · 102 2.9 겸용<br/>토출량 · 수원 합산(방화벽 구획 단서 시 최대값) · 옥상수조 옥내 ÷ 3</div>
         <div class="spec-bars">
           <div class="spec-row"><span class="spec-label">간이 Q</span><div class="spec-track"><div class="spec-fill" style="--w:25%"></div></div><span class="spec-val">250 ℓ/min</span></div>
-          <div class="spec-row"><span class="spec-label">옥내 Q</span><div class="spec-track"><div class="spec-fill" style="--w:65%"></div></div><span class="spec-val">650 ℓ/min</span></div>
-          <div class="spec-row"><span class="spec-label">채택</span><div class="spec-track"><div class="spec-fill" style="--w:65%"></div></div><span class="spec-val">MAX 선정</span></div>
+          <div class="spec-row"><span class="spec-label">옥내 Q</span><div class="spec-track"><div class="spec-fill" style="--w:65%"></div></div><span class="spec-val">260 ℓ/min</span></div>
+          <div class="spec-row"><span class="spec-label">양정</span><div class="spec-track"><div class="spec-fill" style="--w:65%"></div></div><span class="spec-val">큰 값 채택</span></div>
         </div>
-        <div class="card-foot"><span class="card-law">/combo-easy-fire-calc/</span><div class="card-go">→</div></div>
+        <div class="card-foot"><span class="card-law">겸용 계산서</span><span class="card-man" role="link" tabindex="0" data-href="../combo-easy-fire-calc/manual/" aria-label="사용자 매뉴얼">📘 매뉴얼</span><div class="card-go">→</div></div>
       </div>
     </a>
 
@@ -526,13 +529,13 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
           <div class="card-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.8" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
           <div class="card-meta"><span class="card-badge">겸용 102 · 109</span><div class="card-title" style="font-size:14px;">옥내소화전<br/>+ 옥외소화전</div><div class="card-title-en">Indoor + Outdoor</div></div>
         </div>
-        <div class="card-desc">NFTC 102 · 109 동시 적용<br/>실내외 복합 소화설비 통합 계산</div>
+        <div class="card-desc">NFPC 102 제12조 · 109 제11조 겸용<br/>토출량 · 수원 항상 합산 · 양정 큰 값 · 옥외 감압 판정</div>
         <div class="spec-bars">
-          <div class="spec-row"><span class="spec-label">옥내 Q</span><div class="spec-track"><div class="spec-fill" style="--w:65%"></div></div><span class="spec-val">650 ℓ/min</span></div>
+          <div class="spec-row"><span class="spec-label">옥내 Q</span><div class="spec-track"><div class="spec-fill" style="--w:65%"></div></div><span class="spec-val">260 ℓ/min</span></div>
           <div class="spec-row"><span class="spec-label">옥외 Q</span><div class="spec-track"><div class="spec-fill" style="--w:100%"></div></div><span class="spec-val">700 ℓ/min</span></div>
-          <div class="spec-row"><span class="spec-label">채택</span><div class="spec-track"><div class="spec-fill" style="--w:100%"></div></div><span class="spec-val">MAX 선정</span></div>
+          <div class="spec-row"><span class="spec-label">양정</span><div class="spec-track"><div class="spec-fill" style="--w:100%"></div></div><span class="spec-val">큰 값 채택</span></div>
         </div>
-        <div class="card-foot"><span class="card-law">/combo-indoor-outdoor-calc/</span><div class="card-go">→</div></div>
+        <div class="card-foot"><span class="card-law">겸용 계산서</span><span class="card-man" role="link" tabindex="0" data-href="../combo-indoor-outdoor-calc/manual/" aria-label="사용자 매뉴얼">📘 매뉴얼</span><div class="card-go">→</div></div>
       </div>
     </a>
   </div>
@@ -557,10 +560,10 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
         <div class="card-desc">제연구역 급기·배기 풍량 산정<br/>수직풍도·팬 용량 자동 계산</div>
         <div class="spec-bars">
           <div class="spec-row"><span class="spec-label">풍량</span><div class="spec-track"><div class="spec-fill" style="--w:70%"></div></div><span class="spec-val">급배기 m³/h</span></div>
-          <div class="spec-row"><span class="spec-label">차압</span><div class="spec-track"><div class="spec-fill" style="--w:50%"></div></div><span class="spec-val">50 Pa 이상</span></div>
+          <div class="spec-row"><span class="spec-label">범위</span><div class="spec-track"><div class="spec-fill" style="--w:50%"></div></div><span class="spec-val">거실 제연</span></div>
           <div class="spec-row"><span class="spec-label">팬</span><div class="spec-track"><div class="spec-fill" style="--w:65%"></div></div><span class="spec-val">kW 자동산정</span></div>
         </div>
-        <div class="card-foot"><span class="card-law">시행 2024.10.1</span><div class="card-go">↗</div></div>
+        <div class="card-foot"><span class="card-law">시행 2024.10.1 · 공고 제2024-52호</span><div class="card-go">↗</div></div>
       </div>
     </a>
 
@@ -577,7 +580,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
           <div class="spec-row"><span class="spec-label">역률</span><div class="spec-track"><div class="spec-fill" style="--w:80%"></div></div><span class="spec-val">0.8 기준</span></div>
           <div class="spec-row"><span class="spec-label">부하</span><div class="spec-track"><div class="spec-fill" style="--w:90%"></div></div><span class="spec-val">자동 합산</span></div>
         </div>
-        <div class="card-foot"><span class="card-law">manminkim-eng.github.io</span><div class="card-go">↗</div></div>
+        <div class="card-foot"><span class="card-law">외부 도구 · manminkim-eng.github.io</span><div class="card-go">↗</div></div>
       </div>
     </a>
 
@@ -592,13 +595,13 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   <table class="compare-table">
     <thead><tr><th>설비 명칭</th><th>NFTC</th><th>시행일</th><th>방수압</th><th>방수량</th><th>동시 개수</th><th>수원 (개당)</th><th>방사 시간</th></tr></thead>
     <tbody>
-      <tr><td><a class="td-link" href="../fire-hydrant-calc/"><span class="td-chip" style="background:var(--c-green-b);color:var(--c-green);">단독</span><span class="td-name">옥내소화전</span></a></td><td><span class="td-mono">102</span></td><td><span class="td-mono" style="color:var(--c-green);">2026.7.1</span><span style="font-size:9px; color:#4ade80; margin-left:4px; font-weight:800;">★최신</span></td><td><span class="hi-g">0.17 MPa↑</span></td><td><span class="hi-g">130 ℓ/min↑</span></td><td><span class="td-mono">최대 2개(고층5)</span></td><td><span class="td-mono">2.6 m³↑</span></td><td><span class="td-mono">20 min</span></td></tr>
+      <tr><td><a class="td-link" href="../fire-hydrant-calc/"><span class="td-chip" style="background:var(--c-green-b);color:var(--c-green);">단독</span><span class="td-name">옥내소화전</span></a></td><td><span class="td-mono">102</span></td><td><span class="td-mono" style="color:var(--c-green);">2026.7.1</span><span style="font-size:9px; color:#4ade80; margin-left:4px; font-weight:800;">★최신</span></td><td><span class="hi-g">0.17 MPa↑</span></td><td><span class="hi-g">130 ℓ/min↑</span></td><td><span class="td-mono">최대 2개(고층5)</span></td><td><span class="td-mono">2.6 m³↑(고층 5.2 · 7.8)</span></td><td><span class="td-mono">20 min(고층 40 · 60)</span></td></tr>
       <tr><td><a class="td-link" href="../outdoor-hydrant-calc/"><span class="td-chip" style="background:var(--c-teal-b);color:var(--c-teal);">단독</span><span class="td-name">옥외소화전</span></a></td><td><span class="td-mono">109</span></td><td><span class="td-mono" style="color:#a3b4a3;">2026.3.1</span></td><td><span class="hi-a">0.25 MPa↑</span></td><td><span class="hi-a">350 ℓ/min↑</span></td><td><span class="td-mono">최대 2개</span></td><td><span class="td-mono">7 m³↑</span></td><td><span class="td-mono">20 min</span></td></tr>
-      <tr><td><a class="td-link" href="../fire-sprinkler-calc/"><span class="td-chip" style="background:var(--c-blue-b);color:var(--c-blue);">단독</span><span class="td-name">스프링클러</span></a></td><td><span class="td-mono">103</span></td><td><span class="td-mono" style="color:var(--c-green);">2026.7.1</span><span style="font-size:9px; color:#4ade80; margin-left:4px; font-weight:800;">★최신</span></td><td><span class="hi-g">0.1 MPa↑</span></td><td><span class="hi-g">80 ℓ/min↑</span></td><td><span class="td-mono">최대 30개</span></td><td><span class="td-mono">1.6 m³↑</span></td><td><span class="td-mono">20~60 min</span></td></tr>
-      <tr><td><a class="td-link" href="../simple-sprinkler-calc/"><span class="td-chip" style="background:var(--c-amber-b);color:var(--c-amber);">단독</span><span class="td-name">간이스프링클러</span></a></td><td><span class="td-mono">103A</span></td><td><span class="td-mono" style="color:#fbbf24;">2024.12.1</span></td><td><span class="hi-g">0.1 MPa↑</span></td><td><span class="hi-g">50 ℓ/min↑</span></td><td><span class="td-mono">최대 5개</span></td><td><span class="td-mono">0.5~1.0 m³↑</span></td><td><span class="td-mono">10 min</span></td></tr>
-      <tr><td><a class="td-link" href="../combo-pump-calc/"><span class="td-chip" style="background:var(--c-purple-b);color:var(--c-purple);">겸용</span><span class="td-name">옥내+스프링클러</span></a></td><td><span class="td-mono">102·103</span></td><td><span class="td-mono" style="color:#a3b4a3;">복합</span></td><td><span class="hi-a">Max</span></td><td><span class="hi-a">Max</span></td><td><span class="td-mono">설비별 적용</span></td><td><span class="td-mono">Max 선정</span></td><td><span class="td-mono">겸용 선정</span></td></tr>
-      <tr><td><a class="td-link" href="../combo-easy-fire-calc/"><span class="td-chip" style="background:var(--c-rose-b);color:var(--c-rose);">겸용</span><span class="td-name">간이+옥내</span></a></td><td><span class="td-mono">103A·102</span></td><td><span class="td-mono" style="color:#a3b4a3;">복합</span></td><td><span class="hi-a">Max</span></td><td><span class="hi-a">Max</span></td><td><span class="td-mono">설비별 적용</span></td><td><span class="td-mono">Max 선정</span></td><td><span class="td-mono">겸용 선정</span></td></tr>
-      <tr><td><a class="td-link" href="../combo-indoor-outdoor-calc/"><span class="td-chip" style="background:var(--c-cyan-b);color:var(--c-cyan);">겸용</span><span class="td-name">옥내+옥외</span></a></td><td><span class="td-mono">102·109</span></td><td><span class="td-mono" style="color:#a3b4a3;">복합</span></td><td><span class="hi-a">0.25 MPa↑</span></td><td><span class="hi-a">Max</span></td><td><span class="td-mono">설비별 적용</span></td><td><span class="td-mono">Max 선정</span></td><td><span class="td-mono">겸용 선정</span></td></tr>
+      <tr><td><a class="td-link" href="../fire-sprinkler-calc/"><span class="td-chip" style="background:var(--c-blue-b);color:var(--c-blue);">단독</span><span class="td-name">스프링클러</span></a></td><td><span class="td-mono">103</span></td><td><span class="td-mono" style="color:var(--c-green);">2026.7.1</span><span style="font-size:9px; color:#4ade80; margin-left:4px; font-weight:800;">★최신</span></td><td><span class="hi-g">0.1 MPa↑</span></td><td><span class="hi-g">80 ℓ/min↑</span></td><td><span class="td-mono">최대 30개</span></td><td><span class="td-mono">1.6 m³↑(고층 3.2 · 4.8)</span></td><td><span class="td-mono">20 min(고층 40 · 60)</span></td></tr>
+      <tr><td><a class="td-link" href="../simple-sprinkler-calc/"><span class="td-chip" style="background:var(--c-amber-b);color:var(--c-amber);">단독</span><span class="td-name">간이스프링클러</span></a></td><td><span class="td-mono">103A</span></td><td><span class="td-mono" style="color:#fbbf24;">2024.12.1</span></td><td><span class="hi-g">0.1 MPa↑</span></td><td><span class="hi-g">50 ℓ/min↑</span></td><td><span class="td-mono">2개 · 5개</span></td><td><span class="td-mono">1.0 · 5.0 m³(주차장 1.6 · 8.0)</span></td><td><span class="td-mono">10 · 20 min</span></td></tr>
+      <tr><td><a class="td-link" href="../combo-pump-calc/"><span class="td-chip" style="background:var(--c-purple-b);color:var(--c-purple);">겸용</span><span class="td-name">옥내+스프링클러</span></a></td><td><span class="td-mono">102·103</span></td><td><span class="td-mono" style="color:#a3b4a3;">복합</span></td><td><span class="hi-a">설비별</span></td><td><span class="hi-a">합산</span></td><td><span class="td-mono">설비별 적용</span></td><td><span class="td-mono">합산(단서 시 최대) + 옥상 옥내 ÷ 3</span></td><td><span class="td-mono">양정 큰 값</span></td></tr>
+      <tr><td><a class="td-link" href="../combo-easy-fire-calc/"><span class="td-chip" style="background:var(--c-rose-b);color:var(--c-rose);">겸용</span><span class="td-name">간이+옥내</span></a></td><td><span class="td-mono">103A·102</span></td><td><span class="td-mono" style="color:#a3b4a3;">복합</span></td><td><span class="hi-a">설비별</span></td><td><span class="hi-a">합산</span></td><td><span class="td-mono">설비별 적용</span></td><td><span class="td-mono">합산(단서 시 최대) + 옥상 옥내 ÷ 3</span></td><td><span class="td-mono">양정 큰 값</span></td></tr>
+      <tr><td><a class="td-link" href="../combo-indoor-outdoor-calc/"><span class="td-chip" style="background:var(--c-cyan-b);color:var(--c-cyan);">겸용</span><span class="td-name">옥내+옥외</span></a></td><td><span class="td-mono">102·109</span></td><td><span class="td-mono" style="color:#a3b4a3;">복합</span></td><td><span class="hi-a">설비별</span></td><td><span class="hi-a">합산</span></td><td><span class="td-mono">설비별 적용</span></td><td><span class="td-mono">항상 합산 + 옥상 옥내 ÷ 3</span></td><td><span class="td-mono">양정 큰 값</span></td></tr>
     </tbody>
   </table>
 </div>
@@ -611,25 +614,25 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 </div>
 <div class="law-section">
   <div class="law-grid">
-    <div class="law-card"><div class="law-card-accent" style="background:linear-gradient(90deg,#15803d,#4ade80);"></div><div class="law-card-num" style="color:#4ade80;">NFTC 102</div><div class="law-card-title">옥내소화전설비의 화재안전기술기준</div><div class="law-card-date" style="color:#4ade80;">시행 2026. 7. 1. ★ 최신</div><div class="law-card-rows"><div class="law-row"><span class="law-row-key">방수압</span><span class="law-row-val">0.17 MPa 이상</span><span class="law-row-note">(노즐 선단)</span></div><div class="law-row"><span class="law-row-key">방수량</span><span class="law-row-val">130 ℓ/min 이상</span><span class="law-row-note">(개당)</span></div><div class="law-row"><span class="law-row-key">동시사용</span><span class="law-row-val">최대 2개</span><span class="law-row-note">(29층 이하)</span></div><div class="law-row"><span class="law-row-key">수원</span><span class="law-row-val">2.6 m³ × N</span><span class="law-row-note"></span></div><div class="law-row"><span class="law-row-key">호스</span><span class="law-row-val">40 mm 호스</span><span class="law-row-note"></span></div></div></div>
-    <div class="law-card"><div class="law-card-accent" style="background:linear-gradient(90deg,#0d9488,#2dd4bf);"></div><div class="law-card-num" style="color:#2dd4bf;">NFTC 109</div><div class="law-card-title">옥외소화전설비의 화재안전기술기준</div><div class="law-card-date" style="color:#a3b4a3;">시행 2026. 3. 1.</div><div class="law-card-rows"><div class="law-row"><span class="law-row-key">방수압</span><span class="law-row-val">0.25 MPa 이상</span><span class="law-row-note">(노즐 선단)</span></div><div class="law-row"><span class="law-row-key">방수량</span><span class="law-row-val">350 ℓ/min 이상</span><span class="law-row-note">(개당)</span></div><div class="law-row"><span class="law-row-key">동시사용</span><span class="law-row-val">최대 2개</span><span class="law-row-note"></span></div><div class="law-row"><span class="law-row-key">수원</span><span class="law-row-val">7 m³ × N</span><span class="law-row-note"></span></div><div class="law-row"><span class="law-row-key">호스</span><span class="law-row-val">65 mm 호스</span><span class="law-row-note"></span></div></div></div>
-    <div class="law-card"><div class="law-card-accent" style="background:linear-gradient(90deg,#1d4ed8,#60a5fa);"></div><div class="law-card-num" style="color:#60a5fa;">NFTC 103</div><div class="law-card-title">스프링클러설비의 화재안전기술기준</div><div class="law-card-date" style="color:#4ade80;">시행 2026. 7. 1. ★ 최신</div><div class="law-card-rows"><div class="law-row"><span class="law-row-key">방수압</span><span class="law-row-val">0.1 MPa 이상</span><span class="law-row-note">(헤드 선단)</span></div><div class="law-row"><span class="law-row-key">방수량</span><span class="law-row-val">80 ℓ/min 이상</span><span class="law-row-note">(헤드당)</span></div><div class="law-row"><span class="law-row-key">기준개수</span><span class="law-row-val">최대 30개</span><span class="law-row-note">(용도별)</span></div><div class="law-row"><span class="law-row-key">수원</span><span class="law-row-val">1.6 m³ × N</span><span class="law-row-note">(폐쇄형)</span></div><div class="law-row"><span class="law-row-key">방사시간</span><span class="law-row-val">20 ~ 60 min</span><span class="law-row-note"></span></div></div></div>
-    <div class="law-card"><div class="law-card-accent" style="background:linear-gradient(90deg,#b45309,#fbbf24);"></div><div class="law-card-num" style="color:#fbbf24;">NFTC 103A</div><div class="law-card-title">간이스프링클러설비의 화재안전기술기준</div><div class="law-card-date" style="color:#fbbf24;">시행 2024. 12. 1.</div><div class="law-card-rows"><div class="law-row"><span class="law-row-key">방수압</span><span class="law-row-val">0.1 MPa 이상</span><span class="law-row-note">(헤드 선단)</span></div><div class="law-row"><span class="law-row-key">방수량</span><span class="law-row-val">50 ℓ/min 이상</span><span class="law-row-note">(헤드당)</span></div><div class="law-row"><span class="law-row-key">기준개수</span><span class="law-row-val">최대 5개</span><span class="law-row-note"></span></div><div class="law-row"><span class="law-row-key">수원</span><span class="law-row-val">0.5 또는 1.0 m³ × N</span><span class="law-row-note"></span></div><div class="law-row"><span class="law-row-key">방사시간</span><span class="law-row-val">10 min 이상</span><span class="law-row-note"></span></div></div></div>
+    <div class="law-card"><div class="law-card-accent" style="background:linear-gradient(90deg,#15803d,#4ade80);"></div><div class="law-card-num" style="color:#4ade80;">NFTC 102</div><div class="law-card-title">옥내소화전설비의 화재안전기술기준</div><div class="law-card-date" style="color:#4ade80;">시행 2026. 7. 1. ★ 최신 · 공고 제2026-34호 · NFPC 고시 제2025-25호</div><div class="law-card-rows"><div class="law-row"><span class="law-row-key">방수압</span><span class="law-row-val">0.17 MPa 이상</span><span class="law-row-note">(노즐 선단)</span></div><div class="law-row"><span class="law-row-key">방수량</span><span class="law-row-val">130 ℓ/min 이상</span><span class="law-row-note">(개당)</span></div><div class="law-row"><span class="law-row-key">동시사용</span><span class="law-row-val">최대 2개</span><span class="law-row-note">(고층건축물 5개 · NFTC 604)</span></div><div class="law-row"><span class="law-row-key">수원</span><span class="law-row-val">2.6 m³ × N</span><span class="law-row-note">(+ 옥상수조 1/3)</span></div><div class="law-row"><span class="law-row-key">호스</span><span class="law-row-val">40 mm 이상</span><span class="law-row-note">(호스릴 25 mm)</span></div></div></div>
+    <div class="law-card"><div class="law-card-accent" style="background:linear-gradient(90deg,#0d9488,#2dd4bf);"></div><div class="law-card-num" style="color:#2dd4bf;">NFTC 109</div><div class="law-card-title">옥외소화전설비의 화재안전기술기준</div><div class="law-card-date" style="color:#a3b4a3;">시행 2026. 3. 1. · 공고 제2026-9호 · NFPC 고시 제2025-28호</div><div class="law-card-rows"><div class="law-row"><span class="law-row-key">방수압</span><span class="law-row-val">0.25 MPa 이상</span><span class="law-row-note">(노즐 선단)</span></div><div class="law-row"><span class="law-row-key">방수량</span><span class="law-row-val">350 ℓ/min 이상</span><span class="law-row-note">(개당)</span></div><div class="law-row"><span class="law-row-key">동시사용</span><span class="law-row-val">최대 2개</span><span class="law-row-note"></span></div><div class="law-row"><span class="law-row-key">수원</span><span class="law-row-val">7 m³ × N</span><span class="law-row-note"></span></div><div class="law-row"><span class="law-row-key">호스</span><span class="law-row-val">65 mm 호스</span><span class="law-row-note"></span></div></div></div>
+    <div class="law-card"><div class="law-card-accent" style="background:linear-gradient(90deg,#1d4ed8,#60a5fa);"></div><div class="law-card-num" style="color:#60a5fa;">NFTC 103</div><div class="law-card-title">스프링클러설비의 화재안전기술기준</div><div class="law-card-date" style="color:#4ade80;">시행 2026. 7. 1. ★ 최신 · 공고 제2026-35호 · NFPC 고시 제2025-25호</div><div class="law-card-rows"><div class="law-row"><span class="law-row-key">방수압</span><span class="law-row-val">0.1 MPa 이상</span><span class="law-row-note">(헤드 선단)</span></div><div class="law-row"><span class="law-row-key">방수량</span><span class="law-row-val">80 ℓ/min 이상</span><span class="law-row-note">(헤드당)</span></div><div class="law-row"><span class="law-row-key">기준개수</span><span class="law-row-val">최대 30개</span><span class="law-row-note">(용도별)</span></div><div class="law-row"><span class="law-row-key">수원</span><span class="law-row-val">1.6 m³ × N</span><span class="law-row-note">(폐쇄형)</span></div><div class="law-row"><span class="law-row-key">방사시간</span><span class="law-row-val">20 min</span><span class="law-row-note">(고층 3.2 · 4.8 m³)</span></div></div></div>
+    <div class="law-card"><div class="law-card-accent" style="background:linear-gradient(90deg,#b45309,#fbbf24);"></div><div class="law-card-num" style="color:#fbbf24;">NFTC 103A</div><div class="law-card-title">간이스프링클러설비의 화재안전기술기준</div><div class="law-card-date" style="color:#fbbf24;">시행 2024. 12. 1. · 공고 제2024-58호 · NFPC 고시 제2025-25호</div><div class="law-card-rows"><div class="law-row"><span class="law-row-key">방수압</span><span class="law-row-val">0.1 MPa 이상</span><span class="law-row-note">(헤드 선단)</span></div><div class="law-row"><span class="law-row-key">방수량</span><span class="law-row-val">50 ℓ/min 이상</span><span class="law-row-note">(헤드당)</span></div><div class="law-row"><span class="law-row-key">기준개수</span><span class="law-row-val">2개 · 5개</span><span class="law-row-note">(영 별표 4 제1호마목)</span></div><div class="law-row"><span class="law-row-key">수원</span><span class="law-row-val">1.0 · 5.0 m³</span><span class="law-row-note">(2개 × 10분 · 5개 × 20분)</span></div><div class="law-row"><span class="law-row-key">방사시간</span><span class="law-row-val">10 · 20 min 이상</span><span class="law-row-note"></span></div></div></div>
   </div>
   <div class="formula-box">
     <div class="formula-title"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>계산식 안내 — Hazen-Williams 공식 &amp; 전동기 동력 산정</div>
     <div class="formula-grid">
-      <div class="formula-item"><div class="formula-label">배관 마찰손실 (H-W)</div><div class="formula-eq">h = 10.67 × L<br/>÷ (C¹·⁸⁵² × D⁴·⁸⁷)<br/>× Q¹·⁸⁵²</div><div class="formula-sub">KS D3507 → C=120<br/>STS KS D3595 → C=150<br/>Q: 유량(ℓ/min)</div></div>
-      <div class="formula-item"><div class="formula-label">펌프 전양정 (H)</div><div class="formula-eq">H = h₁ + h₂<br/>+ h₃ + h₄</div><div class="formula-sub">h₁:낙차 h₂:배관마찰<br/>h₃:호스마찰 h₄:방수압환산</div></div>
-      <div class="formula-item"><div class="formula-label">전동기 출력 (P)</div><div class="formula-eq">P = 0.163 × Q<br/>× H × K ÷ η</div><div class="formula-sub">K: 직결 1.1 / 원동기 1.15<br/>η: 구경별 0.40~0.70</div></div>
+      <div class="formula-item"><div class="formula-label">배관 마찰손실 (H-W)</div><div class="formula-eq">h = 10.67 × L<br/>÷ (C¹·⁸⁵² × D⁴·⁸⁷)<br/>× Q¹·⁸⁵²</div><div class="formula-sub">KS D 3507 · 3562 → C=120<br/>STS KS D 3576 · 3595 → C=150<br/>Q: 유량(m³/s) = ℓ/min ÷ 60,000 · C값 MANMIN 참고</div></div>
+      <div class="formula-item"><div class="formula-label">펌프 전양정 (H)</div><div class="formula-eq">H = h₁ + h₂<br/>+ h₃ + h₄</div><div class="formula-sub">h₁:낙차 h₂:배관마찰(겸용은 공통 배관 F₀ 포함)<br/>h₃:호스마찰 h₄:방수압환산 · × 1.1 올림(MANMIN 참고)</div></div>
+      <div class="formula-item"><div class="formula-label">전동기 출력 (P)</div><div class="formula-eq">P = 0.163 × Q<br/>× H × K ÷ η</div><div class="formula-sub">K: 직결 1.1 / 원동기 1.15<br/>η: 직접 입력(참고 40A 40 % ~ 150A 70 %)</div></div>
     </div>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-brand">ENGINEER KIM MANMIN · MANMIN-Ver-5.1</div>
-  <p class="footer-copy">소방시설 설계 전용 계산서 &nbsp;·&nbsp; © 2025 Engineer Kim Manmin &nbsp;·&nbsp; All rights reserved</p>
+  <div class="footer-brand">ENGINEER KIM MANMIN · MANMIN-Ver-5.2</div>
+  <p class="footer-copy">소방시설 설계 전용 계산서 &nbsp;·&nbsp; © 2025 – 2026 Engineer Kim Manmin &nbsp;·&nbsp; All rights reserved</p>
 </footer>
 </div>
 
@@ -656,7 +659,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
       <div class="fml-hd-row">
         <div>
           <div style="font-size:15px;font-weight:900;letter-spacing:.04em;margin-bottom:3px;color:#86efac;">📐 계산식 안내 &amp; 이용방법</div>
-          <div style="font-size:10px;color:rgba(134,239,172,.6);font-weight:500;">소방 펌프 통합 포털 · NFTC 최신 기준 · MANMIN Ver-5.0</div>
+          <div style="font-size:10px;color:rgba(134,239,172,.6);font-weight:500;">소방 펌프 통합 포털 · NFPC · NFTC 원문 대조 · MANMIN Ver-5.2</div>
         </div>
         <button class="fml-close-btn" onclick="closeFml()" aria-label="닫기">✕</button>
       </div>
@@ -675,11 +678,11 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
       <div class="fml-panel" id="tab-howto">
         <div style="background:linear-gradient(140deg,#052e16,#14532d,#15803d);border-radius:13px;padding:16px 18px;margin-bottom:16px;">
           <div style="font-size:13px;font-weight:900;color:#86efac;margin-bottom:5px;display:flex;align-items:center;gap:8px;"><span style="font-size:20px;">🚒</span> 소방 펌프 계산서 통합 포털 이용방법</div>
-          <div style="font-size:10.5px;color:rgba(134,239,172,.75);line-height:1.7;">NFTC 102/103/103A/109 최신 기준 적용 · Hazen-Williams 공식 · MANMIN Ver-5.0<br/>원하는 계산서를 선택하고 순서에 따라 입력하면 펌프 용량이 자동 산출됩니다.</div>
+          <div style="font-size:10.5px;color:rgba(134,239,172,.75);line-height:1.7;">NFPC · NFTC 102 · 103 · 103A · 109 원문 대조(2026-10-16) · Hazen-Williams 공식 · MANMIN Ver-5.2<br/>원하는 계산서를 선택하고 순서에 따라 입력하면 펌프 용량이 자동 산출됩니다.</div>
         </div>
         <div style="display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.15);border-left:4px solid #15803d;border-radius:10px;padding:13px 14px;margin-bottom:9px;">
           <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#15803d,#052e16);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff;flex-shrink:0;">1</div>
-          <div><div style="font-size:12px;font-weight:900;color:#4ade80;margin-bottom:5px;">🏠 계산서 종류 선택</div><div style="font-size:10.5px;color:#a3b4a3;line-height:1.85;">① 메인 화면 카드에서 <strong style="color:#86efac;">원하는 소방 설비</strong>를 클릭합니다.<br/>② 단독 설비: 옥내소화전·옥외소화전·스프링클러·간이스프링클러 (4종)<br/>③ 겸용 설비: 옥내+옥외·간이+옥내·스프링클러+옥내 겸용 계산서 (3종)<br/>④ 상단 탭 필터로 <strong style="color:#86efac;">단독 / 겸용</strong>을 구분하여 찾을 수 있습니다.</div></div>
+          <div><div style="font-size:12px;font-weight:900;color:#4ade80;margin-bottom:5px;">🏠 계산서 종류 선택</div><div style="font-size:10.5px;color:#a3b4a3;line-height:1.85;">① 메인 화면 카드에서 <strong style="color:#86efac;">원하는 소방 설비</strong>를 클릭합니다.<br/>② 단독 설비: 옥내소화전·옥외소화전·스프링클러·간이스프링클러 (4종)<br/>③ 겸용 설비: 옥내+옥외·간이+옥내·스프링클러+옥내 겸용 계산서 (3종)<br/>④ 상단 탭 필터로 <strong style="color:#86efac;">단독 / 겸용 / 기타</strong>를 구분하여 찾고, 카드의 <strong style="color:#86efac;">📘 매뉴얼</strong>로 계산서별 사용자 매뉴얼(Ver-5.1)을 엽니다.<br/>⑤ 기타 설비: 제연설비 · 비상발전기 — 별도 저장소 외부 도구(2종)</div></div>
         </div>
         <div style="display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.15);border-left:4px solid #16a34a;border-radius:10px;padding:13px 14px;margin-bottom:9px;">
           <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#16a34a,#14532d);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff;flex-shrink:0;">2</div>
@@ -687,51 +690,52 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
         </div>
         <div style="display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.15);border-left:4px solid #22c55e;border-radius:10px;padding:13px 14px;margin-bottom:9px;">
           <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#22c55e,#15803d);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#052e16;flex-shrink:0;">3</div>
-          <div><div style="font-size:12px;font-weight:900;color:#4ade80;margin-bottom:5px;">🔩 배관 세그먼트 입력</div><div style="font-size:10.5px;color:#a3b4a3;line-height:1.85;">① <strong style="color:#86efac;">「+ 세그먼트 추가」</strong>로 구간별 배관을 등록합니다.<br/>② 관경·직관 길이·관부속 수량(Elbow·Tee·Valve 등)을 입력합니다.<br/>③ Hazen-Williams 공식으로 마찰손실·유속이 자동 계산되며 기준 초과 시 ⚠ 경고가 표시됩니다.</div></div>
+          <div><div style="font-size:12px;font-weight:900;color:#4ade80;margin-bottom:5px;">🔩 배관 구간 입력</div><div style="font-size:10.5px;color:#a3b4a3;line-height:1.85;">① <strong style="color:#86efac;">「+ 구간 추가」</strong>로 구간별 배관을 등록합니다(겸용은 펌프 토출 측 공통 배관을 따로 입력).<br/>② 관경·직관 길이·관부속 수량(Elbow·Tee·Valve 등)을 입력합니다.<br/>③ Hazen-Williams 공식으로 마찰손실(m/100 m)·유속이 자동 계산되며 기준 초과 시 ⚠ 경고가 표시됩니다.</div></div>
         </div>
         <div style="display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.15);border-left:4px solid #4ade80;border-radius:10px;padding:13px 14px;margin-bottom:9px;">
           <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#4ade80,#22c55e);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#052e16;flex-shrink:0;">4</div>
-          <div><div style="font-size:12px;font-weight:900;color:#4ade80;margin-bottom:5px;">⚡ 전동기 동력 설정 및 결과 확인</div><div style="font-size:10.5px;color:#a3b4a3;line-height:1.85;">① <strong style="color:#86efac;">펌프 관경·전달 방식</strong>을 선택하면 효율(η)·전달계수(K)가 자동 적용됩니다.<br/>② 전양정(안전율 10% 가산 후 올림)·이론 출력(kW)·채택 HP가 자동 산출됩니다.<br/>③ 겸용 설비는 토출량 합산·전양정 최댓값·수원 합산이 자동 처리됩니다.</div></div>
+          <div><div style="font-size:12px;font-weight:900;color:#4ade80;margin-bottom:5px;">⚡ 전동기 동력 설정 및 결과 확인</div><div style="font-size:10.5px;color:#a3b4a3;line-height:1.85;">① <strong style="color:#86efac;">펌프 구경 · 효율(직접 입력) · 전달 방식</strong>을 고르면 전달계수(K)가 적용됩니다.<br/>② 전양정(안전율 10 % 가산 후 올림 — MANMIN 참고값)·이론 출력(kW)·채택 HP가 산출되고, 배관 1.2 MPa · 노즐 0.7 MPa 판정이 함께 표시됩니다.<br/>③ 겸용 설비는 토출량 · 수원 합산(옥내 + 스프 · 간이 + 옥내는 방화벽 구획 단서 시 최대값)·전양정 큰 값 · 옥상수조(옥내 ÷ 3)가 자동 처리됩니다.</div></div>
         </div>
         <div style="display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.15);border-left:4px solid #86efac;border-radius:10px;padding:13px 14px;margin-bottom:16px;">
           <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#86efac,#4ade80);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#052e16;flex-shrink:0;">5</div>
-          <div><div style="font-size:12px;font-weight:900;color:#4ade80;margin-bottom:5px;">🖨️ 결과 확인 및 출력</div><div style="font-size:10.5px;color:#a3b4a3;line-height:1.85;">① 각 계산서 「📄 계산서」 탭에서 최종 결과를 확인합니다.<br/>② <strong style="color:#86efac;">🖨️ 인쇄 버튼</strong>으로 A4 소방 계산서 양식 출력·PDF 저장됩니다.<br/>③ 「📱 모바일」 탭에서 JPG 저장·공유 가능합니다.<br/>④ PWA 설치: 우측 하단 앱 설치 버튼 또는 iOS Safari → 공유 → 홈 화면에 추가.</div></div>
+          <div><div style="font-size:12px;font-weight:900;color:#4ade80;margin-bottom:5px;">🖨️ 결과 확인 및 출력</div><div style="font-size:10.5px;color:#a3b4a3;line-height:1.85;">① 각 계산서 「④ 계산서 출력」 탭에서 최종 결과를 A4로 확인합니다.<br/>② <strong style="color:#86efac;">🖨️ 인쇄 · PDF</strong> 버튼으로 A4 소방 계산서 출력 · PDF 저장합니다.<br/>③ 같은 위치의 「🖼️ JPG 저장」으로 A4 쪽별 그림을 저장합니다.<br/>④ PWA 설치: 우측 하단 앱 설치 버튼 또는 iOS Safari → 공유 → 홈 화면에 추가.</div></div>
         </div>
         <div class="fml-sec-ttl">💡 포털 주요 기능</div>
         <div class="fml-g2">
-          <div class="fml-card"><div class="fml-card-ttl" style="color:#4ade80;">🗂️ 7종 계산서 통합</div><div class="fml-note">옥내·옥외소화전, 스프링클러, 간이스프링클러, 겸용 3종 — 모든 소방 펌프 계산을 한 포털에서 관리합니다.</div></div>
-          <div class="fml-card"><div class="fml-card-ttl" style="color:#4ade80;">📲 PWA 오프라인 지원</div><div class="fml-note">앱으로 설치하면 인터넷 없이도 모든 계산서를 사용할 수 있습니다. 각 계산서 페이지도 별도 PWA로 설치 가능합니다.</div></div>
+          <div class="fml-card"><div class="fml-card-ttl" style="color:#4ade80;">🗂️ 9종 도구 통합</div><div class="fml-note">소방 펌프 계산서 7종(옥내 · 옥외소화전, 스프링클러, 간이스프링클러, 겸용 3종) + 기타 2종(제연설비 · 비상발전기, 외부 도구)을 한 포털에서 엽니다.</div></div>
+          <div class="fml-card"><div class="fml-card-ttl" style="color:#4ade80;">📲 PWA 오프라인 지원</div><div class="fml-note">포털과 각 계산서는 각각 PWA로 설치하면 오프라인에서도 열립니다(설치한 페이지 기준 · 사용자 매뉴얼은 온라인 전용).</div></div>
           <div class="fml-card"><div class="fml-card-ttl" style="color:#4ade80;">⚡ 실시간 자동 계산</div><div class="fml-note">입력값 변경 즉시 수원·양정·동력이 실시간 재산출됩니다. Hazen-Williams 마찰손실·유속 경고도 즉시 반영됩니다.</div></div>
           <div class="fml-card"><div class="fml-card-ttl" style="color:#4ade80;">📐 이 계산식 안내 버튼</div><div class="fml-note">우측 하단 초록 FAB 버튼을 클릭하면 이 창이 열립니다. 탭을 전환하여 각 설비별 계산식·법령 기준을 확인하세요.</div></div>
         </div>
         <div style="border:1px solid rgba(34,197,94,.2);background:rgba(34,197,94,.06);border-radius:10px;padding:12px 14px;margin-top:4px;">
           <div style="font-size:11px;font-weight:800;color:#4ade80;margin-bottom:6px;">📌 적용 기준 법령</div>
           <div class="fml-note" style="font-size:10.5px;line-height:2.1;color:#a3b4a3;">
-            <strong style="color:#86efac;">NFPC/NFTC 102</strong> — 옥내소화전설비 [2026.7.1.] · 130 ℓ/min · 0.17 MPa<br/>
-            <strong style="color:#86efac;">NFPC/NFTC 109</strong> — 옥외소화전설비 [2026.3.1.] · 350 ℓ/min · 0.25 MPa<br/>
-            <strong style="color:#86efac;">NFPC/NFTC 103</strong> — 스프링클러설비 [2026.7.1.] · 80 ℓ/min · 0.1 MPa<br/>
-            <strong style="color:#86efac;">NFPC/NFTC 103A</strong> — 간이스프링클러설비 [2024.12.1.] · 50 ℓ/min · 0.1 MPa<br/>
-            <strong style="color:#86efac;">Hazen-Williams 공식</strong> — 배관 마찰손실 (C값: 백관·흑관 120, STS·CPVC 150)
+            <strong style="color:#86efac;">NFPC 102 · NFTC 102</strong> — 옥내소화전설비 · 고시 제2025-25호 · 공고 제2026-34호 [2026.7.1.] · 130 ℓ/min · 0.17 MPa<br/>
+            <strong style="color:#86efac;">NFPC 109 · NFTC 109</strong> — 옥외소화전설비 · 고시 제2025-28호 · 공고 제2026-9호 [2026.3.1.] · 350 ℓ/min · 0.25 MPa<br/>
+            <strong style="color:#86efac;">NFPC 103 · NFTC 103</strong> — 스프링클러설비 · 고시 제2025-25호 · 공고 제2026-35호 [2026.7.1.] · 80 ℓ/min · 0.1 MPa<br/>
+            <strong style="color:#86efac;">NFPC 103A · NFTC 103A</strong> — 간이스프링클러설비 · 고시 제2025-25호 · 공고 제2024-58호 [2024.12.1.] · 50 ℓ/min · 0.1 MPa<br/>
+            <strong style="color:#86efac;">NFTC 604</strong> — 고층건축물 · 공고 제2023-44호 · <strong style="color:#86efac;">NFTC 501 · 501A</strong> — 제연 · 공고 제2024-52호 · 제2026-36호<br/>
+            <strong style="color:#86efac;">Hazen-Williams 공식</strong> — 배관 마찰손실 (C값: 백관·흑관 120, STS·CPVC 150 — MANMIN 참고값)
           </div>
         </div>
       </div>
 
       <!-- 옥내소화전 -->
       <div class="fml-panel hidden" id="tab-hydrant">
-        <div class="fml-sec"><div class="fml-sec-ttl">💧 수원 (NFTC 102 §2.1.1.4)</div><div class="fml-card"><code class="fml-eq">수원(m³) = N × 130 ℓ/min × 20분 ÷ 1,000</code><div class="fml-note">최대 N=2개(일반)/5개(고층) | 방수압 0.17~0.7 MPa</div></div></div>
-        <div class="fml-sec"><div class="fml-sec-ttl">📏 전양정 (NFTC 102 §2.3.3)</div>
+        <div class="fml-sec"><div class="fml-sec-ttl">💧 수원 (NFPC 102 제4조① · NFTC 102 2.1.1)</div><div class="fml-card"><code class="fml-eq">수원(m³) = N × 2.6 m³ (= N × 130 ℓ/min × 20분)</code><div class="fml-note">N = 설치개수 최다 층 2개 한도(고층 5개 × 5.2 · 7.8 m³ — NFTC 604 2.1.1) | 옥상수조 1/3(제4조②) | 노즐 0.17 MPa 이상 · 0.7 MPa 초과 시 감압(제5조①3호)</div></div></div>
+        <div class="fml-sec"><div class="fml-sec-ttl">📏 전양정 (펌프 방식 — MANMIN 적용식)</div>
           <div class="fml-g2"><div class="fml-card"><div class="fml-card-ttl">E — 실양정</div><code class="fml-eq">펌프 ↔ 최고층 소화전 높이차 [m]</code></div><div class="fml-card"><div class="fml-card-ttl">H₄ — 노즐 환산수두</div><code class="fml-eq">H₄ = 17 m (고정) ← 0.17 MPa</code></div></div>
-          <div class="fml-card"><div class="fml-card-ttl">G — 호스 마찰손실</div><code class="fml-eq">G = 손실율(m/100m) × 호스길이 ÷ 100</code><div class="fml-note">40mm 아마 26 | 40mm 고무 12 | 50mm 아마 7 | 50mm 고무 3 | 25mm 호스릴 14m 고정</div></div>
-          <div class="fml-card"><div class="fml-card-ttl">F — 배관 마찰손실 (H-W)</div><code class="fml-eq">h = (10.67 × Q¹·⁸⁵²) ÷ (C¹·⁸⁵² × D⁴·⁸⁷) × L [m]</code><div class="fml-note">유속 제한: 주배관 ≤ 4 m/s | C값: 백관·흑관 120, STS·CPVC 150</div></div>
-          <div class="fml-card" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.06);"><div class="fml-card-ttl" style="color:#4ade80;">J — 전양정 최종값</div><code class="fml-eq">J = ⌈(E + F + G + H₄) × 1.1⌉ [m]</code></div>
+          <div class="fml-card"><div class="fml-card-ttl">G — 호스 마찰손실</div><code class="fml-eq">G = 손실율(m/100m) × 호스길이 ÷ 100</code><div class="fml-note">40mm 아마 26 | 40mm 고무 12 | 50mm 아마 7 | 50mm 고무 3 | 25mm 호스릴 14m 고정 — MANMIN 참고값</div></div>
+          <div class="fml-card"><div class="fml-card-ttl">F — 배관 마찰손실 (H-W)</div><code class="fml-eq">h = (10.67 × Q¹·⁸⁵²) ÷ (C¹·⁸⁵² × D⁴·⁸⁷) × L [m]</code><div class="fml-note">Q(m³/s) · D(m) · L(m) | 펌프 토출 측 주배관 ≤ 4 m/s (NFTC 102 2.3.5) | C값: 백관·흑관 120, STS·CPVC 150</div></div>
+          <div class="fml-card" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.06);"><div class="fml-card-ttl" style="color:#4ade80;">J — 전양정 최종값</div><code class="fml-eq">J = ⌈(E + F + G + H₄) × 1.1⌉ [m]</code><div class="fml-note">안전율 10 % · 올림 = MANMIN 참고값</div></div>
         </div>
-        <div class="fml-sec"><div class="fml-sec-ttl">⚡ 전동기 동력</div><div class="fml-card"><code class="fml-eq">P = 0.163 × Q(m³/min) × H(m) × K ÷ η [kW]</code><div class="fml-note">K: 직결 1.1/이외 1.15 | η: 40A=0.40, 65A=0.55, 100A=0.60, 150A=0.70 | HP = P×1.341 → 상위 규격</div></div></div>
+        <div class="fml-sec"><div class="fml-sec-ttl">⚡ 전동기 동력</div><div class="fml-card"><code class="fml-eq">P = 0.163 × Q(m³/min) × H(m) × K ÷ η [kW]</code><div class="fml-note">K: 직결 1.1/이외 1.15 | η: 직접 입력(참고 40A 40 % ~ 150A 70 %) — MANMIN 참고값 | HP = P×1.341 → 상위 규격</div></div></div>
       </div>
 
       <!-- 옥외소화전 -->
       <div class="fml-panel hidden" id="tab-outdoor">
-        <div class="fml-sec"><div class="fml-sec-ttl">💧 수원 (NFPC 109 제4조①)</div><div class="fml-card"><code class="fml-eq">수원(m³) = N × 7 m³  (최대 N=2개)</code><div class="fml-note">1개 → 7 m³ | 2개 → 14 m³ | 방수량 ≥ 350 ℓ/min | 방수압 ≥ 0.25 MPa</div></div></div>
-        <div class="fml-sec"><div class="fml-sec-ttl">📏 전양정 (NFPC 109 제5조③)</div>
+        <div class="fml-sec"><div class="fml-sec-ttl">💧 수원 (NFPC 109 제4조①)</div><div class="fml-card"><code class="fml-eq">수원(m³) = N × 7 m³  (최대 N=2개)</code><div class="fml-note">1개 → 7 m³ | 2개 → 14 m³ | 방수량 ≥ 350 ℓ/min · 방수압 ≥ 0.25 MPa · 0.7 MPa 초과 시 감압(제5조①3호)</div></div></div>
+        <div class="fml-sec"><div class="fml-sec-ttl">📏 전양정 (펌프 방식 — MANMIN 적용식 · 고가수조 식 NFTC 109 2.2.2.1 참고)</div>
           <div class="fml-g2"><div class="fml-card"><div class="fml-card-ttl">H₄ — 노즐 환산수두</div><code class="fml-eq">H₄ = 25 m (고정) ← 0.25 MPa</code></div><div class="fml-card"><div class="fml-card-ttl">G — 호스 마찰손실 (65mm)</div><code class="fml-eq">아마 8 m/100m | 고무내장 4 m/100m</code></div></div>
           <div class="fml-card" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.06);"><div class="fml-card-ttl" style="color:#4ade80;">J — 전양정 최종값</div><code class="fml-eq">J = ⌈(E + F + G + H₄) × 1.1⌉ [m]</code></div>
         </div>
@@ -739,32 +743,32 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 
       <!-- 스프링클러 -->
       <div class="fml-panel hidden" id="tab-sprinkler">
-        <div class="fml-sec"><div class="fml-sec-ttl">💧 수원 (NFTC 103 §2.1.1.1)</div><div class="fml-card"><code class="fml-eq">수원(m³) = A × 1.6 m³  (기준개수: 10/20/30개)</code><div class="fml-note">30개: 공장(특수가연물)·11층↑·지하가 | 20개: 공장(일반)·8m↑ | 10개: 일반 | 방사량 80 ℓ/min</div></div></div>
-        <div class="fml-sec"><div class="fml-sec-ttl">📏 전양정 (NFTC 103 §2.2)</div>
-          <div class="fml-g2"><div class="fml-card"><div class="fml-card-ttl">G — 헤드 환산수두</div><code class="fml-eq">G = 10 m (고정) ← 0.1 MPa</code></div><div class="fml-card"><div class="fml-card-ttl">유속 §2.5.3.3</div><code class="fml-eq">가지 ≤ 6 m/s | 기타 ≤ 10 m/s</code></div></div>
+        <div class="fml-sec"><div class="fml-sec-ttl">💧 수원 (NFTC 103 2.1.1.1)</div><div class="fml-card"><code class="fml-eq">수원(m³) = 기준개수 × 1.6 m³  (고층 3.2 · 50층↑ 4.8 m³ — NFTC 604 2.2.1)</code><div class="fml-note">기준개수 = 표 2.1.1.1 설치장소별 10 · 20 · 30개(설치개수가 적으면 그 개수) — 설치장소별 값은 스프링클러 계산서 · 원문 표 확인 | 헤드 80 ℓ/min · 0.1 MPa</div></div></div>
+        <div class="fml-sec"><div class="fml-sec-ttl">📏 전양정 (펌프 방식 — MANMIN 적용식)</div>
+          <div class="fml-g2"><div class="fml-card"><div class="fml-card-ttl">G — 헤드 환산수두</div><code class="fml-eq">G = 10 m (고정) ← 0.1 MPa</code></div><div class="fml-card"><div class="fml-card-ttl">유속 (NFTC 103 2.5.3.3 단서)</div><code class="fml-eq">수리계산 시 가지 ≤ 6 m/s | 기타 ≤ 10 m/s</code></div></div>
           <div class="fml-card" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.06);"><div class="fml-card-ttl" style="color:#4ade80;">J — 전양정 최종값</div><code class="fml-eq">J = ⌈(E + F + G) × 1.1⌉ [m]</code></div>
         </div>
       </div>
 
       <!-- 간이스프링클러 -->
       <div class="fml-panel hidden" id="tab-easy">
-        <div class="fml-sec"><div class="fml-sec-ttl">💧 수원 (NFTC 103A §2.1.1.2)</div>
-          <div class="fml-card"><code class="fml-eq">일반형   : 2개 × 50 ℓ/min × 10분 = 1.0 m³</code><code class="fml-eq">특수형   : 5개 × 50 ℓ/min × 20분 = 5.0 m³</code><code class="fml-eq">주차장(일반): 2개 × 80 ℓ/min × 10분 = 1.6 m³</code><code class="fml-eq">주차장(특수): 5개 × 80 ℓ/min × 20분 = 8.0 m³</code></div>
+        <div class="fml-sec"><div class="fml-sec-ttl">💧 수원 (NFPC 103A 제4조①2호 · NFTC 103A 2.1.1.2)</div>
+          <div class="fml-card"><code class="fml-eq">일반형   : 2개 × 50 ℓ/min × 10분 = 1.0 m³</code><code class="fml-eq">5개 대상(영 별표 4 제1호마목2)가) · 6) · 8)) : 5개 × 50 ℓ/min × 20분 = 5.0 m³</code><code class="fml-eq">주차장(일반): 2개 × 80 ℓ/min × 10분 = 1.6 m³</code><code class="fml-eq">주차장(5개 대상): 5개 × 80 ℓ/min × 20분 = 8.0 m³</code><div class="fml-note">주차장 표준반응형 80 ℓ/min(2.2.1 단서)을 수원에 적용 = MANMIN 해석</div></div>
         </div>
-        <div class="fml-sec"><div class="fml-sec-ttl">📏 전양정 (NFTC 103A §2.3)</div>
-          <div class="fml-g2"><div class="fml-card"><div class="fml-card-ttl">G — 헤드 환산수두</div><code class="fml-eq">G = 10 m (고정) ← 0.1 MPa</code></div><div class="fml-card"><div class="fml-card-ttl">유속 §2.5.3.3</div><code class="fml-eq">가지 ≤ 6 m/s | 기타 ≤ 10 m/s</code></div></div>
+        <div class="fml-sec"><div class="fml-sec-ttl">📏 전양정 (펌프 방식 — MANMIN 적용식 · 헤드 0.1 MPa — NFTC 103A 2.2.1)</div>
+          <div class="fml-g2"><div class="fml-card"><div class="fml-card-ttl">G — 헤드 환산수두</div><code class="fml-eq">G = 10 m (고정) ← 0.1 MPa</code></div><div class="fml-card"><div class="fml-card-ttl">유속 (NFTC 103A 2.5.3.3 단서)</div><code class="fml-eq">수리계산 시 가지 ≤ 6 m/s | 기타 ≤ 10 m/s</code></div></div>
           <div class="fml-card" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.06);"><div class="fml-card-ttl" style="color:#4ade80;">J — 전양정 최종값</div><code class="fml-eq">J = ⌈(E + F + G) × 1.1⌉ [m]</code></div>
         </div>
       </div>
 
       <!-- 겸용 펌프 -->
       <div class="fml-panel hidden" id="tab-combo">
-        <div class="fml-sec"><div class="fml-sec-ttl">⚡ 겸용 펌프 3원칙</div>
+        <div class="fml-sec"><div class="fml-sec-ttl">⚡ 겸용 펌프 원칙</div>
           <div class="fml-g2">
-            <div class="fml-card" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.06);"><div class="fml-card-ttl" style="color:#4ade80;">① 토출량 — 합산</div><code class="fml-eq">Q겸용 = QA + QB [ℓ/min]</code></div>
-            <div class="fml-card" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.06);"><div class="fml-card-ttl" style="color:#4ade80;">② 전양정 — MAX 채택</div><code class="fml-eq">H겸용 = max(JA, JB) [m]</code></div>
+            <div class="fml-card" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.06);"><div class="fml-card-ttl" style="color:#4ade80;">① 토출량 — 합산</div><code class="fml-eq">Q겸용 = QA + QB [ℓ/min]</code><div class="fml-note">단서: 고정식 소화설비 2 이상 · 방화벽과 방화문 구획 · 각 설비 지장 없음 → 최대값(옥내 + 스프 · 간이 + 옥내) — 옥내 + 옥외는 항상 합산</div></div>
+            <div class="fml-card" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.06);"><div class="fml-card-ttl" style="color:#4ade80;">② 전양정 — 큰 값 채택</div><code class="fml-eq">H겸용 = max(JA, JB) [m]</code><div class="fml-note">공통 배관 F₀를 두 설비 양정에 더한 뒤 — MANMIN 적용(각 설비 성능에 지장이 없을 것)</div></div>
           </div>
-          <div class="fml-card" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.06);"><div class="fml-card-ttl" style="color:#4ade80;">③ 수원 — 합산</div><code class="fml-eq">D겸용 = DA + DB [m³]</code></div>
+          <div class="fml-card" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.06);"><div class="fml-card-ttl" style="color:#4ade80;">③ 수원 — 합산 + 옥상수조</div><code class="fml-eq">D겸용 = DA + DB (+ 옥내 ÷ 3) [m³]</code><div class="fml-note">NFTC 102 2.9 · 103 2.13 · 103A 2.10 · 109 2.8 / 옥상수조는 옥내소화전 기준에만 있음(NFTC 102 2.1.2)</div></div>
         </div>
         <div class="fml-sec"><div class="fml-sec-ttl">⚡ 전동기 동력 공통</div><div class="fml-card"><code class="fml-eq">P = 0.163 × Q(m³/min) × H(m) × K ÷ η [kW]</code><div class="fml-note">HP = P(kW) × 1.341 → 상위 표준 규격 | 표준: 3·5·7.5·10·15·20·25·30·40·50·60·75·100·125·150·200 HP</div></div></div>
         <div class="fml-sec"><div class="fml-sec-ttl">🔩 관부속 상당직관 원칙</div><div class="fml-card"><code class="fml-eq">상당직관(m) = Σ [ 수량 × 관경별 환산값 ]</code><div class="fml-note">Reducer→45°Elbow(小경) | Coupling→직류Tee | Union/Flange/Socket→생략<br/>Alarm·Foot·Strainer→Angle V/V | Auto·Glove→Ball V/V</div></div></div>
@@ -834,6 +838,13 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   document.getElementById('pwa-yes').addEventListener('click', doInstall);
   fab.addEventListener('click', doInstall);
 
+  /* ── v5.2.0 카드 매뉴얼 링크 ── */
+  document.querySelectorAll('.card-man').forEach(function(m){
+    function go(e){e.preventDefault();e.stopPropagation();if(navigator.onLine===false){alertBox();return;}window.open(m.dataset.href,'_blank','noopener');}
+    m.addEventListener('click',go);m.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')go(e);});
+  });
+  function alertBox(){var t=document.createElement('div');t.textContent='매뉴얼은 인터넷 연결 시 열립니다';t.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f172a;color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;z-index:99999';document.body.appendChild(t);setTimeout(function(){t.remove();},2200);}
+
   /* ── 계산식 안내 모달 ── */
   var fmlOverlay=document.getElementById('fml-overlay');
   document.getElementById('fml-fab-btn').addEventListener('click',function(){
@@ -852,7 +863,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   window.switchFml=switchFml;
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeFml();});
 
-  /* ── Service Worker Ver-5.0 ── */
+  /* ── Service Worker Ver-5.2 (v5.2.0) ── */
   if('serviceWorker' in navigator){
     window.addEventListener('load', function(){
       navigator.serviceWorker.register('./sw.js', {updateViaCache:'none'})
