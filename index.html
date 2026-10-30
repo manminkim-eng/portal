@@ -34,11 +34,14 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v5.0.9/dist/web/static/pretendard.min.css"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Noto+Sans+Mono:wght@400;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="./assets/fonts/manmin-fonts.css"/><!-- 로컬 폴백 폰트 -->
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
+  /* MANMIN 4개 통합포털 공통 글자 크기 (2026-10-30 절충안 · 소방 규격 기반) */
+  --fs-badge:10.5px;--fs-cap:11.5px;--fs-sm:12.5px;--fs-desc:13px;--fs-body:14px;
+  --fs-sec:16px;--fs-card:17px;--fs-stat:20px;--fs-title:clamp(16px,2.4vw,22px);--fs-brand:clamp(22px,4vw,42px);
   --font:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR','Noto Sans KR Local',sans-serif;
   --mono:'JetBrains Mono','Noto Sans KR',ui-monospace,monospace;
   --bg:#080f08;--bg1:#0c160c;
@@ -82,12 +85,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 }
 .header-logo-text{text-align:left;}
 .header-engineer{
-  font-size:11px;font-weight:600;letter-spacing:.16em;
+  font-size:var(--fs-cap);font-weight:600;letter-spacing:.16em;
   color:var(--green3);text-transform:uppercase;margin-bottom:4px;
 }
 .header-brand{
   font-family:'Orbitron',sans-serif;
-  font-size:clamp(22px,4vw,42px);font-weight:900;letter-spacing:.06em;line-height:1;
+  font-size:var(--fs-brand);font-weight:900;letter-spacing:.06em;line-height:1;
   background:linear-gradient(140deg,#86efac 0%,#22c55e 40%,#15803d 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
@@ -95,32 +98,32 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
   display:inline-flex;align-items:center;gap:7px;
   background:rgba(34,197,94,.08);border:1px solid rgba(74,222,128,.28);
   border-radius:100px;padding:5px 16px 5px 12px;
-  font-size:11px;font-weight:600;letter-spacing:.1em;
+  font-size:var(--fs-cap);font-weight:600;letter-spacing:.1em;
   color:var(--green4);margin-bottom:16px;text-transform:uppercase;
 }
 .pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--green3);animation:pulse 2.2s ease infinite;flex-shrink:0;}
-.header-tagline{font-size:clamp(13px,2vw,18px);font-weight:700;color:var(--text2);letter-spacing:.02em;margin-bottom:8px;}
-.header-desc{font-size:13px;color:var(--text3);line-height:1.85;max-width:560px;margin:0 auto 36px;}
+.header-tagline{font-size:var(--fs-title);font-weight:700;color:var(--text2);letter-spacing:.02em;margin-bottom:8px;}
+.header-desc{font-size:var(--fs-body);color:var(--text3);line-height:1.85;max-width:560px;margin:0 auto 36px;}
 .header-line{height:1px;margin-bottom:40px;background:linear-gradient(90deg,transparent,var(--border2),transparent);}
 
 /* ── STATS ── */
 .stats-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:44px;animation:fadeUp .5s ease both;animation-delay:.1s;}
 .stat-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 8px;text-align:center;}
-.stat-num{font-family:'Orbitron',sans-serif;font-size:19px;font-weight:900;color:var(--green3);line-height:1;margin-bottom:6px;}
-.stat-lbl{font-size:10px;color:var(--text2);font-weight:600;letter-spacing:.04em;line-height:1.4;}
+.stat-num{font-family:'Orbitron',sans-serif;font-size:var(--fs-stat);font-weight:900;color:var(--green3);line-height:1;margin-bottom:6px;}
+.stat-lbl{font-size:var(--fs-cap);color:var(--text2);font-weight:600;letter-spacing:.04em;line-height:1.4;}
 
 /* ── TAB ── */
 .tab-wrap{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:32px;animation:fadeUp .5s ease both;animation-delay:.15s;flex-wrap:wrap;}
-.tab-btn{padding:9px 22px;border-radius:100px;border:1px solid var(--border2);background:transparent;color:var(--text2);font-family:var(--font);font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.02em;transition:all .2s ease;}
+.tab-btn{padding:9px 22px;border-radius:100px;border:1px solid var(--border2);background:transparent;color:var(--text2);font-family:var(--font);font-size:var(--fs-body);font-weight:600;cursor:pointer;letter-spacing:.02em;transition:all .2s ease;}
 .tab-btn:hover{color:var(--text);border-color:var(--border3);}
 .tab-btn.active{background:var(--green);border-color:var(--green2);color:#fff;font-weight:700;box-shadow:0 0 20px rgba(21,128,61,.4);}
-.tab-count{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:100px;background:rgba(255,255,255,.18);font-size:10px;font-weight:800;margin-left:5px;}
+.tab-count{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:100px;background:rgba(255,255,255,.18);font-size:var(--fs-cap);font-weight:800;margin-left:5px;}
 .tab-btn.active .tab-count{background:rgba(255,255,255,.25);}
 
 /* ── SECTION HEAD ── */
 .sec-head{display:flex;align-items:center;gap:12px;margin-bottom:18px;animation:fadeUp .5s ease both;}
-.sec-tag{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;border-radius:5px;flex-shrink:0;}
-.sec-label{font-size:15px;font-weight:800;color:var(--text);letter-spacing:.01em;}
+.sec-tag{font-family:'Orbitron',sans-serif;font-size:var(--fs-badge);font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;border-radius:5px;flex-shrink:0;}
+.sec-label{font-size:var(--fs-sec);font-weight:800;color:var(--text);letter-spacing:.01em;}
 .sec-line{flex:1;height:1px;background:var(--border);}
 
 /* ── GRIDS ── */
@@ -137,20 +140,20 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .card-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;}
 .card-ico{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .card-meta{flex:1;min-width:0;}
-.card-badge{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:100px;display:inline-block;margin-bottom:5px;font-family:var(--mono);}
-.card-title{font-size:16px;font-weight:800;color:var(--text);line-height:1.2;letter-spacing:-.01em;}
-.card-title-en{font-size:10px;color:var(--text3);margin-top:3px;letter-spacing:.04em;font-weight:500;}
-.card-desc{font-size:11.5px;color:var(--text2);line-height:1.75;padding-bottom:13px;margin-bottom:13px;border-bottom:1px solid var(--border);}
+.card-badge{font-size:var(--fs-badge);font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:100px;display:inline-block;margin-bottom:5px;font-family:var(--mono);}
+.card-title{font-size:var(--fs-card);font-weight:800;color:var(--text);line-height:1.2;letter-spacing:-.01em;}
+.card-title-en{font-size:var(--fs-cap);color:var(--text3);margin-top:3px;letter-spacing:.04em;font-weight:500;}
+.card-desc{font-size:var(--fs-desc);color:var(--text2);line-height:1.75;padding-bottom:13px;margin-bottom:13px;border-bottom:1px solid var(--border);}
 .spec-bars{overflow:hidden;max-height:0;transition:max-height .35s cubic-bezier(.4,0,.2,1),opacity .3s;opacity:0;}
 .calc-card:hover .spec-bars{max-height:120px;opacity:1;}
 .spec-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
-.spec-label{font-size:10px;font-weight:700;color:var(--text2);width:56px;flex-shrink:0;letter-spacing:.02em;}
+.spec-label{font-size:var(--fs-cap);font-weight:700;color:var(--text2);width:56px;flex-shrink:0;letter-spacing:.02em;}
 .spec-track{flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:100px;overflow:hidden;}
 .spec-fill{height:100%;border-radius:100px;width:0;transition:width .6s cubic-bezier(.4,0,.2,1);transition-delay:.05s;}
 .calc-card:hover .spec-fill{width:var(--w);}
-.spec-val{font-size:10px;font-weight:700;font-family:var(--mono);width:72px;text-align:right;flex-shrink:0;}
+.spec-val{font-size:var(--fs-cap);font-weight:700;font-family:var(--mono);width:72px;text-align:right;flex-shrink:0;}
 .card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:12px;}
-.card-law{font-size:10px;color:var(--text3);font-family:var(--mono);letter-spacing:.02em;}
+.card-law{font-size:var(--fs-cap);color:var(--text3);font-family:var(--mono);letter-spacing:.02em;}
 .card-go{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;transition:transform .2s;}
 .calc-card:hover .card-go{transform:translateX(4px);}
 
@@ -167,18 +170,18 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 
 /* ── COMPARE TABLE ── */
 .compare-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:44px;overflow-x:auto;animation:fadeUp .5s ease both;animation-delay:.28s;}
-.compare-table{width:100%;border-collapse:collapse;font-size:12px;min-width:700px;}
+.compare-table{width:100%;border-collapse:collapse;font-size:var(--fs-sm);min-width:700px;}
 .compare-table thead tr{background:var(--surface2);}
-.compare-table th{padding:11px 14px;text-align:left;border-bottom:1px solid var(--border);color:var(--text2);font-size:10.5px;font-weight:700;letter-spacing:.04em;white-space:nowrap;text-transform:uppercase;}
+.compare-table th{padding:11px 14px;text-align:left;border-bottom:1px solid var(--border);color:var(--text2);font-size:var(--fs-cap);font-weight:700;letter-spacing:.04em;white-space:nowrap;text-transform:uppercase;}
 .compare-table td{padding:11px 14px;border-bottom:1px solid rgba(34,197,94,.05);vertical-align:middle;}
 .compare-table tr:last-child td{border-bottom:none;}
 .compare-table tbody tr:hover td{background:rgba(34,197,94,.04);}
 .td-link{text-decoration:none;color:var(--text);display:flex;align-items:center;gap:8px;}
-.td-chip{font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 7px;border-radius:5px;flex-shrink:0;font-family:var(--mono);}
-.td-name{font-size:13px;font-weight:700;}
-.td-mono{font-family:var(--mono);font-size:11px;color:var(--text2);}
-.hi-g{color:#4ade80;font-weight:700;font-family:var(--mono);font-size:11px;}
-.hi-a{color:#fbbf24;font-weight:700;font-family:var(--mono);font-size:11px;}
+.td-chip{font-size:var(--fs-badge);font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 7px;border-radius:5px;flex-shrink:0;font-family:var(--mono);}
+.td-name{font-size:var(--fs-body);font-weight:700;}
+.td-mono{font-family:var(--mono);font-size:var(--fs-sm);color:var(--text2);}
+.hi-g{color:#4ade80;font-weight:700;font-family:var(--mono);font-size:var(--fs-sm);}
+.hi-a{color:#fbbf24;font-weight:700;font-family:var(--mono);font-size:var(--fs-sm);}
 
 /* ── LAW SECTION ── */
 .law-section{margin-bottom:44px;animation:fadeUp .5s ease both;animation-delay:.33s;}
@@ -186,35 +189,35 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .law-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px 20px;position:relative;overflow:hidden;transition:border-color .2s;}
 .law-card:hover{border-color:var(--border2);}
 .law-card-accent{position:absolute;top:0;left:0;right:0;height:2px;}
-.law-card-num{font-family:'Orbitron',sans-serif;font-size:12px;font-weight:900;letter-spacing:.08em;margin-bottom:4px;}
-.law-card-title{font-size:13px;font-weight:800;color:var(--text);margin-bottom:6px;line-height:1.3;}
-.law-card-date{display:inline-block;font-size:10px;font-weight:700;font-family:var(--mono);padding:2px 8px;border-radius:5px;background:rgba(255,255,255,.06);color:var(--text2);margin-bottom:12px;}
+.law-card-num{font-family:'Orbitron',sans-serif;font-size:var(--fs-sm);font-weight:900;letter-spacing:.08em;margin-bottom:4px;}
+.law-card-title{font-size:var(--fs-body);font-weight:800;color:var(--text);margin-bottom:6px;line-height:1.3;}
+.law-card-date{display:inline-block;font-size:var(--fs-cap);font-weight:700;font-family:var(--mono);padding:2px 8px;border-radius:5px;background:rgba(255,255,255,.06);color:var(--text2);margin-bottom:12px;}
 .law-card-rows{display:flex;flex-direction:column;gap:5px;}
-.law-row{display:flex;align-items:baseline;gap:8px;font-size:11px;color:var(--text2);line-height:1.5;}
-.law-row-key{font-size:10px;font-weight:700;font-family:var(--mono);color:var(--text3);flex-shrink:0;width:64px;}
+.law-row{display:flex;align-items:baseline;gap:8px;font-size:var(--fs-sm);color:var(--text2);line-height:1.5;}
+.law-row-key{font-size:var(--fs-cap);font-weight:700;font-family:var(--mono);color:var(--text3);flex-shrink:0;width:64px;}
 .law-row-val{color:var(--text);font-weight:600;}
-.law-row-note{font-size:10px;color:var(--text3);}
+.law-row-note{font-size:var(--fs-cap);color:var(--text3);}
 .formula-box{background:var(--bg1);border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px 22px;}
-.formula-title{font-size:12px;font-weight:800;color:var(--green3);margin-bottom:14px;display:flex;align-items:center;gap:8px;letter-spacing:.03em;}
+.formula-title{font-size:var(--fs-sm);font-weight:800;color:var(--green3);margin-bottom:14px;display:flex;align-items:center;gap:8px;letter-spacing:.03em;}
 .formula-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
 .formula-item{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:var(--radius-xs);padding:12px 14px;}
-.formula-label{font-size:10px;font-weight:700;color:var(--text2);margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase;}
-.formula-eq{font-family:var(--mono);font-size:11.5px;color:var(--green4);font-weight:700;line-height:1.6;}
-.formula-sub{font-size:10px;color:var(--text3);margin-top:5px;line-height:1.5;}
+.formula-label{font-size:var(--fs-cap);font-weight:700;color:var(--text2);margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase;}
+.formula-eq{font-family:var(--mono);font-size:var(--fs-sm);color:var(--green4);font-weight:700;line-height:1.6;}
+.formula-sub{font-size:var(--fs-cap);color:var(--text3);margin-top:5px;line-height:1.5;}
 
 /* ── FOOTER ── */
 footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);animation:fadeUp .5s ease both;animation-delay:.42s;}
-.footer-brand{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:900;letter-spacing:.12em;color:var(--green);margin-bottom:7px;}
-.footer-copy{font-size:11px;color:var(--text3);}
+.footer-brand{font-family:'Orbitron',sans-serif;font-size:var(--fs-body);font-weight:900;letter-spacing:.12em;color:var(--green);margin-bottom:7px;}
+.footer-copy{font-size:var(--fs-sm);color:var(--text3);}
 
 /* ── PWA ── */
 .pwa-outer{position:fixed;bottom:16px;left:16px;right:16px;max-width:460px;margin:0 auto;z-index:9999;display:none;animation:slideUp .4s ease both;}
 .pwa-inner{background:linear-gradient(135deg,#14532d,#0c2010);border:1px solid rgba(74,222,128,.3);border-radius:var(--radius);padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 10px 40px rgba(0,0,0,.7);}
 .pwa-ico{width:42px;height:42px;border-radius:10px;background:rgba(21,128,61,.25);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
-.pwa-txt{flex:1;}.pwa-h{font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;}.pwa-s{font-size:10px;color:#86efac;font-weight:600;}
+.pwa-txt{flex:1;}.pwa-h{font-size:var(--fs-body);font-weight:800;color:#fff;margin-bottom:2px;}.pwa-s{font-size:var(--fs-cap);color:#86efac;font-weight:600;}
 .pwa-btns{display:flex;gap:8px;flex-shrink:0;}
-.pwa-no{font-size:11px;font-weight:700;color:rgba(255,255,255,.45);background:none;border:none;cursor:pointer;padding:8px 10px;border-radius:8px;font-family:var(--font);}
-.pwa-yes{font-size:11px;font-weight:900;color:#14532d;background:#fff;border:none;cursor:pointer;padding:8px 14px;border-radius:8px;font-family:var(--font);box-shadow:0 2px 8px rgba(0,0,0,.25);}
+.pwa-no{font-size:var(--fs-sm);font-weight:700;color:rgba(255,255,255,.45);background:none;border:none;cursor:pointer;padding:8px 10px;border-radius:8px;font-family:var(--font);}
+.pwa-yes{font-size:var(--fs-sm);font-weight:900;color:#14532d;background:#fff;border:none;cursor:pointer;padding:8px 14px;border-radius:8px;font-family:var(--font);box-shadow:0 2px 8px rgba(0,0,0,.25);}
 
 /* ── ANIMATIONS ── */
 @keyframes fadeDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
@@ -265,8 +268,8 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 .fml-fab:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(21,128,61,0.82);}
 .fml-fab:active{transform:translateY(0);}
 .fml-fab-icon{font-size:20px;line-height:1;}
-.fml-fab-label{font-size:10px;font-weight:800;letter-spacing:0.04em;}
-.fml-fab-sub{font-size:9px;opacity:0.75;}
+.fml-fab-label{font-size:var(--fs-cap);font-weight:800;letter-spacing:0.04em;}
+.fml-fab-sub{font-size:var(--fs-badge);opacity:0.75;}
 
 /* ── 계산식 안내 모달 ── */
 .fml-overlay{
@@ -312,7 +315,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 .fml-tabs::-webkit-scrollbar{display:none;}
 .fml-tab{
   padding:9px 18px;border:none;background:transparent;
-  color:rgba(255,255,255,0.55);font-size:12px;font-weight:700;
+  color:rgba(255,255,255,0.55);font-size:var(--fs-sm);font-weight:700;
   font-family:var(--font);cursor:pointer;white-space:nowrap;
   border-bottom:3px solid transparent;transition:all .15s;flex-shrink:0;
 }
@@ -332,7 +335,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 /* 섹션 */
 .fml-sec{margin-bottom:20px;}
 .fml-sec-ttl{
-  font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+  font-size:var(--fs-sm);font-weight:800;letter-spacing:.07em;text-transform:uppercase;
   margin-bottom:10px;display:flex;align-items:center;gap:7px;
   border-left:3px solid var(--green3);padding-left:9px;color:var(--green4);
 }
@@ -340,15 +343,15 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.12);
   border-radius:10px;padding:12px 14px;margin-bottom:8px;
 }
-.fml-card-ttl{font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.fml-card-ttl{font-size:var(--fs-sm);font-weight:700;color:var(--text);margin-bottom:6px;}
 .fml-eq{
   display:block;font-family:var(--mono);
-  font-size:12.5px;font-weight:700;
+  font-size:var(--fs-sm);font-weight:700;
   background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);
   color:var(--green4);border-radius:7px;
   padding:7px 11px;margin:6px 0;word-break:break-all;line-height:1.7;
 }
-.fml-note{font-size:10px;color:var(--text2);margin-top:4px;line-height:1.75;}
+.fml-note{font-size:var(--fs-cap);color:var(--text2);margin-top:4px;line-height:1.75;}
 .fml-g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;}
 @media(max-width:540px){.fml-g2{grid-template-columns:1fr;}.fml-overlay{padding:0;align-items:flex-end;}.fml-box{border-radius:20px 20px 0 0;max-height:92vh;}}
 
@@ -360,8 +363,8 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 .pwa-install-fab:hover{transform:translateY(-3px) scale(1.06);box-shadow:0 8px 28px rgba(180,83,9,0.80);}
 .pwa-install-fab:active{transform:scale(0.97);}
 .pwa-install-fab span.fab-icon{font-size:20px;line-height:1;}
-.pwa-install-fab span.fab-label{font-size:10px;font-weight:800;letter-spacing:0.04em;}
-.pwa-install-fab span.fab-sub{font-size:9px;opacity:0.8;}
+.pwa-install-fab span.fab-label{font-size:var(--fs-cap);font-weight:800;letter-spacing:0.04em;}
+.pwa-install-fab span.fab-sub{font-size:var(--fs-badge);opacity:0.8;}
 .pwa-install-fab-badge{
   position:absolute;top:-7px;right:-7px;
   background:#22c55e;color:#052e16;font-size:8px;font-weight:900;
@@ -376,7 +379,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 }
 .fml-panel.hidden{display:none;}
 /* v5.2.0 — 카드별 사용자 매뉴얼 링크(카드 링크 안 중첩 a 금지 → span + 스크립트) */
-.card-man{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.08);color:#e2e8f0;border:1px solid rgba(255,255,255,.18);margin-left:auto;margin-right:8px;cursor:pointer;white-space:nowrap}.card-man:hover,.card-man:focus{background:rgba(255,255,255,.18);outline:none}
+.card-man{font-size:var(--fs-cap);font-weight:800;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.08);color:#e2e8f0;border:1px solid rgba(255,255,255,.18);margin-left:auto;margin-right:8px;cursor:pointer;white-space:nowrap}.card-man:hover,.card-man:focus{background:rgba(255,255,255,.18);outline:none}
 </style>
 </head>
 <body>
@@ -395,7 +398,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
       <div class="header-brand">KIM MANMIN</div>
     </div>
   </div>
-  <div class="header-tagline">소방 펌프 용량 계산서 통합 포털</div>
+  <div class="header-tagline">소방 펌프 용량 <b>계산서 통합 포털</b></div>
   <p class="header-desc">옥내소화전 · 옥외소화전 · 스프링클러 · 간이스프링클러 및 겸용 시스템의<br/>펌프 용량을 NFTC 화재안전기술기준에 따라 정밀 계산합니다.</p>
   <div class="header-line"></div>
 </header>
@@ -613,9 +616,9 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   <table class="compare-table">
     <thead><tr><th>설비 명칭</th><th>NFTC</th><th>시행일</th><th>방수압</th><th>방수량</th><th>동시 개수</th><th>수원 (개당)</th><th>방사 시간</th></tr></thead>
     <tbody>
-      <tr><td><a class="td-link" href="../fire-hydrant-calc/"><span class="td-chip" style="background:var(--c-green-b);color:var(--c-green);">단독</span><span class="td-name">옥내소화전</span></a></td><td><span class="td-mono">102</span></td><td><span class="td-mono" style="color:var(--c-green);">2026.7.1</span><span style="font-size:9px; color:#4ade80; margin-left:4px; font-weight:800;">★최신</span></td><td><span class="hi-g">0.17 MPa↑</span></td><td><span class="hi-g">130 ℓ/min↑</span></td><td><span class="td-mono">최대 2개(고층5)</span></td><td><span class="td-mono">2.6 m³↑(고층 5.2 · 7.8)</span></td><td><span class="td-mono">20 min(고층 40 · 60)</span></td></tr>
+      <tr><td><a class="td-link" href="../fire-hydrant-calc/"><span class="td-chip" style="background:var(--c-green-b);color:var(--c-green);">단독</span><span class="td-name">옥내소화전</span></a></td><td><span class="td-mono">102</span></td><td><span class="td-mono" style="color:var(--c-green);">2026.7.1</span><span style="font-size:var(--fs-badge); color:#4ade80; margin-left:4px; font-weight:800;">★최신</span></td><td><span class="hi-g">0.17 MPa↑</span></td><td><span class="hi-g">130 ℓ/min↑</span></td><td><span class="td-mono">최대 2개(고층5)</span></td><td><span class="td-mono">2.6 m³↑(고층 5.2 · 7.8)</span></td><td><span class="td-mono">20 min(고층 40 · 60)</span></td></tr>
       <tr><td><a class="td-link" href="../outdoor-hydrant-calc/"><span class="td-chip" style="background:var(--c-teal-b);color:var(--c-teal);">단독</span><span class="td-name">옥외소화전</span></a></td><td><span class="td-mono">109</span></td><td><span class="td-mono" style="color:#a3b4a3;">2026.3.1</span></td><td><span class="hi-a">0.25 MPa↑</span></td><td><span class="hi-a">350 ℓ/min↑</span></td><td><span class="td-mono">최대 2개</span></td><td><span class="td-mono">7 m³↑</span></td><td><span class="td-mono">20 min</span></td></tr>
-      <tr><td><a class="td-link" href="../fire-sprinkler-calc/"><span class="td-chip" style="background:var(--c-blue-b);color:var(--c-blue);">단독</span><span class="td-name">스프링클러</span></a></td><td><span class="td-mono">103</span></td><td><span class="td-mono" style="color:var(--c-green);">2026.7.1</span><span style="font-size:9px; color:#4ade80; margin-left:4px; font-weight:800;">★최신</span></td><td><span class="hi-g">0.1 MPa↑</span></td><td><span class="hi-g">80 ℓ/min↑</span></td><td><span class="td-mono">최대 30개</span></td><td><span class="td-mono">1.6 m³↑(고층 3.2 · 4.8)</span></td><td><span class="td-mono">20 min(고층 40 · 60)</span></td></tr>
+      <tr><td><a class="td-link" href="../fire-sprinkler-calc/"><span class="td-chip" style="background:var(--c-blue-b);color:var(--c-blue);">단독</span><span class="td-name">스프링클러</span></a></td><td><span class="td-mono">103</span></td><td><span class="td-mono" style="color:var(--c-green);">2026.7.1</span><span style="font-size:var(--fs-badge); color:#4ade80; margin-left:4px; font-weight:800;">★최신</span></td><td><span class="hi-g">0.1 MPa↑</span></td><td><span class="hi-g">80 ℓ/min↑</span></td><td><span class="td-mono">최대 30개</span></td><td><span class="td-mono">1.6 m³↑(고층 3.2 · 4.8)</span></td><td><span class="td-mono">20 min(고층 40 · 60)</span></td></tr>
       <tr><td><a class="td-link" href="../simple-sprinkler-calc/"><span class="td-chip" style="background:var(--c-amber-b);color:var(--c-amber);">단독</span><span class="td-name">간이스프링클러</span></a></td><td><span class="td-mono">103A</span></td><td><span class="td-mono" style="color:#fbbf24;">2024.12.1</span></td><td><span class="hi-g">0.1 MPa↑</span></td><td><span class="hi-g">50 ℓ/min↑</span></td><td><span class="td-mono">2개 · 5개</span></td><td><span class="td-mono">1.0 · 5.0 m³(주차장 1.6 · 8.0)</span></td><td><span class="td-mono">10 · 20 min</span></td></tr>
       <tr><td><a class="td-link" href="../combo-pump-calc/"><span class="td-chip" style="background:var(--c-purple-b);color:var(--c-purple);">겸용</span><span class="td-name">옥내+스프링클러</span></a></td><td><span class="td-mono">102·103</span></td><td><span class="td-mono" style="color:#a3b4a3;">복합</span></td><td><span class="hi-a">설비별</span></td><td><span class="hi-a">합산</span></td><td><span class="td-mono">설비별 적용</span></td><td><span class="td-mono">합산(단서 시 최대) + 옥상 옥내 ÷ 3</span></td><td><span class="td-mono">양정 큰 값</span></td></tr>
       <tr><td><a class="td-link" href="../combo-easy-fire-calc/"><span class="td-chip" style="background:var(--c-rose-b);color:var(--c-rose);">겸용</span><span class="td-name">간이+옥내</span></a></td><td><span class="td-mono">103A·102</span></td><td><span class="td-mono" style="color:#a3b4a3;">복합</span></td><td><span class="hi-a">설비별</span></td><td><span class="hi-a">합산</span></td><td><span class="td-mono">설비별 적용</span></td><td><span class="td-mono">합산(단서 시 최대) + 옥상 옥내 ÷ 3</span></td><td><span class="td-mono">양정 큰 값</span></td></tr>
@@ -677,7 +680,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
       <div class="fml-hd-row">
         <div>
           <div style="font-size:15px;font-weight:900;letter-spacing:.04em;margin-bottom:3px;color:#86efac;">📐 계산식 안내 &amp; 이용방법</div>
-          <div style="font-size:10px;color:rgba(134,239,172,.6);font-weight:500;">소방 펌프 통합 포털 · NFPC · NFTC 원문 대조 · MANMIN Ver-5.2</div>
+          <div style="font-size:var(--fs-cap);color:rgba(134,239,172,.6);font-weight:500;">소방 펌프 통합 포털 · NFPC · NFTC 원문 대조 · MANMIN Ver-5.2</div>
         </div>
         <button class="fml-close-btn" onclick="closeFml()" aria-label="닫기">✕</button>
       </div>
@@ -695,28 +698,28 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
       <!-- 이용방법 -->
       <div class="fml-panel" id="tab-howto">
         <div style="background:linear-gradient(140deg,#052e16,#14532d,#15803d);border-radius:13px;padding:16px 18px;margin-bottom:16px;">
-          <div style="font-size:13px;font-weight:900;color:#86efac;margin-bottom:5px;display:flex;align-items:center;gap:8px;"><span style="font-size:20px;">🚒</span> 소방 펌프 계산서 통합 포털 이용방법</div>
-          <div style="font-size:10.5px;color:rgba(134,239,172,.75);line-height:1.7;">NFPC · NFTC 102 · 103 · 103A · 109 원문 대조(2026-10-16) · Hazen-Williams 공식 · MANMIN Ver-5.2<br/>원하는 계산서를 선택하고 순서에 따라 입력하면 펌프 용량이 자동 산출됩니다.</div>
+          <div style="font-size:var(--fs-body);font-weight:900;color:#86efac;margin-bottom:5px;display:flex;align-items:center;gap:8px;"><span style="font-size:20px;">🚒</span> 소방 펌프 계산서 통합 포털 이용방법</div>
+          <div style="font-size:var(--fs-cap);color:rgba(134,239,172,.75);line-height:1.7;">NFPC · NFTC 102 · 103 · 103A · 109 원문 대조(2026-10-16) · Hazen-Williams 공식 · MANMIN Ver-5.2<br/>원하는 계산서를 선택하고 순서에 따라 입력하면 펌프 용량이 자동 산출됩니다.</div>
         </div>
         <div style="display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.15);border-left:4px solid #15803d;border-radius:10px;padding:13px 14px;margin-bottom:9px;">
-          <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#15803d,#052e16);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff;flex-shrink:0;">1</div>
-          <div><div style="font-size:12px;font-weight:900;color:#4ade80;margin-bottom:5px;">🏠 계산서 종류 선택</div><div style="font-size:10.5px;color:#a3b4a3;line-height:1.85;">① 메인 화면 카드에서 <strong style="color:#86efac;">원하는 소방 설비</strong>를 클릭합니다.<br/>② 단독 설비: 옥내소화전·옥외소화전·스프링클러·간이스프링클러 (4종)<br/>③ 겸용 설비: 옥내+옥외·간이+옥내·스프링클러+옥내 겸용 계산서 (3종)<br/>④ 상단 탭 필터로 <strong style="color:#86efac;">단독 / 겸용 / 기타</strong>를 구분하여 찾고, 카드의 <strong style="color:#86efac;">📘 매뉴얼</strong>로 계산서별 사용자 매뉴얼(Ver-5.1)을 엽니다.<br/>⑤ 기타 설비: 제연설비 · 비상발전기 — 별도 저장소 외부 도구(2종)</div></div>
+          <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#15803d,#052e16);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-sm);font-weight:900;color:#fff;flex-shrink:0;">1</div>
+          <div><div style="font-size:var(--fs-sm);font-weight:900;color:#4ade80;margin-bottom:5px;">🏠 계산서 종류 선택</div><div style="font-size:var(--fs-cap);color:#a3b4a3;line-height:1.85;">① 메인 화면 카드에서 <strong style="color:#86efac;">원하는 소방 설비</strong>를 클릭합니다.<br/>② 단독 설비: 옥내소화전·옥외소화전·스프링클러·간이스프링클러 (4종)<br/>③ 겸용 설비: 옥내+옥외·간이+옥내·스프링클러+옥내 겸용 계산서 (3종)<br/>④ 상단 탭 필터로 <strong style="color:#86efac;">단독 / 겸용 / 기타</strong>를 구분하여 찾고, 카드의 <strong style="color:#86efac;">📘 매뉴얼</strong>로 계산서별 사용자 매뉴얼(Ver-5.1)을 엽니다.<br/>⑤ 기타 설비: 제연설비 · 비상발전기 — 별도 저장소 외부 도구(2종)</div></div>
         </div>
         <div style="display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.15);border-left:4px solid #16a34a;border-radius:10px;padding:13px 14px;margin-bottom:9px;">
-          <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#16a34a,#14532d);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff;flex-shrink:0;">2</div>
-          <div><div style="font-size:12px;font-weight:900;color:#4ade80;margin-bottom:5px;">📋 프로젝트 정보 및 설비 조건 입력</div><div style="font-size:10.5px;color:#a3b4a3;line-height:1.85;">① 각 계산서 내 <strong style="color:#86efac;">공사명·설계자·날짜</strong>를 입력합니다.<br/>② 설비 유형·설치 개수·실양정·호스 조건 등 기본 파라미터를 설정합니다.<br/>③ NFTC 기준에 따른 수원 용량·토출량이 자동 계산됩니다.</div></div>
+          <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#16a34a,#14532d);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-sm);font-weight:900;color:#fff;flex-shrink:0;">2</div>
+          <div><div style="font-size:var(--fs-sm);font-weight:900;color:#4ade80;margin-bottom:5px;">📋 프로젝트 정보 및 설비 조건 입력</div><div style="font-size:var(--fs-cap);color:#a3b4a3;line-height:1.85;">① 각 계산서 내 <strong style="color:#86efac;">공사명·설계자·날짜</strong>를 입력합니다.<br/>② 설비 유형·설치 개수·실양정·호스 조건 등 기본 파라미터를 설정합니다.<br/>③ NFTC 기준에 따른 수원 용량·토출량이 자동 계산됩니다.</div></div>
         </div>
         <div style="display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.15);border-left:4px solid #22c55e;border-radius:10px;padding:13px 14px;margin-bottom:9px;">
-          <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#22c55e,#15803d);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#052e16;flex-shrink:0;">3</div>
-          <div><div style="font-size:12px;font-weight:900;color:#4ade80;margin-bottom:5px;">🔩 배관 구간 입력</div><div style="font-size:10.5px;color:#a3b4a3;line-height:1.85;">① <strong style="color:#86efac;">「+ 구간 추가」</strong>로 구간별 배관을 등록합니다(겸용은 펌프 토출 측 공통 배관을 따로 입력).<br/>② 관경·직관 길이·관부속 수량(Elbow·Tee·Valve 등)을 입력합니다.<br/>③ Hazen-Williams 공식으로 마찰손실(m/100 m)·유속이 자동 계산되며 기준 초과 시 ⚠ 경고가 표시됩니다.</div></div>
+          <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#22c55e,#15803d);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-sm);font-weight:900;color:#052e16;flex-shrink:0;">3</div>
+          <div><div style="font-size:var(--fs-sm);font-weight:900;color:#4ade80;margin-bottom:5px;">🔩 배관 구간 입력</div><div style="font-size:var(--fs-cap);color:#a3b4a3;line-height:1.85;">① <strong style="color:#86efac;">「+ 구간 추가」</strong>로 구간별 배관을 등록합니다(겸용은 펌프 토출 측 공통 배관을 따로 입력).<br/>② 관경·직관 길이·관부속 수량(Elbow·Tee·Valve 등)을 입력합니다.<br/>③ Hazen-Williams 공식으로 마찰손실(m/100 m)·유속이 자동 계산되며 기준 초과 시 ⚠ 경고가 표시됩니다.</div></div>
         </div>
         <div style="display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.15);border-left:4px solid #4ade80;border-radius:10px;padding:13px 14px;margin-bottom:9px;">
-          <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#4ade80,#22c55e);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#052e16;flex-shrink:0;">4</div>
-          <div><div style="font-size:12px;font-weight:900;color:#4ade80;margin-bottom:5px;">⚡ 전동기 동력 설정 및 결과 확인</div><div style="font-size:10.5px;color:#a3b4a3;line-height:1.85;">① <strong style="color:#86efac;">펌프 구경 · 효율(직접 입력) · 전달 방식</strong>을 고르면 전달계수(K)가 적용됩니다.<br/>② 전양정(안전율 10 % 가산 후 올림 — MANMIN 참고값)·이론 출력(kW)·채택 HP가 산출되고, 배관 1.2 MPa · 노즐 0.7 MPa 판정이 함께 표시됩니다.<br/>③ 겸용 설비는 토출량 · 수원 합산(옥내 + 스프 · 간이 + 옥내는 방화벽 구획 단서 시 최대값)·전양정 큰 값 · 옥상수조(옥내 ÷ 3)가 자동 처리됩니다.</div></div>
+          <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#4ade80,#22c55e);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-sm);font-weight:900;color:#052e16;flex-shrink:0;">4</div>
+          <div><div style="font-size:var(--fs-sm);font-weight:900;color:#4ade80;margin-bottom:5px;">⚡ 전동기 동력 설정 및 결과 확인</div><div style="font-size:var(--fs-cap);color:#a3b4a3;line-height:1.85;">① <strong style="color:#86efac;">펌프 구경 · 효율(직접 입력) · 전달 방식</strong>을 고르면 전달계수(K)가 적용됩니다.<br/>② 전양정(안전율 10 % 가산 후 올림 — MANMIN 참고값)·이론 출력(kW)·채택 HP가 산출되고, 배관 1.2 MPa · 노즐 0.7 MPa 판정이 함께 표시됩니다.<br/>③ 겸용 설비는 토출량 · 수원 합산(옥내 + 스프 · 간이 + 옥내는 방화벽 구획 단서 시 최대값)·전양정 큰 값 · 옥상수조(옥내 ÷ 3)가 자동 처리됩니다.</div></div>
         </div>
         <div style="display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.15);border-left:4px solid #86efac;border-radius:10px;padding:13px 14px;margin-bottom:16px;">
-          <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#86efac,#4ade80);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#052e16;flex-shrink:0;">5</div>
-          <div><div style="font-size:12px;font-weight:900;color:#4ade80;margin-bottom:5px;">🖨️ 결과 확인 및 출력</div><div style="font-size:10.5px;color:#a3b4a3;line-height:1.85;">① 각 계산서 「④ 계산서 출력」 탭에서 최종 결과를 A4로 확인합니다.<br/>② <strong style="color:#86efac;">🖨️ 인쇄 · PDF</strong> 버튼으로 A4 소방 계산서 출력 · PDF 저장합니다.<br/>③ 같은 위치의 「🖼️ JPG 저장」으로 A4 쪽별 그림을 저장합니다.<br/>④ PWA 설치: 우측 하단 앱 설치 버튼 또는 iOS Safari → 공유 → 홈 화면에 추가.</div></div>
+          <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#86efac,#4ade80);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-sm);font-weight:900;color:#052e16;flex-shrink:0;">5</div>
+          <div><div style="font-size:var(--fs-sm);font-weight:900;color:#4ade80;margin-bottom:5px;">🖨️ 결과 확인 및 출력</div><div style="font-size:var(--fs-cap);color:#a3b4a3;line-height:1.85;">① 각 계산서 「④ 계산서 출력」 탭에서 최종 결과를 A4로 확인합니다.<br/>② <strong style="color:#86efac;">🖨️ 인쇄 · PDF</strong> 버튼으로 A4 소방 계산서 출력 · PDF 저장합니다.<br/>③ 같은 위치의 「🖼️ JPG 저장」으로 A4 쪽별 그림을 저장합니다.<br/>④ PWA 설치: 우측 하단 앱 설치 버튼 또는 iOS Safari → 공유 → 홈 화면에 추가.</div></div>
         </div>
         <div class="fml-sec-ttl">💡 포털 주요 기능</div>
         <div class="fml-g2">
@@ -726,8 +729,8 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
           <div class="fml-card"><div class="fml-card-ttl" style="color:#4ade80;">📐 이 계산식 안내 버튼</div><div class="fml-note">우측 하단 초록 FAB 버튼을 클릭하면 이 창이 열립니다. 탭을 전환하여 각 설비별 계산식·법령 기준을 확인하세요.</div></div>
         </div>
         <div style="border:1px solid rgba(34,197,94,.2);background:rgba(34,197,94,.06);border-radius:10px;padding:12px 14px;margin-top:4px;">
-          <div style="font-size:11px;font-weight:800;color:#4ade80;margin-bottom:6px;">📌 적용 기준 법령</div>
-          <div class="fml-note" style="font-size:10.5px;line-height:2.1;color:#a3b4a3;">
+          <div style="font-size:var(--fs-sm);font-weight:800;color:#4ade80;margin-bottom:6px;">📌 적용 기준 법령</div>
+          <div class="fml-note" style="font-size:var(--fs-cap);line-height:2.1;color:#a3b4a3;">
             <strong style="color:#86efac;">NFPC 102 · NFTC 102</strong> — 옥내소화전설비 · 고시 제2025-25호 · 공고 제2026-34호 [2026.7.1.] · 130 ℓ/min · 0.17 MPa<br/>
             <strong style="color:#86efac;">NFPC 109 · NFTC 109</strong> — 옥외소화전설비 · 고시 제2025-28호 · 공고 제2026-9호 [2026.3.1.] · 350 ℓ/min · 0.25 MPa<br/>
             <strong style="color:#86efac;">NFPC 103 · NFTC 103</strong> — 스프링클러설비 · 고시 제2025-25호 · 공고 제2026-35호 [2026.7.1.] · 80 ℓ/min · 0.1 MPa<br/>
@@ -861,7 +864,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
     function go(e){e.preventDefault();e.stopPropagation();if(navigator.onLine===false){alertBox();return;}window.open(m.dataset.href,'_blank','noopener');}
     m.addEventListener('click',go);m.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')go(e);});
   });
-  function alertBox(){var t=document.createElement('div');t.textContent='매뉴얼은 인터넷 연결 시 열립니다';t.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f172a;color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;z-index:99999';document.body.appendChild(t);setTimeout(function(){t.remove();},2200);}
+  function alertBox(){var t=document.createElement('div');t.textContent='매뉴얼은 인터넷 연결 시 열립니다';t.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f172a;color:#fff;padding:10px 16px;border-radius:10px;font-size:var(--fs-body);z-index:99999';document.body.appendChild(t);setTimeout(function(){t.remove();},2200);}
 
   /* ── 계산식 안내 모달 ── */
   var fmlOverlay=document.getElementById('fml-overlay');
@@ -915,7 +918,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
       'position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:99999',
       'background:#14532d;color:white;border-radius:14px;padding:12px 18px',
       'display:flex;align-items:center;gap:12px;box-shadow:0 8px 32px rgba(0,0,0,.5)',
-      'font-family:var(--font,"sans-serif");font-size:13px;white-space:nowrap',
+      'font-family:var(--font,"sans-serif");font-size:var(--fs-body);white-space:nowrap',
       'animation:slideUp .35s ease-out',
       'border:1px solid rgba(74,222,128,.3)',
     ].join(';');
@@ -925,17 +928,38 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
         'document.getElementById(\'sw-update-banner\').remove();' +
         'navigator.serviceWorker.ready.then(function(r){r.waiting&&r.waiting.postMessage({type:\'SKIP_WAITING\'});});' +
       '})()" style="background:#22c55e;color:#052e16;border:none;border-radius:8px;' +
-        'padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer;">업데이트</button>' +
+        'padding:6px 14px;font-size:var(--fs-sm);font-weight:700;cursor:pointer;">업데이트</button>' +
       '<button onclick="document.getElementById(\'sw-update-banner\').remove()" ' +
         'style="background:rgba(255,255,255,.12);color:white;border:none;border-radius:8px;' +
-        'padding:6px 10px;font-size:11px;cursor:pointer;">나중에</button>';
+        'padding:6px 10px;font-size:var(--fs-sm);cursor:pointer;">나중에</button>';
     document.body.appendChild(b);
   }
 })();
 </script>
 <!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "e7878b8cc50d40039bb212406a3f1757"}'></script><!-- End Cloudflare Web Analytics -->
 <!-- 아이폰 · 아이패드 설치 안내(2026-10-30 전수 정비) — Safari에서 앱 미설치 상태일 때 세션 1회 · 인쇄 제외 -->
-<style>#mm-ios-tip{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:99999;display:none;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:#0B1B2E;color:#F4F1EA;border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 28px rgba(0,0,0,.35);font:600 13px/1.5 'Pretendard','Noto Sans KR',system-ui,sans-serif;max-width:560px;margin:0 auto}#mm-ios-tip b{color:#86efac}#mm-ios-tip button{flex:none;margin-left:auto;padding:7px 12px;border-radius:9px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#F4F1EA;font:inherit;cursor:pointer}@media print{#mm-ios-tip{display:none!important}}</style>
+<style>#mm-ios-tip{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:99999;display:none;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:#0B1B2E;color:#F4F1EA;border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 28px rgba(0,0,0,.35);font:600 13px/1.5 'Pretendard','Noto Sans KR',system-ui,sans-serif;max-width:560px;margin:0 auto}#mm-ios-tip b{color:#86efac}#mm-ios-tip button{flex:none;margin-left:auto;padding:7px 12px;border-radius:9px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#F4F1EA;font:inherit;cursor:pointer}@media print{#mm-ios-tip{display:none!important}}
+/* 모바일 최소 11px 하한 (2026-10-30 · 4개 포털 공통) */
+@media (max-width:640px){:root{--fs-badge:11px}}
+
+/* ══ 4개 통합포털 헤더·버튼 통일 (2026-10-30) — 구조·치수는 공통, 색상만 포털별 ══ */
+:root{--pa:#22c55e;--pa-lt:#86efac;--pa-deep:#15803d;--pa-rgb:34,197,94}
+.header-tagline b{color:var(--green4);font-weight:700}
+.tab-btn{min-height:44px;padding:0 22px;display:inline-flex;align-items:center;justify-content:center}
+.tab-man{border-color:rgba(255,255,255,.28);color:#e2e8f0}
+.tab-man:hover{border-color:rgba(255,255,255,.5);color:#fff}
+.card-man{position:relative;min-height:28px;padding:0 11px;display:inline-flex;align-items:center}
+.card-go{width:32px;height:32px;border-radius:8px}
+.pwa-no,.pwa-yes{min-height:44px;padding-top:0;padding-bottom:0}
+@media(max-width:700px){.stats-bar .stat-box:nth-child(4),.stats-bar .stat-box:nth-child(5){display:block}}
+@media(max-width:640px){
+  .stats-bar{grid-template-columns:repeat(2,1fr)}.stats-bar .stat-box:last-child{grid-column:1/-1}
+  .header-logo-img{width:64px;height:64px}
+  .tab-btn{min-height:48px}
+  .pwa-no,.pwa-yes{min-height:48px}
+  .card-man::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
+}
+</style>
 <div id="mm-ios-tip" role="dialog" aria-label="홈 화면에 앱 설치 안내"><span style="font-size:20px">📲</span><span>홈 화면에 앱으로 설치 — Safari <b>공유</b> 단추 → <b>홈 화면에 추가</b></span><button type="button" aria-label="설치 안내 닫기">닫기</button></div>
 <script>(function(){try{var n=navigator,ios=/iphone|ipad|ipod/i.test(n.userAgent)||(n.platform==='MacIntel'&&n.maxTouchPoints>1),sa=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||n.standalone===true;if(!ios||sa)return;try{if(sessionStorage.getItem('mm-ios-tip'))return}catch(e){}var t=document.getElementById('mm-ios-tip');if(!t)return;t.querySelector('button').addEventListener('click',function(){t.style.display='none';try{sessionStorage.setItem('mm-ios-tip','1')}catch(e){}});setTimeout(function(){t.style.display='flex'},2500)}catch(e){}})();</script>
 </body>
