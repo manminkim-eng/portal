@@ -1,4 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
+   v5.2.2 2026-10-30 — 아이콘 교체(업로드 로고 ENGINEER) · 설치 이름 「소방 통합포털」 · 캐시명 v5.2.2
    v5.2.0 회차 2026-10-16 — NFPC · NFTC 원문 대조 안내 문구 정정(제연 차압 · 간이 수원 · 겸용 합산 · 조문 · 판 번호) · 카드별 매뉴얼 링크 · 포털 매뉴얼(/manual/) 캐시 제외 · 캐시명 v5.2.0
    R25 회차 2026-09-04 — 자기 접두어 캐시 조회 · cors 프리캐시 · opaque 가드 · 캐시명 v5.2 (S10)
    Service Worker — 소방 펌프 계산서 통합 포털
@@ -19,8 +20,8 @@ const mmMatch = (req, opt) => caches.keys()
   .then((ks) => ks.reduce((p, k) => p.then((r) => r || caches.open(k).then((c) => c.match(req, opt))), Promise.resolve(undefined)))
   .then((r) => (r && r.type === 'opaque' && req && req.mode === 'cors') ? undefined : r);
 
-const CACHE_NAME   = 'manmin-total-portal-v5.2.0';
-const STATIC_CACHE = 'manmin-total-portal-static-v5.2.0';
+const CACHE_NAME   = 'manmin-total-portal-v5.2.2';
+const STATIC_CACHE = 'manmin-total-portal-static-v5.2.2';
 
 const PRECACHE_URLS = [
   './',
@@ -39,7 +40,7 @@ const PRECACHE_URLS = [
 
 /* ── INSTALL ── */
 self.addEventListener('install', (event) => {
-  console.log('[SW] Installing total-portal-v5.2.0...');
+  console.log('[SW] Installing total-portal-v5.2.2...');
   event.waitUntil(
     caches.open(STATIC_CACHE)
       .then((cache) => Promise.allSettled(PRECACHE_URLS.map((u) => cache.add(mmReq(u)).catch((e) => console.warn('[SW] precache skip:', u, e)))).catch((e) => console.warn('[SW] Pre-cache 일부 실패:', e)))
