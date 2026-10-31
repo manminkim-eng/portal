@@ -13,9 +13,9 @@ window.__tab=t=>{document.querySelector('.tab-btn[data-tab="'+t+'"]').click();};
 window.__fml=t=>{document.getElementById('fml-overlay').classList.remove('hidden');switchFml(document.querySelector('.fml-tab[data-tab="'+t+'"]'));};
 window.__fmlClose=()=>closeFml();`;
 const SHOTS=[
- {id:'s01_overview',pre:"__tab('all');window.scrollTo(0,0)",clip:'viewport',m:[['.header-pill','기준 · 원문 대조'],['.header-tagline','포털 이름'],['nth:.card-man|0','📘 포털 사용자 매뉴얼'],['.stats-bar','요약 5칸'],['.tab-wrap','필터 탭 4개']]},
- {id:'s02_header',clip:'.header',m:[['.header-pill','NFPC · NFTC 원문 대조 · 시행일'],['.header-logo-wrap','ENGINEER KIM MANMIN'],['.header-desc','포털 설명'],['nth:.card-man|0','📘 포털 사용자 매뉴얼']]},
- {id:'s03_filter',clip:'.tab-wrap',m:[['nth:.tab-btn|0','전체 보기 9'],['nth:.tab-btn|1','단독 설비 4'],['nth:.tab-btn|2','겸용 설비 3'],['nth:.tab-btn|3','기타 설비 2']]},
+ {id:'s01_overview',pre:"__tab('all');window.scrollTo(0,0)",clip:'viewport',m:[['.header-pill','기준 · 원문 대조'],['.header-tagline','포털 이름'],['.stats-bar','요약 5칸'],['.tab-wrap','필터 탭 4개 · 📘 매뉴얼'],['.tab-man','📘 포털 사용자 매뉴얼']]},
+ {id:'s02_header',clip:'.header',m:[['.header-pill','NFPC · NFTC 원문 대조 · 시행일'],['.header-logo-wrap','ENGINEER KIM MANMIN'],['.header-logo-img','포털 앱 아이콘'],['.header-desc','포털 설명']]},
+ {id:'s03_filter',clip:'.tab-wrap',m:[['nth:.tab-btn|0','전체 보기 9'],['nth:.tab-btn|1','단독 설비 4'],['nth:.tab-btn|2','겸용 설비 3'],['nth:.tab-btn|3','기타 설비 2'],['.tab-man','📘 매뉴얼 — 이 문서(새 창)']]},
  {id:'s04_single',clip:'#group-single',m:[['card:옥내소화전','옥내소화전 — NFTC 102'],['card:옥외소화전','옥외소화전 — NFTC 109'],['card:Fire Sprinkler','스프링클러 — NFTC 103'],['card:간이스프링클러','간이스프링클러 — NFTC 103A'],['nth:#group-single .card-man|0','📘 매뉴얼(계산서별)']]},
  {id:'s05_combo',clip:'#group-combo',m:[['card:Indoor + Sprinkler','옥내 + 스프 — 102 · 103'],['card:Simple SP','간이 + 옥내 — 103A · 102'],['card:Indoor + Outdoor','옥내 + 옥외 — 102 · 109']]},
  {id:'s06_extra',clip:'#group-extra',m:[['card:Smoke','제연설비 — NFTC 501(외부 도구)'],['card:Generator','비상발전기(외부 도구)']]},
