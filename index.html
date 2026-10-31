@@ -270,6 +270,10 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 .fml-fab-icon{font-size:20px;line-height:1;}
 .fml-fab-label{font-size:var(--fs-cap);font-weight:800;letter-spacing:0.04em;}
 .fml-fab-sub{font-size:var(--fs-badge);opacity:0.75;}
+/* v5.2.9 — 휴대전화는 떠 있는 단추가 통계 카드를 가려 머리 영역 안 단추로 대체 */
+.fml-inline{display:none;align-items:center;gap:6px;margin:0 auto 28px;padding:10px 18px;min-height:44px;border-radius:999px;border:1px solid rgba(74,222,128,.45);background:rgba(21,128,61,.18);color:#86efac;font-family:var(--font);font-size:var(--fs-sm);font-weight:800;cursor:pointer;}
+.fml-inline:hover,.fml-inline:focus{background:rgba(21,128,61,.32);outline:none;}
+@media(max-width:768px){.fml-fab{display:none!important;}.fml-inline{display:inline-flex;}}
 
 /* ── 계산식 안내 모달 ── */
 .fml-overlay{
@@ -400,6 +404,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   </div>
   <div class="header-tagline">소방 펌프 용량 <b>계산서 통합 포털</b></div>
   <p class="header-desc">옥내소화전 · 옥외소화전 · 스프링클러 · 간이스프링클러 및 겸용 시스템의 펌프 용량을 NFTC 화재안전기술기준에 따라 정밀 계산합니다.</p>
+  <button type="button" class="fml-inline no-print" id="fml-inline-btn" aria-label="계산식 안내 열기">📐 계산식 안내</button>
   <div class="header-line"></div>
 </header>
 
@@ -726,7 +731,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
           <div class="fml-card"><div class="fml-card-ttl" style="color:#4ade80;">🗂️ 9종 도구 통합</div><div class="fml-note">소방 펌프 계산서 7종(옥내 · 옥외소화전, 스프링클러, 간이스프링클러, 겸용 3종) + 기타 2종(제연설비 · 비상발전기, 외부 도구)을 한 포털에서 엽니다.</div></div>
           <div class="fml-card"><div class="fml-card-ttl" style="color:#4ade80;">📲 PWA 오프라인 지원</div><div class="fml-note">포털과 각 계산서는 각각 PWA로 설치하면 오프라인에서도 열립니다(설치한 페이지 기준 · 사용자 매뉴얼은 온라인 전용).</div></div>
           <div class="fml-card"><div class="fml-card-ttl" style="color:#4ade80;">⚡ 실시간 자동 계산</div><div class="fml-note">입력값 변경 즉시 수원·양정·동력이 실시간 재산출됩니다. Hazen-Williams 마찰손실·유속 경고도 즉시 반영됩니다.</div></div>
-          <div class="fml-card"><div class="fml-card-ttl" style="color:#4ade80;">📐 이 계산식 안내 버튼</div><div class="fml-note">우측 하단 초록 FAB 버튼을 클릭하면 이 창이 열립니다. 탭을 전환하여 각 설비별 계산식·법령 기준을 확인하세요.</div></div>
+          <div class="fml-card"><div class="fml-card-ttl" style="color:#4ade80;">📐 이 계산식 안내 버튼</div><div class="fml-note">PC 는 우측 하단 초록 버튼, 휴대전화는 화면 위쪽 「📐 계산식 안내」 단추를 누르면 이 창이 열립니다. 탭을 전환하여 각 설비별 계산식·법령 기준을 확인하세요.</div></div>
         </div>
         <div style="border:1px solid rgba(34,197,94,.2);background:rgba(34,197,94,.06);border-radius:10px;padding:12px 14px;margin-top:4px;">
           <div style="font-size:var(--fs-sm);font-weight:800;color:#4ade80;margin-bottom:6px;">📌 적용 기준 법령</div>
@@ -868,10 +873,9 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 
   /* ── 계산식 안내 모달 ── */
   var fmlOverlay=document.getElementById('fml-overlay');
-  document.getElementById('fml-fab-btn').addEventListener('click',function(){
-    fmlOverlay.classList.remove('hidden');
-    document.body.style.overflow='hidden';
-  });
+  function openFml(){fmlOverlay.classList.remove('hidden');document.body.style.overflow='hidden';}
+  document.getElementById('fml-fab-btn').addEventListener('click',openFml);
+  document.getElementById('fml-inline-btn').addEventListener('click',openFml);
   function closeFml(){fmlOverlay.classList.add('hidden');document.body.style.overflow='';}
   window.closeFml=closeFml;
   function switchFml(btn){
