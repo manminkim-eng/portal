@@ -1,4 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
+   v5.2.11 2026-11-01 — 카드 「웹 열기 · 매뉴얼」 단추 통일(같은 높이 · 모양 · 카드 색, 단추 줄 하단 정렬, 제연 · 비상발전기 매뉴얼 단추, §25-6-29) · 캐시명 v5.2.11
    v5.2.10 2026-10-31 — manifest 설명 판 Ver-5.1 → Ver-5.2(화면 표기와 일치, §24-8 #1) · 사용자 매뉴얼 캡처 재촬영 · 서체 Pretendard(매뉴얼은 sw 캐시 제외) · 캐시명 v5.2.10
    v5.2.9 2026-10-31 — 휴대전화(768px 이하) 계산식 안내 떠 있는 단추 → 머리 영역 단추(통계 카드 가림 해소) · 캐시명 v5.2.9
    v5.2.2 2026-10-30 — 아이콘 교체(업로드 로고 ENGINEER) · 설치 이름 「소방 통합포털」 · 캐시명 v5.2.2
@@ -22,8 +23,8 @@ const mmMatch = (req, opt) => caches.keys()
   .then((ks) => ks.reduce((p, k) => p.then((r) => r || caches.open(k).then((c) => c.match(req, opt))), Promise.resolve(undefined)))
   .then((r) => (r && r.type === 'opaque' && req && req.mode === 'cors') ? undefined : r);
 
-const CACHE_NAME   = 'manmin-total-portal-v5.2.10';
-const STATIC_CACHE = 'manmin-total-portal-static-v5.2.10';
+const CACHE_NAME   = 'manmin-total-portal-v5.2.11';
+const STATIC_CACHE = 'manmin-total-portal-static-v5.2.11';
 
 const PRECACHE_URLS = [
   './',

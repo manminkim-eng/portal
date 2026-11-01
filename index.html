@@ -384,6 +384,15 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 .fml-panel.hidden{display:none;}
 /* v5.2.0 — 카드별 사용자 매뉴얼 링크(카드 링크 안 중첩 a 금지 → span + 스크립트) */
 .card-man{font-size:var(--fs-cap);font-weight:800;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.08);color:#e2e8f0;border:1px solid rgba(255,255,255,.18);margin-left:auto;margin-right:8px;cursor:pointer;white-space:nowrap}.card-man:hover,.card-man:focus{background:rgba(255,255,255,.18);outline:none}
+/* v5.2.11 2026-11-01 — 카드 「웹 열기(→) · 📘 매뉴얼」 단추 통일(§25-6-29): 두 단추 같은 높이 32px · 모서리 8px · 카드 색 바탕 · 테두리,
+   단추 줄을 카드 맨 아래로 맞춰 같은 줄 카드끼리 단추 높이 일치, 기타 설비(제연 · 비상발전기)에도 매뉴얼 단추 */
+.t-green{--acc:var(--c-green);--acc-b:var(--c-green-b)}.t-teal{--acc:var(--c-teal);--acc-b:var(--c-teal-b)}.t-blue{--acc:var(--c-blue);--acc-b:var(--c-blue-b)}.t-amber{--acc:var(--c-amber);--acc-b:var(--c-amber-b)}.t-purple{--acc:var(--c-purple);--acc-b:var(--c-purple-b)}.t-rose{--acc:var(--c-rose);--acc-b:var(--c-rose-b)}.t-cyan{--acc:var(--c-cyan);--acc-b:var(--c-cyan-b)}
+.calc-card{display:flex;flex-direction:column}.calc-card>.card-body{flex:1;display:flex;flex-direction:column}
+.card-foot{margin-top:auto;gap:8px}.card-law{flex:1;min-width:0}
+.card-foot .card-man,.card-foot .card-go{box-sizing:border-box;height:32px;min-height:32px;border-radius:8px;background:var(--acc-b);color:var(--acc);border:1px solid rgba(255,255,255,.14);border-color:color-mix(in srgb,var(--acc) 45%,transparent);transition:transform .2s,background .2s,border-color .2s}
+.card-foot .card-man{margin:0;padding:0 12px;display:inline-flex;align-items:center;gap:4px;font-size:var(--fs-cap);font-weight:800;line-height:1;flex-shrink:0}
+.card-foot .card-go{width:32px;font-size:15px;font-weight:800}
+.card-foot .card-man:hover,.card-foot .card-man:focus-visible,.calc-card:hover .card-go{background:color-mix(in srgb,var(--acc) 26%,transparent);border-color:var(--acc);outline:none}
 </style>
 </head>
 <body>
@@ -589,7 +598,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
           <div class="spec-row"><span class="spec-label">범위</span><div class="spec-track"><div class="spec-fill" style="--w:50%"></div></div><span class="spec-val">거실 제연</span></div>
           <div class="spec-row"><span class="spec-label">팬</span><div class="spec-track"><div class="spec-fill" style="--w:65%"></div></div><span class="spec-val">kW 자동산정</span></div>
         </div>
-        <div class="card-foot"><span class="card-law">시행 2024.10.1 · 공고 제2024-52호</span><div class="card-go">↗</div></div>
+        <div class="card-foot"><span class="card-law">시행 2024.10.1 · 공고 제2024-52호</span><span class="card-man" role="link" tabindex="0" data-href="../Smoke-Control-System/manual/" aria-label="사용자 매뉴얼">📘 매뉴얼</span><div class="card-go">↗</div></div>
       </div>
     </a>
 
@@ -606,7 +615,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
           <div class="spec-row"><span class="spec-label">역률</span><div class="spec-track"><div class="spec-fill" style="--w:80%"></div></div><span class="spec-val">0.8 기준</span></div>
           <div class="spec-row"><span class="spec-label">부하</span><div class="spec-track"><div class="spec-fill" style="--w:90%"></div></div><span class="spec-val">자동 합산</span></div>
         </div>
-        <div class="card-foot"><span class="card-law">외부 도구 · manminkim-eng.github.io</span><div class="card-go">↗</div></div>
+        <div class="card-foot"><span class="card-law">외부 도구 · manminkim-eng.github.io</span><span class="card-man" role="link" tabindex="0" data-href="../Emergency-Generator/manual/" aria-label="사용자 매뉴얼">📘 매뉴얼</span><div class="card-go">↗</div></div>
       </div>
     </a>
 
