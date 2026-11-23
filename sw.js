@@ -1,4 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
+   v5.2.14 2026-11-24 — 기타 설비에 11 소방시설 설치 검토 카드 추가(외부 도구 · 매뉴얼 단추, 도구 9 → 10종 · 기타 2 → 3, §25-6-101) · 캐시명 v5.2.14
    v5.2.13 2026-11-12 — 포털 Pretendard CSS SRI(integrity · crossorigin, 정밀검토 C2 · §25-6-82) · 캐시명 v5.2.13
    v5.2.11 2026-11-01 — 카드 「웹 열기 · 매뉴얼」 단추 통일(같은 높이 · 모양 · 카드 색, 단추 줄 하단 정렬, 제연 · 비상발전기 매뉴얼 단추, §25-6-29) · 캐시명 v5.2.11
    v5.2.10 2026-10-31 — manifest 설명 판 Ver-5.1 → Ver-5.2(화면 표기와 일치, §24-8 #1) · 사용자 매뉴얼 캡처 재촬영 · 서체 Pretendard(매뉴얼은 sw 캐시 제외) · 캐시명 v5.2.10
@@ -24,8 +25,8 @@ const mmMatch = (req, opt) => caches.keys()
   .then((ks) => ks.reduce((p, k) => p.then((r) => r || caches.open(k).then((c) => c.match(req, opt))), Promise.resolve(undefined)))
   .then((r) => (r && r.type === 'opaque' && req && req.mode === 'cors') ? undefined : r);
 
-const CACHE_NAME   = 'manmin-total-portal-v5.2.13';
-const STATIC_CACHE = 'manmin-total-portal-static-v5.2.13';
+const CACHE_NAME   = 'manmin-total-portal-v5.2.14';
+const STATIC_CACHE = 'manmin-total-portal-static-v5.2.14';
 
 const PRECACHE_URLS = [
   './',
