@@ -1,6 +1,8 @@
 /* ═══════════════════════════════════════════════════════════════
+   v5.2.15 2026-11-25 — 겸용 옥상수조 문구(옥내 + 스프 유효수량 ÷ 3) · NFPC 2026.3.1 / NFTC 시행일 분리 · 대조일 2026-11-25 · 겸용 단서 관할 협의 · 시행령 별표 4 행 · 설명문 · manifest · 작은 요소(소방 포털 교차검증 반영, §25-6-113) · 캐시명 v5.2.15
    v5.2.14 2026-11-24 — 기타 설비에 11 소방시설 설치 검토 카드 추가(외부 도구 · 매뉴얼 단추, 도구 9 → 10종 · 기타 2 → 3, §25-6-101) · 캐시명 v5.2.14
    v5.2.13 2026-11-12 — 포털 Pretendard CSS SRI(integrity · crossorigin, 정밀검토 C2 · §25-6-82) · 캐시명 v5.2.13
+   v5.2.12 2026-11-02 — 매뉴얼 화면 이미지 12장 교체(§25-6-45) · 캐시명 v5.2.12
    v5.2.11 2026-11-01 — 카드 「웹 열기 · 매뉴얼」 단추 통일(같은 높이 · 모양 · 카드 색, 단추 줄 하단 정렬, 제연 · 비상발전기 매뉴얼 단추, §25-6-29) · 캐시명 v5.2.11
    v5.2.10 2026-10-31 — manifest 설명 판 Ver-5.1 → Ver-5.2(화면 표기와 일치, §24-8 #1) · 사용자 매뉴얼 캡처 재촬영 · 서체 Pretendard(매뉴얼은 sw 캐시 제외) · 캐시명 v5.2.10
    v5.2.9 2026-10-31 — 휴대전화(768px 이하) 계산식 안내 떠 있는 단추 → 머리 영역 단추(통계 카드 가림 해소) · 캐시명 v5.2.9
@@ -8,7 +10,7 @@
    v5.2.0 회차 2026-10-16 — NFPC · NFTC 원문 대조 안내 문구 정정(제연 차압 · 간이 수원 · 겸용 합산 · 조문 · 판 번호) · 카드별 매뉴얼 링크 · 포털 매뉴얼(/manual/) 캐시 제외 · 캐시명 v5.2.0
    R25 회차 2026-09-04 — 자기 접두어 캐시 조회 · cors 프리캐시 · opaque 가드 · 캐시명 v5.2 (S10)
    Service Worker — 소방 펌프 계산서 통합 포털
-   Engineer Kim Manmin · MANMIN-Ver-5.1
+   Engineer Kim Manmin · MANMIN-Ver-5.2
 ═══════════════════════════════════════════════════════════════ */
 
 const PREFIX       = 'manmin-total-portal-';   /* §17-1 (R25 회차) */
@@ -25,8 +27,8 @@ const mmMatch = (req, opt) => caches.keys()
   .then((ks) => ks.reduce((p, k) => p.then((r) => r || caches.open(k).then((c) => c.match(req, opt))), Promise.resolve(undefined)))
   .then((r) => (r && r.type === 'opaque' && req && req.mode === 'cors') ? undefined : r);
 
-const CACHE_NAME   = 'manmin-total-portal-v5.2.14';
-const STATIC_CACHE = 'manmin-total-portal-static-v5.2.14';
+const CACHE_NAME   = 'manmin-total-portal-v5.2.15';
+const STATIC_CACHE = 'manmin-total-portal-static-v5.2.15';
 
 const PRECACHE_URLS = [
   './',
@@ -45,7 +47,7 @@ const PRECACHE_URLS = [
 
 /* ── INSTALL ── */
 self.addEventListener('install', (event) => {
-  console.log('[SW] Installing total-portal-v5.2.2...');
+  console.log('[SW] Installing ' + CACHE_NAME + '...');
   event.waitUntil(
     caches.open(STATIC_CACHE)
       .then((cache) => Promise.allSettled(PRECACHE_URLS.map((u) => cache.add(mmReq(u)).catch((e) => console.warn('[SW] precache skip:', u, e)))).catch((e) => console.warn('[SW] Pre-cache 일부 실패:', e)))

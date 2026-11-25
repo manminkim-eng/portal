@@ -10,7 +10,7 @@
 <meta property="og:site_name" content="MANMIN ENGINEERING">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="ENGINEER KIM MANMIN · 소방 펌프 계산서 통합 포털">
-<meta property="og:description" content="소방 펌프 용량 계산서 통합 포털 — NFTC 102/103/103A/109 기준 적용 | Engineer Kim Manmin">
+<meta property="og:description" content="소방 펌프 용량 계산서 7종 · 제연설비 · 비상발전기 · 소방시설 설치 검토 통합 포털 — NFPC · NFTC · 소방시설법 시행령 별표 4 | Engineer Kim Manmin">
 <meta property="og:url" content="https://manminkim-eng.github.io/portal/">
 <meta property="og:image" content="https://manminkim-eng.github.io/portal/og-card.jpg">
 <meta property="og:image:secure_url" content="https://manminkim-eng.github.io/portal/og-card.jpg">
@@ -20,11 +20,11 @@
 <meta property="og:image:alt" content="ENGINEER KIM MANMIN · 소방 펌프 계산서 통합 포털">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ENGINEER KIM MANMIN · 소방 펌프 계산서 통합 포털">
-<meta name="twitter:description" content="소방 펌프 용량 계산서 통합 포털 — NFTC 102/103/103A/109 기준 적용 | Engineer Kim Manmin">
+<meta name="twitter:description" content="소방 펌프 용량 계산서 7종 · 제연설비 · 비상발전기 · 소방시설 설치 검토 통합 포털 — NFPC · NFTC · 소방시설법 시행령 별표 4 | Engineer Kim Manmin">
 <meta name="twitter:image" content="https://manminkim-eng.github.io/portal/og-card.jpg">
 <link rel="manifest" href="manifest.json"/>
 <meta name="theme-color" content="#0a150a"/>
-<meta name="description" content="소방 펌프 용량 계산서 통합 포털 — NFTC 102/103/103A/109 기준 적용 | Engineer Kim Manmin"/>
+<meta name="description" content="소방 펌프 용량 계산서 7종 · 제연설비 · 비상발전기 · 소방시설 설치 검토 통합 포털 — NFPC · NFTC · 소방시설법 시행령 별표 4 | Engineer Kim Manmin"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="소방포털"/>
@@ -302,9 +302,11 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   border-bottom:1px solid rgba(34,197,94,.25);
 }
 .fml-hd-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;}
+/* v5.2.15 2026-11-25 — 닫기 단추 보이는 크기 34px 유지, 누르는 영역 44px(건축 · 소방 교차검증 권고, §25-6-113) */
+.fml-close-btn::after{content:"";position:absolute;inset:-5px;border-radius:50%;}
 .fml-close-btn{
   background:rgba(255,255,255,0.1);border:none;color:white;
-  border-radius:50%;width:34px;height:34px;flex-shrink:0;
+  border-radius:50%;width:34px;height:34px;flex-shrink:0;position:relative;
   cursor:pointer;font-size:18px;
   display:flex;align-items:center;justify-content:center;
   transition:background .15s;
@@ -371,8 +373,8 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 .pwa-install-fab span.fab-sub{font-size:var(--fs-badge);opacity:0.8;}
 .pwa-install-fab-badge{
   position:absolute;top:-7px;right:-7px;
-  background:#22c55e;color:#052e16;font-size:8px;font-weight:900;
-  width:19px;height:19px;border-radius:50%;
+  background:#22c55e;color:#052e16;font-size:11px;font-weight:900;
+  width:21px;height:21px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   border:2px solid var(--bg);
   animation:badgePing 2.2s ease-in-out infinite;
@@ -403,7 +405,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 
 <!-- HEADER -->
 <header class="header">
-  <div class="header-pill"><span class="pulse-dot"></span>근거 조문 대조 2026-10-16 · NFPC · NFTC 102 · 103 2026.7.1 시행</div>
+  <div class="header-pill"><span class="pulse-dot"></span>근거 조문 대조 2026-11-25 · NFTC 102 · 103 2026.7.1 시행 · NFPC 2026.3.1 시행</div>
   <div class="header-logo-wrap">
     <img class="header-logo-img" src="icons/icon-192.png" alt="ENGINEER KIM MANMIN 로고" width="80" height="80"/>
     <div class="header-logo-text">
@@ -412,7 +414,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
     </div>
   </div>
   <div class="header-tagline">소방 펌프 용량 <b>계산서 통합 포털</b></div>
-  <p class="header-desc">옥내소화전 · 옥외소화전 · 스프링클러 · 간이스프링클러 및 겸용 시스템의 펌프 용량을 NFTC 화재안전기술기준에 따라 정밀 계산합니다.</p>
+  <p class="header-desc">옥내소화전 · 옥외소화전 · 스프링클러 · 간이스프링클러 및 겸용 시스템의 펌프 용량 계산서(NFPC · NFTC)와 제연설비 · 비상발전기 · 소방시설 설치 검토 도구를 한곳에서 엽니다.</p>
   <button type="button" class="fml-inline no-print" id="fml-inline-btn" aria-label="계산식 안내 열기">📐 계산식 안내</button>
   <div class="header-line"></div>
 </header>
@@ -530,7 +532,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
           <div class="card-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="7" height="10" rx="1"/><circle cx="16" cy="11" r="2"/><path d="M16 3v6M12 16h8M16 16v5"/><path d="M3 8V5a1 1 0 011-1h3a1 1 0 011 1v4"/></svg></div>
           <div class="card-meta"><span class="card-badge">겸용 102 · 103</span><div class="card-title" style="font-size:14px;">옥내소화전<br/>+ 스프링클러</div><div class="card-title-en">Indoor + Sprinkler</div></div>
         </div>
-        <div class="card-desc">NFTC 102 2.9 · 103 2.13 겸용<br/>토출량 · 수원 합산(방화벽 구획 단서 시 최대값) · 양정 큰 값</div>
+        <div class="card-desc">NFTC 102 2.9 · 103 2.13 겸용<br/>토출량 · 수원 합산(단서 해당 시 최대값 — 관할 협의) · 양정 큰 값</div>
         <div class="spec-bars">
           <div class="spec-row"><span class="spec-label">옥내 Q</span><div class="spec-track"><div class="spec-fill" style="--w:65%"></div></div><span class="spec-val">260 ℓ/min</span></div>
           <div class="spec-row"><span class="spec-label">SP Q</span><div class="spec-track"><div class="spec-fill" style="--w:68%"></div></div><span class="spec-val">2,400 ℓ/min</span></div>
@@ -547,7 +549,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
           <div class="card-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fb7185" stroke-width="1.8" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
           <div class="card-meta"><span class="card-badge">겸용 103A · 102</span><div class="card-title" style="font-size:14px;">간이스프링클러<br/>+ 옥내소화전</div><div class="card-title-en">Simple SP + Indoor</div></div>
         </div>
-        <div class="card-desc">NFTC 103A 2.10 · 102 2.9 겸용<br/>토출량 · 수원 합산(방화벽 구획 단서 시 최대값) · 옥상수조 옥내 ÷ 3</div>
+        <div class="card-desc">NFTC 103A 2.10 · 102 2.9 겸용<br/>토출량 · 수원 합산(단서 해당 시 최대값 — 관할 협의) · 옥상수조 옥내 ÷ 3</div>
         <div class="spec-bars">
           <div class="spec-row"><span class="spec-label">간이 Q</span><div class="spec-track"><div class="spec-fill" style="--w:25%"></div></div><span class="spec-val">250 ℓ/min</span></div>
           <div class="spec-row"><span class="spec-label">옥내 Q</span><div class="spec-track"><div class="spec-fill" style="--w:65%"></div></div><span class="spec-val">260 ℓ/min</span></div>
@@ -607,7 +609,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
       <div class="card-body">
         <div class="card-top">
           <div class="card-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-          <div class="card-meta"><span class="card-badge">KEC / NFTC</span><div class="card-title">비상발전기</div><div class="card-title-en">Emergency Generator</div></div>
+          <div class="card-meta"><span class="card-badge">KDS / NFPC</span><div class="card-title">비상발전기</div><div class="card-title-en">Emergency Generator</div></div>
         </div>
         <div class="card-desc">비상발전기 필요 용량 자동 산정<br/>부하 합산 · 역률 · 수용률 적용</div>
         <div class="spec-bars">
@@ -651,7 +653,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
       <tr><td><a class="td-link" href="../outdoor-hydrant-calc/"><span class="td-chip" style="background:var(--c-teal-b);color:var(--c-teal);">단독</span><span class="td-name">옥외소화전</span></a></td><td><span class="td-mono">109</span></td><td><span class="td-mono" style="color:#a3b4a3;">2026.3.1</span></td><td><span class="hi-a">0.25 MPa↑</span></td><td><span class="hi-a">350 ℓ/min↑</span></td><td><span class="td-mono">최대 2개</span></td><td><span class="td-mono">7 m³↑</span></td><td><span class="td-mono">20 min</span></td></tr>
       <tr><td><a class="td-link" href="../fire-sprinkler-calc/"><span class="td-chip" style="background:var(--c-blue-b);color:var(--c-blue);">단독</span><span class="td-name">스프링클러</span></a></td><td><span class="td-mono">103</span></td><td><span class="td-mono" style="color:var(--c-green);">2026.7.1</span><span style="font-size:var(--fs-badge); color:#4ade80; margin-left:4px; font-weight:800;">★최신</span></td><td><span class="hi-g">0.1 MPa↑</span></td><td><span class="hi-g">80 ℓ/min↑</span></td><td><span class="td-mono">최대 30개</span></td><td><span class="td-mono">1.6 m³↑(고층 3.2 · 4.8)</span></td><td><span class="td-mono">20 min(고층 40 · 60)</span></td></tr>
       <tr><td><a class="td-link" href="../simple-sprinkler-calc/"><span class="td-chip" style="background:var(--c-amber-b);color:var(--c-amber);">단독</span><span class="td-name">간이스프링클러</span></a></td><td><span class="td-mono">103A</span></td><td><span class="td-mono" style="color:#fbbf24;">2024.12.1</span></td><td><span class="hi-g">0.1 MPa↑</span></td><td><span class="hi-g">50 ℓ/min↑</span></td><td><span class="td-mono">2개 · 5개</span></td><td><span class="td-mono">1.0 · 5.0 m³(주차장 1.6 · 8.0)</span></td><td><span class="td-mono">10 · 20 min</span></td></tr>
-      <tr><td><a class="td-link" href="../combo-pump-calc/"><span class="td-chip" style="background:var(--c-purple-b);color:var(--c-purple);">겸용</span><span class="td-name">옥내+스프링클러</span></a></td><td><span class="td-mono">102·103</span></td><td><span class="td-mono" style="color:#a3b4a3;">복합</span></td><td><span class="hi-a">설비별</span></td><td><span class="hi-a">합산</span></td><td><span class="td-mono">설비별 적용</span></td><td><span class="td-mono">합산(단서 시 최대) + 옥상 옥내 ÷ 3</span></td><td><span class="td-mono">양정 큰 값</span></td></tr>
+      <tr><td><a class="td-link" href="../combo-pump-calc/"><span class="td-chip" style="background:var(--c-purple-b);color:var(--c-purple);">겸용</span><span class="td-name">옥내+스프링클러</span></a></td><td><span class="td-mono">102·103</span></td><td><span class="td-mono" style="color:#a3b4a3;">복합</span></td><td><span class="hi-a">설비별</span></td><td><span class="hi-a">합산</span></td><td><span class="td-mono">설비별 적용</span></td><td><span class="td-mono">합산(단서 시 최대) + 옥상 유효수량 ÷ 3</span></td><td><span class="td-mono">양정 큰 값</span></td></tr>
       <tr><td><a class="td-link" href="../combo-easy-fire-calc/"><span class="td-chip" style="background:var(--c-rose-b);color:var(--c-rose);">겸용</span><span class="td-name">간이+옥내</span></a></td><td><span class="td-mono">103A·102</span></td><td><span class="td-mono" style="color:#a3b4a3;">복합</span></td><td><span class="hi-a">설비별</span></td><td><span class="hi-a">합산</span></td><td><span class="td-mono">설비별 적용</span></td><td><span class="td-mono">합산(단서 시 최대) + 옥상 옥내 ÷ 3</span></td><td><span class="td-mono">양정 큰 값</span></td></tr>
       <tr><td><a class="td-link" href="../combo-indoor-outdoor-calc/"><span class="td-chip" style="background:var(--c-cyan-b);color:var(--c-cyan);">겸용</span><span class="td-name">옥내+옥외</span></a></td><td><span class="td-mono">102·109</span></td><td><span class="td-mono" style="color:#a3b4a3;">복합</span></td><td><span class="hi-a">설비별</span></td><td><span class="hi-a">합산</span></td><td><span class="td-mono">설비별 적용</span></td><td><span class="td-mono">항상 합산 + 옥상 옥내 ÷ 3</span></td><td><span class="td-mono">양정 큰 값</span></td></tr>
     </tbody>
@@ -666,10 +668,10 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 </div>
 <div class="law-section">
   <div class="law-grid">
-    <div class="law-card"><div class="law-card-accent" style="background:linear-gradient(90deg,#15803d,#4ade80);"></div><div class="law-card-num" style="color:#4ade80;">NFTC 102</div><div class="law-card-title">옥내소화전설비의 화재안전기술기준</div><div class="law-card-date" style="color:#4ade80;">시행 2026. 7. 1. ★ 최신 · 공고 제2026-34호 · NFPC 고시 제2025-25호</div><div class="law-card-rows"><div class="law-row"><span class="law-row-key">방수압</span><span class="law-row-val">0.17 MPa 이상</span><span class="law-row-note">(노즐 선단)</span></div><div class="law-row"><span class="law-row-key">방수량</span><span class="law-row-val">130 ℓ/min 이상</span><span class="law-row-note">(개당)</span></div><div class="law-row"><span class="law-row-key">동시사용</span><span class="law-row-val">최대 2개</span><span class="law-row-note">(고층건축물 5개 · NFTC 604)</span></div><div class="law-row"><span class="law-row-key">수원</span><span class="law-row-val">2.6 m³ × N</span><span class="law-row-note">(+ 옥상수조 1/3)</span></div><div class="law-row"><span class="law-row-key">호스</span><span class="law-row-val">40 mm 이상</span><span class="law-row-note">(호스릴 25 mm)</span></div></div></div>
-    <div class="law-card"><div class="law-card-accent" style="background:linear-gradient(90deg,#0d9488,#2dd4bf);"></div><div class="law-card-num" style="color:#2dd4bf;">NFTC 109</div><div class="law-card-title">옥외소화전설비의 화재안전기술기준</div><div class="law-card-date" style="color:#a3b4a3;">시행 2026. 3. 1. · 공고 제2026-9호 · NFPC 고시 제2025-28호</div><div class="law-card-rows"><div class="law-row"><span class="law-row-key">방수압</span><span class="law-row-val">0.25 MPa 이상</span><span class="law-row-note">(노즐 선단)</span></div><div class="law-row"><span class="law-row-key">방수량</span><span class="law-row-val">350 ℓ/min 이상</span><span class="law-row-note">(개당)</span></div><div class="law-row"><span class="law-row-key">동시사용</span><span class="law-row-val">최대 2개</span><span class="law-row-note"></span></div><div class="law-row"><span class="law-row-key">수원</span><span class="law-row-val">7 m³ × N</span><span class="law-row-note"></span></div><div class="law-row"><span class="law-row-key">호스</span><span class="law-row-val">65 mm 호스</span><span class="law-row-note"></span></div></div></div>
-    <div class="law-card"><div class="law-card-accent" style="background:linear-gradient(90deg,#1d4ed8,#60a5fa);"></div><div class="law-card-num" style="color:#60a5fa;">NFTC 103</div><div class="law-card-title">스프링클러설비의 화재안전기술기준</div><div class="law-card-date" style="color:#4ade80;">시행 2026. 7. 1. ★ 최신 · 공고 제2026-35호 · NFPC 고시 제2025-25호</div><div class="law-card-rows"><div class="law-row"><span class="law-row-key">방수압</span><span class="law-row-val">0.1 MPa 이상</span><span class="law-row-note">(헤드 선단)</span></div><div class="law-row"><span class="law-row-key">방수량</span><span class="law-row-val">80 ℓ/min 이상</span><span class="law-row-note">(헤드당)</span></div><div class="law-row"><span class="law-row-key">기준개수</span><span class="law-row-val">최대 30개</span><span class="law-row-note">(용도별)</span></div><div class="law-row"><span class="law-row-key">수원</span><span class="law-row-val">1.6 m³ × N</span><span class="law-row-note">(폐쇄형)</span></div><div class="law-row"><span class="law-row-key">방사시간</span><span class="law-row-val">20 min</span><span class="law-row-note">(고층 3.2 · 4.8 m³)</span></div></div></div>
-    <div class="law-card"><div class="law-card-accent" style="background:linear-gradient(90deg,#b45309,#fbbf24);"></div><div class="law-card-num" style="color:#fbbf24;">NFTC 103A</div><div class="law-card-title">간이스프링클러설비의 화재안전기술기준</div><div class="law-card-date" style="color:#fbbf24;">시행 2024. 12. 1. · 공고 제2024-58호 · NFPC 고시 제2025-25호</div><div class="law-card-rows"><div class="law-row"><span class="law-row-key">방수압</span><span class="law-row-val">0.1 MPa 이상</span><span class="law-row-note">(헤드 선단)</span></div><div class="law-row"><span class="law-row-key">방수량</span><span class="law-row-val">50 ℓ/min 이상</span><span class="law-row-note">(헤드당)</span></div><div class="law-row"><span class="law-row-key">기준개수</span><span class="law-row-val">2개 · 5개</span><span class="law-row-note">(영 별표 4 제1호마목)</span></div><div class="law-row"><span class="law-row-key">수원</span><span class="law-row-val">1.0 · 5.0 m³</span><span class="law-row-note">(2개 × 10분 · 5개 × 20분)</span></div><div class="law-row"><span class="law-row-key">방사시간</span><span class="law-row-val">10 · 20 min 이상</span><span class="law-row-note"></span></div></div></div>
+    <div class="law-card"><div class="law-card-accent" style="background:linear-gradient(90deg,#15803d,#4ade80);"></div><div class="law-card-num" style="color:#4ade80;">NFTC 102</div><div class="law-card-title">옥내소화전설비의 화재안전기술기준</div><div class="law-card-date" style="color:#4ade80;">시행 2026. 7. 1. ★ 최신 · 공고 제2026-34호 · NFPC 고시 제2025-25호(2026. 3. 1. 시행)</div><div class="law-card-rows"><div class="law-row"><span class="law-row-key">방수압</span><span class="law-row-val">0.17 MPa 이상</span><span class="law-row-note">(노즐 선단)</span></div><div class="law-row"><span class="law-row-key">방수량</span><span class="law-row-val">130 ℓ/min 이상</span><span class="law-row-note">(개당)</span></div><div class="law-row"><span class="law-row-key">동시사용</span><span class="law-row-val">최대 2개</span><span class="law-row-note">(고층건축물 5개 · NFTC 604)</span></div><div class="law-row"><span class="law-row-key">수원</span><span class="law-row-val">2.6 m³ × N</span><span class="law-row-note">(+ 옥상수조 1/3)</span></div><div class="law-row"><span class="law-row-key">호스</span><span class="law-row-val">40 mm 이상</span><span class="law-row-note">(호스릴 25 mm)</span></div></div></div>
+    <div class="law-card"><div class="law-card-accent" style="background:linear-gradient(90deg,#0d9488,#2dd4bf);"></div><div class="law-card-num" style="color:#2dd4bf;">NFTC 109</div><div class="law-card-title">옥외소화전설비의 화재안전기술기준</div><div class="law-card-date" style="color:#a3b4a3;">시행 2026. 3. 1. · 공고 제2026-9호 · NFPC 고시 제2025-28호(2026. 3. 1. 시행)</div><div class="law-card-rows"><div class="law-row"><span class="law-row-key">방수압</span><span class="law-row-val">0.25 MPa 이상</span><span class="law-row-note">(노즐 선단)</span></div><div class="law-row"><span class="law-row-key">방수량</span><span class="law-row-val">350 ℓ/min 이상</span><span class="law-row-note">(개당)</span></div><div class="law-row"><span class="law-row-key">동시사용</span><span class="law-row-val">최대 2개</span><span class="law-row-note"></span></div><div class="law-row"><span class="law-row-key">수원</span><span class="law-row-val">7 m³ × N</span><span class="law-row-note"></span></div><div class="law-row"><span class="law-row-key">호스</span><span class="law-row-val">65 mm 호스</span><span class="law-row-note"></span></div></div></div>
+    <div class="law-card"><div class="law-card-accent" style="background:linear-gradient(90deg,#1d4ed8,#60a5fa);"></div><div class="law-card-num" style="color:#60a5fa;">NFTC 103</div><div class="law-card-title">스프링클러설비의 화재안전기술기준</div><div class="law-card-date" style="color:#4ade80;">시행 2026. 7. 1. ★ 최신 · 공고 제2026-35호 · NFPC 고시 제2025-25호(2026. 3. 1. 시행)</div><div class="law-card-rows"><div class="law-row"><span class="law-row-key">방수압</span><span class="law-row-val">0.1 MPa 이상</span><span class="law-row-note">(헤드 선단)</span></div><div class="law-row"><span class="law-row-key">방수량</span><span class="law-row-val">80 ℓ/min 이상</span><span class="law-row-note">(헤드당)</span></div><div class="law-row"><span class="law-row-key">기준개수</span><span class="law-row-val">최대 30개</span><span class="law-row-note">(용도별)</span></div><div class="law-row"><span class="law-row-key">수원</span><span class="law-row-val">1.6 m³ × N</span><span class="law-row-note">(폐쇄형)</span></div><div class="law-row"><span class="law-row-key">방사시간</span><span class="law-row-val">20 min</span><span class="law-row-note">(고층 3.2 · 4.8 m³)</span></div></div></div>
+    <div class="law-card"><div class="law-card-accent" style="background:linear-gradient(90deg,#b45309,#fbbf24);"></div><div class="law-card-num" style="color:#fbbf24;">NFTC 103A</div><div class="law-card-title">간이스프링클러설비의 화재안전기술기준</div><div class="law-card-date" style="color:#fbbf24;">시행 2024. 12. 1. · 공고 제2024-58호 · NFPC 고시 제2025-25호(2026. 3. 1. 시행)</div><div class="law-card-rows"><div class="law-row"><span class="law-row-key">방수압</span><span class="law-row-val">0.1 MPa 이상</span><span class="law-row-note">(헤드 선단)</span></div><div class="law-row"><span class="law-row-key">방수량</span><span class="law-row-val">50 ℓ/min 이상</span><span class="law-row-note">(헤드당)</span></div><div class="law-row"><span class="law-row-key">기준개수</span><span class="law-row-val">2개 · 5개</span><span class="law-row-note">(영 별표 4 제1호마목)</span></div><div class="law-row"><span class="law-row-key">수원</span><span class="law-row-val">1.0 · 5.0 m³</span><span class="law-row-note">(2개 × 10분 · 5개 × 20분)</span></div><div class="law-row"><span class="law-row-key">방사시간</span><span class="law-row-val">10 · 20 min 이상</span><span class="law-row-note"></span></div></div></div>
   </div>
   <div class="formula-box">
     <div class="formula-title"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>계산식 안내 — Hazen-Williams 공식 &amp; 전동기 동력 산정</div>
@@ -730,11 +732,11 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
       <div class="fml-panel" id="tab-howto">
         <div style="background:linear-gradient(140deg,#052e16,#14532d,#15803d);border-radius:13px;padding:16px 18px;margin-bottom:16px;">
           <div style="font-size:var(--fs-body);font-weight:900;color:#86efac;margin-bottom:5px;display:flex;align-items:center;gap:8px;"><span style="font-size:20px;">🚒</span> 소방 펌프 계산서 통합 포털 이용방법</div>
-          <div style="font-size:var(--fs-cap);color:rgba(134,239,172,.75);line-height:1.7;">NFPC · NFTC 102 · 103 · 103A · 109 원문 대조(2026-10-16) · Hazen-Williams 공식 · MANMIN Ver-5.2<br/>원하는 계산서를 선택하고 순서에 따라 입력하면 펌프 용량이 자동 산출됩니다.</div>
+          <div style="font-size:var(--fs-cap);color:rgba(134,239,172,.75);line-height:1.7;">NFPC · NFTC 102 · 103 · 103A · 109 원문 대조(2026-11-25) · Hazen-Williams 공식 · MANMIN Ver-5.2<br/>원하는 계산서를 선택하고 순서에 따라 입력하면 펌프 용량이 자동 산출됩니다.</div>
         </div>
         <div style="display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.15);border-left:4px solid #15803d;border-radius:10px;padding:13px 14px;margin-bottom:9px;">
           <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#15803d,#052e16);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-sm);font-weight:900;color:#fff;flex-shrink:0;">1</div>
-          <div><div style="font-size:var(--fs-sm);font-weight:900;color:#4ade80;margin-bottom:5px;">🏠 계산서 종류 선택</div><div style="font-size:var(--fs-cap);color:#a3b4a3;line-height:1.85;">① 메인 화면 카드에서 <strong style="color:#86efac;">원하는 소방 설비</strong>를 클릭합니다.<br/>② 단독 설비: 옥내소화전·옥외소화전·스프링클러·간이스프링클러 (4종)<br/>③ 겸용 설비: 옥내+옥외·간이+옥내·스프링클러+옥내 겸용 계산서 (3종)<br/>④ 상단 탭 필터로 <strong style="color:#86efac;">단독 / 겸용 / 기타</strong>를 구분하여 찾고, 카드의 <strong style="color:#86efac;">📘 매뉴얼</strong>로 계산서별 사용자 매뉴얼(Ver-5.1)을 엽니다.<br/>⑤ 기타 설비: 제연설비 · 비상발전기 · 소방시설 설치 검토 — 별도 저장소 외부 도구(3종)</div></div>
+          <div><div style="font-size:var(--fs-sm);font-weight:900;color:#4ade80;margin-bottom:5px;">🏠 계산서 종류 선택</div><div style="font-size:var(--fs-cap);color:#a3b4a3;line-height:1.85;">① 메인 화면 카드에서 <strong style="color:#86efac;">원하는 소방 설비</strong>를 클릭합니다.<br/>② 단독 설비: 옥내소화전·옥외소화전·스프링클러·간이스프링클러 (4종)<br/>③ 겸용 설비: 옥내+옥외·간이+옥내·스프링클러+옥내 겸용 계산서 (3종)<br/>④ 상단 탭 필터로 <strong style="color:#86efac;">단독 / 겸용 / 기타</strong>를 구분하여 찾고, 카드의 <strong style="color:#86efac;">📘 매뉴얼</strong>로 계산서별 사용자 매뉴얼을 엽니다.<br/>⑤ 기타 설비: 제연설비 · 비상발전기 · 소방시설 설치 검토 — 별도 저장소 외부 도구(3종)</div></div>
         </div>
         <div style="display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.15);border-left:4px solid #16a34a;border-radius:10px;padding:13px 14px;margin-bottom:9px;">
           <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#16a34a,#14532d);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-sm);font-weight:900;color:#fff;flex-shrink:0;">2</div>
@@ -746,7 +748,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
         </div>
         <div style="display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.15);border-left:4px solid #4ade80;border-radius:10px;padding:13px 14px;margin-bottom:9px;">
           <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#4ade80,#22c55e);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-sm);font-weight:900;color:#052e16;flex-shrink:0;">4</div>
-          <div><div style="font-size:var(--fs-sm);font-weight:900;color:#4ade80;margin-bottom:5px;">⚡ 전동기 동력 설정 및 결과 확인</div><div style="font-size:var(--fs-cap);color:#a3b4a3;line-height:1.85;">① <strong style="color:#86efac;">펌프 구경 · 효율(직접 입력) · 전달 방식</strong>을 고르면 전달계수(K)가 적용됩니다.<br/>② 전양정(안전율 10 % 가산 후 올림 — MANMIN 참고값)·이론 출력(kW)·채택 HP가 산출되고, 배관 1.2 MPa · 노즐 0.7 MPa 판정이 함께 표시됩니다.<br/>③ 겸용 설비는 토출량 · 수원 합산(옥내 + 스프 · 간이 + 옥내는 방화벽 구획 단서 시 최대값)·전양정 큰 값 · 옥상수조(옥내 ÷ 3)가 자동 처리됩니다.</div></div>
+          <div><div style="font-size:var(--fs-sm);font-weight:900;color:#4ade80;margin-bottom:5px;">⚡ 전동기 동력 설정 및 결과 확인</div><div style="font-size:var(--fs-cap);color:#a3b4a3;line-height:1.85;">① <strong style="color:#86efac;">펌프 구경 · 효율(직접 입력) · 전달 방식</strong>을 고르면 전달계수(K)가 적용됩니다.<br/>② 전양정(안전율 10 % 가산 후 올림 — MANMIN 참고값)·이론 출력(kW)·채택 HP가 산출되고, 배관 1.2 MPa · 노즐 0.7 MPa 판정이 함께 표시됩니다.<br/>③ 겸용 설비는 토출량 · 수원 합산(옥내 + 스프 · 간이 + 옥내는 고정식 2 이상 · 방화벽 구획 단서에 해당하면 최대값 — 옥내소화전의 고정식 해당 여부는 관할 소방서 협의)·전양정 큰 값 · 옥상수조(옥내 + 스프는 유효수량 ÷ 3, 간이 + 옥내 · 옥내 + 옥외는 옥내 ÷ 3)가 자동 처리됩니다.</div></div>
         </div>
         <div style="display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.15);border-left:4px solid #86efac;border-radius:10px;padding:13px 14px;margin-bottom:16px;">
           <div style="min-width:30px;height:30px;background:linear-gradient(135deg,#86efac,#4ade80);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-sm);font-weight:900;color:#052e16;flex-shrink:0;">5</div>
@@ -762,11 +764,12 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
         <div style="border:1px solid rgba(34,197,94,.2);background:rgba(34,197,94,.06);border-radius:10px;padding:12px 14px;margin-top:4px;">
           <div style="font-size:var(--fs-sm);font-weight:800;color:#4ade80;margin-bottom:6px;">📌 적용 기준 법령</div>
           <div class="fml-note" style="font-size:var(--fs-cap);line-height:2.1;color:#a3b4a3;">
-            <strong style="color:#86efac;">NFPC 102 · NFTC 102</strong> — 옥내소화전설비 · 고시 제2025-25호 · 공고 제2026-34호 [2026.7.1.] · 130 ℓ/min · 0.17 MPa<br/>
-            <strong style="color:#86efac;">NFPC 109 · NFTC 109</strong> — 옥외소화전설비 · 고시 제2025-28호 · 공고 제2026-9호 [2026.3.1.] · 350 ℓ/min · 0.25 MPa<br/>
-            <strong style="color:#86efac;">NFPC 103 · NFTC 103</strong> — 스프링클러설비 · 고시 제2025-25호 · 공고 제2026-35호 [2026.7.1.] · 80 ℓ/min · 0.1 MPa<br/>
-            <strong style="color:#86efac;">NFPC 103A · NFTC 103A</strong> — 간이스프링클러설비 · 고시 제2025-25호 · 공고 제2024-58호 [2024.12.1.] · 50 ℓ/min · 0.1 MPa<br/>
+            <strong style="color:#86efac;">NFPC 102 · NFTC 102</strong> — 옥내소화전설비 · 고시 제2025-25호 [2026.3.1.] · 공고 제2026-34호 [2026.7.1.] · 130 ℓ/min · 0.17 MPa<br/>
+            <strong style="color:#86efac;">NFPC 109 · NFTC 109</strong> — 옥외소화전설비 · 고시 제2025-28호 [2026.3.1.] · 공고 제2026-9호 [2026.3.1.] · 350 ℓ/min · 0.25 MPa<br/>
+            <strong style="color:#86efac;">NFPC 103 · NFTC 103</strong> — 스프링클러설비 · 고시 제2025-25호 [2026.3.1.] · 공고 제2026-35호 [2026.7.1.] · 80 ℓ/min · 0.1 MPa<br/>
+            <strong style="color:#86efac;">NFPC 103A · NFTC 103A</strong> — 간이스프링클러설비 · 고시 제2025-25호 [2026.3.1.] · 공고 제2024-58호 [2024.12.1.] · 50 ℓ/min · 0.1 MPa<br/>
             <strong style="color:#86efac;">NFTC 604</strong> — 고층건축물 · 공고 제2023-44호 · <strong style="color:#86efac;">NFTC 501 · 501A</strong> — 제연 · 공고 제2024-52호 · 제2026-36호<br/>
+            <strong style="color:#86efac;">소방시설 설치 및 관리에 관한 법률 시행령 별표 4</strong> — 특정소방대상물별 소방시설 설치 대상 · [2026.10.2.]<br/>
             <strong style="color:#86efac;">Hazen-Williams 공식</strong> — 배관 마찰손실 (C값: 백관·흑관 120, STS·CPVC 150 — MANMIN 참고값)
           </div>
         </div>
@@ -805,7 +808,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
       <!-- 간이스프링클러 -->
       <div class="fml-panel hidden" id="tab-easy">
         <div class="fml-sec"><div class="fml-sec-ttl">💧 수원 (NFPC 103A 제4조①2호 · NFTC 103A 2.1.1.2)</div>
-          <div class="fml-card"><code class="fml-eq">일반형   : 2개 × 50 ℓ/min × 10분 = 1.0 m³</code><code class="fml-eq">5개 대상(영 별표 4 제1호마목2)가) · 6) · 8)) : 5개 × 50 ℓ/min × 20분 = 5.0 m³</code><code class="fml-eq">주차장(일반): 2개 × 80 ℓ/min × 10분 = 1.6 m³</code><code class="fml-eq">주차장(5개 대상): 5개 × 80 ℓ/min × 20분 = 8.0 m³</code><div class="fml-note">주차장 표준반응형 80 ℓ/min(2.2.1 단서)을 수원에 적용 = MANMIN 해석</div></div>
+          <div class="fml-card"><code class="fml-eq">일반형   : 2개 × 50 ℓ/min × 10분 = 1.0 m³</code><code class="fml-eq">5개 대상(영 별표 4 제1호마목2)가) 또는 6)과 8)) : 5개 × 50 ℓ/min × 20분 = 5.0 m³</code><code class="fml-eq">주차장(일반): 2개 × 80 ℓ/min × 10분 = 1.6 m³</code><code class="fml-eq">주차장(5개 대상): 5개 × 80 ℓ/min × 20분 = 8.0 m³</code><div class="fml-note">주차장 표준반응형 80 ℓ/min(2.2.1 단서)을 수원에 적용 = MANMIN 해석</div></div>
         </div>
         <div class="fml-sec"><div class="fml-sec-ttl">📏 전양정 (펌프 방식 — MANMIN 적용식 · 헤드 0.1 MPa — NFTC 103A 2.2.1)</div>
           <div class="fml-g2"><div class="fml-card"><div class="fml-card-ttl">G — 헤드 환산수두</div><code class="fml-eq">G = 10 m (고정) ← 0.1 MPa</code></div><div class="fml-card"><div class="fml-card-ttl">유속 (NFTC 103A 2.5.3.3 단서)</div><code class="fml-eq">수리계산 시 가지 ≤ 6 m/s | 기타 ≤ 10 m/s</code></div></div>
@@ -817,10 +820,10 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
       <div class="fml-panel hidden" id="tab-combo">
         <div class="fml-sec"><div class="fml-sec-ttl">⚡ 겸용 펌프 원칙</div>
           <div class="fml-g2">
-            <div class="fml-card" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.06);"><div class="fml-card-ttl" style="color:#4ade80;">① 토출량 — 합산</div><code class="fml-eq">Q겸용 = QA + QB [ℓ/min]</code><div class="fml-note">단서: 고정식 소화설비 2 이상 · 방화벽과 방화문 구획 · 각 설비 지장 없음 → 최대값(옥내 + 스프 · 간이 + 옥내) — 옥내 + 옥외는 항상 합산</div></div>
+            <div class="fml-card" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.06);"><div class="fml-card-ttl" style="color:#4ade80;">① 토출량 — 합산</div><code class="fml-eq">Q겸용 = QA + QB [ℓ/min]</code><div class="fml-note">단서: 고정식 소화설비 2 이상 · 방화벽과 방화문 구획 · 각 설비 지장 없음 → 최대값(옥내 + 스프 · 간이 + 옥내) — 고정식 = 펌프 · 배관과 방출구가 고정된 설비(NFTC 103 2.13.1), 옥내소화전의 해당 여부는 관할 소방서 협의 권장 · 옥내 + 옥외는 항상 합산</div></div>
             <div class="fml-card" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.06);"><div class="fml-card-ttl" style="color:#4ade80;">② 전양정 — 큰 값 채택</div><code class="fml-eq">H겸용 = max(JA, JB) [m]</code><div class="fml-note">공통 배관 F₀를 두 설비 양정에 더한 뒤 — MANMIN 적용(각 설비 성능에 지장이 없을 것)</div></div>
           </div>
-          <div class="fml-card" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.06);"><div class="fml-card-ttl" style="color:#4ade80;">③ 수원 — 합산 + 옥상수조</div><code class="fml-eq">D겸용 = DA + DB (+ 옥내 ÷ 3) [m³]</code><div class="fml-note">NFTC 102 2.9 · 103 2.13 · 103A 2.10 · 109 2.8 / 옥상수조는 옥내소화전 기준에만 있음(NFTC 102 2.1.2)</div></div>
+          <div class="fml-card" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.06);"><div class="fml-card-ttl" style="color:#4ade80;">③ 수원 — 합산 + 옥상수조</div><code class="fml-eq">D겸용 = DA + DB (+ 옥상수조) [m³]</code><div class="fml-note">NFTC 102 2.9 · 103 2.13 · 103A 2.10 · 109 2.8 / 옥상수조(유효수량의 1/3) — 옥내 + 스프: D겸용 ÷ 3(NFTC 102 2.1.2 · 103 2.1.2) · 간이 + 옥내 · 옥내 + 옥외: 옥내 ÷ 3(간이 · 옥외 기준에는 옥상수조 없음) · 각 기준의 설치 제외 단서에 해당하면 생략</div></div>
         </div>
         <div class="fml-sec"><div class="fml-sec-ttl">⚡ 전동기 동력 공통</div><div class="fml-card"><code class="fml-eq">P = 0.163 × Q(m³/min) × H(m) × K ÷ η [kW]</code><div class="fml-note">HP = P(kW) × 1.341 → 상위 표준 규격 | 표준: 3·5·7.5·10·15·20·25·30·40·50·60·75·100·125·150·200 HP</div></div></div>
         <div class="fml-sec"><div class="fml-sec-ttl">🔩 관부속 상당직관 원칙</div><div class="fml-card"><code class="fml-eq">상당직관(m) = Σ [ 수량 × 관경별 환산값 ]</code><div class="fml-note">Reducer→45°Elbow(小경) | Coupling→직류Tee | Union/Flange/Socket→생략<br/>Alarm·Foot·Strainer→Angle V/V | Auto·Glove→Ball V/V</div></div></div>
@@ -914,7 +917,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   window.switchFml=switchFml;
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeFml();});
 
-  /* ── Service Worker Ver-5.2 (v5.2.0) ── */
+  /* ── Service Worker Ver-5.2 (캐시명은 sw.js CACHE_NAME) ── */
   if('serviceWorker' in navigator){
     window.addEventListener('load', function(){
       navigator.serviceWorker.register('./sw.js', {updateViaCache:'none'})
