@@ -11,5 +11,7 @@ for f in sorted(glob.glob(raw+'/s*.png')):
 shutil.copy(raw+'/_marks.json',M+'/images/_marks.json')
 PY
 MANUAL_DIR="$M" python3 gen_manual_portal.py
-node pdf_portal.js "$M" 소방펌프통합포털_사용자매뉴얼_Ver-5.2.pdf "소방 펌프 계산서 통합 포털 사용자 매뉴얼 Ver-5.2"
+# PDF 이름 · 꼬리말 판은 index 의 MANMIN-Ver-x.y 를 따른다(2026-11-25)
+V=$(grep -o "MANMIN-Ver-[0-9.]*[0-9]" "$REPO/index.html" | head -1 | sed "s/MANMIN-//")
+node pdf_portal.js "$M" "소방펌프통합포털_사용자매뉴얼_${V}.pdf" "소방 펌프 계산서 통합 포털 사용자 매뉴얼 ${V}"
 node audit_responsive.js "$M/index.html" > "$RAW/_audit.json"

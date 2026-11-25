@@ -2,7 +2,7 @@
 // 규격: 1440×900 · DSF 1.25 (영상용 좁은 화면: MM_VW=720 MM_VH=1280 MM_DSF=2) · serviceWorkers block · _marks.json
 const {chromium}=require(process.env.MM_PW||'playwright');const fs=require('fs');const path=require('path');const {setup,server}=require('./serve');
 const repo=path.resolve(process.argv[2]),out=path.resolve(process.argv[3]);fs.mkdirSync(out,{recursive:true});
-const VW=+(process.env.MM_VW||1440),VH=+(process.env.MM_VH||900),DSF=+(process.env.MM_DSF||1.25),PORT=8951;
+const VW=+(process.env.MM_VW||1440),VH=+(process.env.MM_VH||900),DSF=+(process.env.MM_DSF||1.25),PORT=+(process.env.MM_PORT||9013);
 const HIDE='#pwa-wrap,#pwa-fab,#sw-update-banner{display:none!important} .calc-card,.law-card,.stat-box,.tab-btn{animation:none!important;opacity:1!important;transform:none!important}';
 const HELP=`window.__vis=e=>e&&e.getClientRects().length>0;
 window.__find=sel=>{if(sel.startsWith('nth:')){const [q,i]=sel.slice(4).split('|');return [...document.querySelectorAll(q)].filter(__vis)[+i]||null;}
@@ -14,13 +14,13 @@ window.__fml=t=>{document.getElementById('fml-overlay').classList.remove('hidden
 window.__fmlClose=()=>closeFml();`;
 const SHOTS=[
  {id:'s01_overview',pre:"__tab('all');window.scrollTo(0,0)",clip:'viewport',m:[['.header-pill','기준 · 원문 대조'],['.header-tagline','포털 이름'],['.stats-bar','요약 5칸'],['.tab-wrap','필터 탭 4개 · 📘 매뉴얼'],['.tab-man','📘 포털 사용자 매뉴얼']]},
- {id:'s02_header',clip:'.header',m:[['.header-pill','NFPC · NFTC 원문 대조 · 시행일'],['.header-logo-wrap','ENGINEER KIM MANMIN'],['.header-logo-img','포털 앱 아이콘'],['.header-desc','포털 설명']]},
- {id:'s03_filter',clip:'.tab-wrap',m:[['nth:.tab-btn|0','전체 보기 9'],['nth:.tab-btn|1','단독 설비 4'],['nth:.tab-btn|2','겸용 설비 3'],['nth:.tab-btn|3','기타 설비 2'],['.tab-man','📘 매뉴얼 — 이 문서(새 창)']]},
+ {id:'s02_header',clip:'.header',m:[['.header-pill','원문 대조일 · NFTC · NFPC 시행일'],['.header-logo-wrap','ENGINEER KIM MANMIN'],['.header-logo-img','포털 앱 아이콘'],['.header-desc','포털 설명']]},
+ {id:'s03_filter',clip:'.tab-wrap',m:[['nth:.tab-btn|0','전체 보기 10'],['nth:.tab-btn|1','단독 설비 4'],['nth:.tab-btn|2','겸용 설비 3'],['nth:.tab-btn|3','기타 설비 3'],['.tab-man','📘 매뉴얼 — 이 문서(새 창)']]},
  {id:'s04_single',clip:'#group-single',m:[['card:옥내소화전','옥내소화전 — NFTC 102'],['card:옥외소화전','옥외소화전 — NFTC 109'],['card:Fire Sprinkler','스프링클러 — NFTC 103'],['card:간이스프링클러','간이스프링클러 — NFTC 103A'],['nth:#group-single .card-man|0','📘 매뉴얼(계산서별)']]},
  {id:'s05_combo',clip:'#group-combo',m:[['card:Indoor + Sprinkler','옥내 + 스프 — 102 · 103'],['card:Simple SP','간이 + 옥내 — 103A · 102'],['card:Indoor + Outdoor','옥내 + 옥외 — 102 · 109']]},
- {id:'s06_extra',clip:'#group-extra',m:[['card:Smoke','제연설비 — NFTC 501(외부 도구)'],['card:Generator','비상발전기(외부 도구)']]},
- {id:'s07_compare',clip:'nth:table|0',m:[['row:간이스프링클러','간이 — 2 · 5개 · 1.0 · 5.0 m³'],['row:옥내+옥외','겸용 — 항상 합산 + 옥상 옥내 ÷ 3']]},
- {id:'s08_law',clip:'.law-grid',m:[['nth:.law-card|0','NFTC 102 — 공고 제2026-34호'],['nth:.law-card|1','NFTC 109 — 공고 제2026-9호'],['nth:.law-card|2','NFTC 103 — 공고 제2026-35호'],['nth:.law-card|3','NFTC 103A — 공고 제2024-58호']]},
+ {id:'s06_extra',clip:'#group-extra',m:[['card:Smoke','09 제연설비 — NFTC 501(외부 도구)'],['card:Generator','10 비상발전기 — KDS / NFPC(외부 도구)'],['card:Fire Protection','11 소방시설 설치 검토 — 시행령 별표 4(외부 도구)']]},
+ {id:'s07_compare',clip:'nth:table|0',m:[['row:간이스프링클러','간이 — 2 · 5개 · 1.0 · 5.0 m³'],['row:옥내+스프링클러','옥내 + 스프 — 합산(단서 시 최대) + 옥상 유효수량 ÷ 3'],['row:옥내+옥외','옥내 + 옥외 — 항상 합산 + 옥상 옥내 ÷ 3']]},
+ {id:'s08_law',clip:'.law-grid',m:[['nth:.law-card|0','NFTC 102 — 공고 제2026-34호 · NFPC 2026. 3. 1.'],['nth:.law-card|1','NFTC 109 — 공고 제2026-9호'],['nth:.law-card|2','NFTC 103 — 공고 제2026-35호'],['nth:.law-card|3','NFTC 103A — 공고 제2024-58호']]},
  {id:'s09_formula',clip:'.formula-box',m:[['nth:.formula-item|0','H-W — Q(m³/s)'],['nth:.formula-item|1','전양정 — F₀ · × 1.1'],['nth:.formula-item|2','전동기 — K · η 입력']]},
  {id:'s10_combo_tab',pre:"__tab('combo');window.scrollTo(0,0)",wait:700,clip:'viewport',post:"__tab('all')",m:[['nth:.tab-btn|2','겸용 설비만 보기'],['#group-combo','겸용 카드 3장']]},
  {id:'s11_fml_howto',pre:"__fml('howto')",wait:600,fixed:true,clip:'.fml-box',m:[]},
