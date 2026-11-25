@@ -1,4 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
+   v5.2.17 (2026-11-26) — 하단 단추 통일 — 공통 원본 MM-FAB v1.0 주입(오른쪽 아래 안내 · 초기화 · 앱 설치 · 건물개요 단추를 한 기둥으로 — 단추 72×76 · 건물개요 72×28 · 간격 8px · z-index 1200 · 숨은 단추는 자리 없음 · 설치 뒤 · 앱 실행 중 설치 단추 숨김 · 설치 띠가 뜨면 기둥을 그 위로 · 휴대폰 가로 60×60) — 계산 불변 · 인쇄는 설치 · 업데이트 띠만 숨김 · MIN 「권장안대로 승인」 · 캐시명 v5.2.17 (종전 v5.2.16)
    v5.2.16 (2026-11-25) — 헤더 고정 — 공통 원본 MM-HEADER v1.1 주입(태블릿 · 데스크톱만 — 폭 768px · 높이 600px 이상, 휴대폰은 고정 없음 · 머리+탭 sticky · 내리면 제목 한 줄+탭으로 접힘 · 다른 sticky 패널 top 보정) — 계산 · 인쇄 불변 · MIN 「추천안대로 승인」 · 「추천안대로 진행해줘」(모바일 제외) · 캐시명 v5.2.16 (종전 v5.2.15)
    v5.2.15 2026-11-25 — 겸용 옥상수조 문구(옥내 + 스프 유효수량 ÷ 3) · NFPC 2026.3.1 / NFTC 시행일 분리 · 대조일 2026-11-25 · 겸용 단서 관할 협의 · 시행령 별표 4 행 · 설명문 · manifest · 작은 요소(소방 포털 교차검증 반영, §25-6-113) · 캐시명 v5.2.15
    v5.2.14 2026-11-24 — 기타 설비에 11 소방시설 설치 검토 카드 추가(외부 도구 · 매뉴얼 단추, 도구 9 → 10종 · 기타 2 → 3, §25-6-101) · 캐시명 v5.2.14
@@ -28,8 +29,8 @@ const mmMatch = (req, opt) => caches.keys()
   .then((ks) => ks.reduce((p, k) => p.then((r) => r || caches.open(k).then((c) => c.match(req, opt))), Promise.resolve(undefined)))
   .then((r) => (r && r.type === 'opaque' && req && req.mode === 'cors') ? undefined : r);
 
-const CACHE_NAME   = 'manmin-total-portal-v5.2.16';
-const STATIC_CACHE = 'manmin-total-portal-static-v5.2.16';
+const CACHE_NAME   = 'manmin-total-portal-v5.2.17';
+const STATIC_CACHE = 'manmin-total-portal-static-v5.2.17';
 
 const PRECACHE_URLS = [
   './',
