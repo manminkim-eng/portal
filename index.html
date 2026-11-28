@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>ENGINEER KIM MANMIN · 소방 펌프 계산서 통합 포털</title>
-<!-- 링크 미리보기(네이버 · 카카오 · SNS) — 2026-10-30 전수 정비 -->
+
 <link rel="canonical" href="https://manminkim-eng.github.io/portal/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MANMIN ENGINEERING">
@@ -35,11 +35,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="./assets/fonts/manmin-fonts.css"/><!-- 로컬 폴백 폰트 -->
+<link rel="stylesheet" href="./assets/fonts/manmin-fonts.css"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  /* MANMIN 4개 통합포털 공통 글자 크기 (2026-10-30 절충안 · 소방 규격 기반) */
+  
   --fs-badge:10.5px;--fs-cap:11.5px;--fs-sm:12.5px;--fs-desc:13px;--fs-body:14px;
   --fs-sec:16px;--fs-card:17px;--fs-stat:20px;--fs-title:clamp(16px,2.4vw,22px);--fs-brand:clamp(22px,4vw,42px);
   --font:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR','Noto Sans KR Local',sans-serif;
@@ -70,7 +70,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 
 .wrapper{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:0 24px 100px;}
 
-/* ── HEADER ── */
 .header{padding:52px 0 0;text-align:center;animation:fadeDown .7s cubic-bezier(.22,.68,0,1.2) both;}
 .header-logo-wrap{
   display:flex;align-items:center;justify-content:center;gap:20px;
@@ -106,13 +105,11 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .header-desc{font-size:var(--fs-body);color:var(--text3);line-height:1.85;max-width:560px;margin:0 auto 36px;}
 .header-line{height:1px;margin-bottom:40px;background:linear-gradient(90deg,transparent,var(--border2),transparent);}
 
-/* ── STATS ── */
 .stats-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:44px;animation:fadeUp .5s ease both;animation-delay:.1s;}
 .stat-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 8px;text-align:center;}
 .stat-num{font-family:'Orbitron',sans-serif;font-size:var(--fs-stat);font-weight:900;color:var(--green3);line-height:1;margin-bottom:6px;}
 .stat-lbl{font-size:var(--fs-cap);color:var(--text2);font-weight:600;letter-spacing:.04em;line-height:1.4;}
 
-/* ── TAB ── */
 .tab-wrap{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:32px;animation:fadeUp .5s ease both;animation-delay:.15s;flex-wrap:wrap;}
 .tab-btn{padding:9px 22px;border-radius:100px;border:1px solid var(--border2);background:transparent;color:var(--text2);font-family:var(--font);font-size:var(--fs-body);font-weight:600;cursor:pointer;letter-spacing:.02em;transition:all .2s ease;}
 .tab-btn:hover{color:var(--text);border-color:var(--border3);}
@@ -120,17 +117,14 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .tab-count{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:100px;background:rgba(255,255,255,.18);font-size:var(--fs-cap);font-weight:800;margin-left:5px;}
 .tab-btn.active .tab-count{background:rgba(255,255,255,.25);}
 
-/* ── SECTION HEAD ── */
 .sec-head{display:flex;align-items:center;gap:12px;margin-bottom:18px;animation:fadeUp .5s ease both;}
 .sec-tag{font-family:'Orbitron',sans-serif;font-size:var(--fs-badge);font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;border-radius:5px;flex-shrink:0;}
 .sec-label{font-size:var(--fs-sec);font-weight:800;color:var(--text);letter-spacing:.01em;}
 .sec-line{flex:1;height:1px;background:var(--border);}
 
-/* ── GRIDS ── */
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:44px;}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:44px;}
 
-/* ── CARD ── */
 .calc-card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;text-decoration:none;display:block;cursor:pointer;transition:transform .25s cubic-bezier(.22,.68,0,1.15),border-color .25s,box-shadow .25s;animation:fadeUp .5s ease both;}
 .calc-card:hover{transform:translateY(-6px);border-color:var(--border2);box-shadow:var(--shadow-hover);}
 .card-accent{height:3px;width:100%;}
@@ -157,7 +151,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .card-go{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;transition:transform .2s;}
 .calc-card:hover .card-go{transform:translateX(4px);}
 
-/* colour themes */
 .t-green .card-accent{background:linear-gradient(90deg,#15803d,#4ade80);}.t-green .card-glow{background:#15803d;}.t-green .card-ico{background:var(--c-green-b);}.t-green .card-badge{background:var(--c-green-b);color:var(--c-green);}.t-green .card-go{background:var(--c-green-b);color:var(--c-green);}.t-green .spec-fill{background:linear-gradient(90deg,#15803d,#4ade80);}.t-green .spec-val{color:var(--c-green);}
 .t-teal .card-accent{background:linear-gradient(90deg,#0d9488,#2dd4bf);}.t-teal .card-glow{background:#0d9488;}.t-teal .card-ico{background:var(--c-teal-b);}.t-teal .card-badge{background:var(--c-teal-b);color:var(--c-teal);}.t-teal .card-go{background:var(--c-teal-b);color:var(--c-teal);}.t-teal .spec-fill{background:linear-gradient(90deg,#0d9488,#2dd4bf);}.t-teal .spec-val{color:var(--c-teal);}
 .t-blue .card-accent{background:linear-gradient(90deg,#1d4ed8,#60a5fa);}.t-blue .card-glow{background:#2563eb;}.t-blue .card-ico{background:var(--c-blue-b);}.t-blue .card-badge{background:var(--c-blue-b);color:var(--c-blue);}.t-blue .card-go{background:var(--c-blue-b);color:var(--c-blue);}.t-blue .spec-fill{background:linear-gradient(90deg,#1d4ed8,#60a5fa);}.t-blue .spec-val{color:var(--c-blue);}
@@ -168,7 +161,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 
 .calc-card:nth-child(1){animation-delay:.07s;}.calc-card:nth-child(2){animation-delay:.12s;}.calc-card:nth-child(3){animation-delay:.17s;}.calc-card:nth-child(4){animation-delay:.22s;}.calc-card:nth-child(5){animation-delay:.27s;}.calc-card:nth-child(6){animation-delay:.32s;}.calc-card:nth-child(7){animation-delay:.37s;}
 
-/* ── COMPARE TABLE ── */
 .compare-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:44px;overflow-x:auto;animation:fadeUp .5s ease both;animation-delay:.28s;}
 .compare-table{width:100%;border-collapse:collapse;font-size:var(--fs-sm);min-width:700px;}
 .compare-table thead tr{background:var(--surface2);}
@@ -179,13 +171,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .td-link{text-decoration:none;color:var(--text);display:flex;align-items:center;gap:8px;}
 .td-chip{font-size:var(--fs-badge);font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 7px;border-radius:5px;flex-shrink:0;font-family:var(--mono);}
 .td-name{font-size:var(--fs-body);font-weight:700;}
-/* 2026-11-27 휴대폰(640px 이하) — NFTC 비교표를 설비별 카드로(글자 그대로, 표시만 · 641px 이상 표 그대로) */
+
 @media(max-width:640px){.compare-wrap{overflow:visible;background:transparent;border:0;}.compare-table{min-width:0;display:block;}.compare-table thead{display:none;}.compare-table tbody{display:grid;gap:10px;}.compare-table tbody tr{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;}.compare-table tbody tr:hover td{background:transparent;}.compare-table td{display:block;padding:0;border:0!important;}.compare-table td:first-child{grid-column:1/-1;padding-bottom:8px;border-bottom:1px solid var(--border)!important;}.compare-table td:not(:first-child)::before{content:attr(data-l);display:block;font-size:var(--fs-cap);color:var(--text2);margin-bottom:1px;}.compare-table .td-link{min-height:44px;}.td-name{word-break:keep-all;}}
 .td-mono{font-family:var(--mono);font-size:var(--fs-sm);color:var(--text2);}
 .hi-g{color:#4ade80;font-weight:700;font-family:var(--mono);font-size:var(--fs-sm);}
 .hi-a{color:#fbbf24;font-weight:700;font-family:var(--mono);font-size:var(--fs-sm);}
 
-/* ── LAW SECTION ── */
 .law-section{margin-bottom:44px;animation:fadeUp .5s ease both;animation-delay:.33s;}
 .law-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:14px;}
 .law-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px 20px;position:relative;overflow:hidden;transition:border-color .2s;}
@@ -207,12 +198,10 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .formula-eq{font-family:var(--mono);font-size:var(--fs-sm);color:var(--green4);font-weight:700;line-height:1.6;}
 .formula-sub{font-size:var(--fs-cap);color:var(--text3);margin-top:5px;line-height:1.5;}
 
-/* ── FOOTER ── */
 footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);animation:fadeUp .5s ease both;animation-delay:.42s;}
 .footer-brand{font-family:'Orbitron',sans-serif;font-size:var(--fs-body);font-weight:900;letter-spacing:.12em;color:var(--green);margin-bottom:7px;}
 .footer-copy{font-size:var(--fs-sm);color:var(--text3);}
 
-/* ── PWA ── */
 .pwa-outer{position:fixed;bottom:16px;left:16px;right:16px;max-width:460px;margin:0 auto;z-index:9999;display:none;animation:slideUp .4s ease both;}
 .pwa-inner{background:linear-gradient(135deg,#14532d,#0c2010);border:1px solid rgba(74,222,128,.3);border-radius:var(--radius);padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 10px 40px rgba(0,0,0,.7);}
 .pwa-ico{width:42px;height:42px;border-radius:10px;background:rgba(21,128,61,.25);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
@@ -221,13 +210,11 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 .pwa-no{font-size:var(--fs-sm);font-weight:700;color:rgba(255,255,255,.45);background:none;border:none;cursor:pointer;padding:8px 10px;border-radius:8px;font-family:var(--font);}
 .pwa-yes{font-size:var(--fs-sm);font-weight:900;color:#14532d;background:#fff;border:none;cursor:pointer;padding:8px 14px;border-radius:8px;font-family:var(--font);box-shadow:0 2px 8px rgba(0,0,0,.25);}
 
-/* ── ANIMATIONS ── */
 @keyframes fadeDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 @keyframes slideUp{from{transform:translateY(120%);opacity:0;}to{transform:translateY(0);opacity:1;}}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
 
-/* ── RESPONSIVE ── */
 @media(max-width:1000px){.grid-4{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:700px){
   .wrapper{padding:0 14px 80px;}.header{padding:32px 0 0;}
@@ -243,7 +230,6 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 .card-group.hidden{display:none;}
 @media print{.pwa-outer,.tab-wrap,.pwa-install-fab{display:none!important;}body{background:#fff!important;color:#000!important;}}
 
-/* ── PWA 설치 FAB ── */
 .pwa-install-fab{
   position:fixed;bottom:18px;right:18px;z-index:9998;
   background:linear-gradient(135deg,#b45309 0%,#78350f 100%);
@@ -256,7 +242,6 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   animation:fabPop 0.55s cubic-bezier(0.34,1.56,0.64,1) forwards;
 }
 
-/* ── 계산식 안내 FAB ── */
 .fml-fab{
   position:fixed;bottom:102px;right:18px;z-index:9998;
   background:linear-gradient(140deg,#15803d 0%,#22c55e 60%,#4ade80 100%);
@@ -272,12 +257,11 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 .fml-fab-icon{font-size:20px;line-height:1;}
 .fml-fab-label{font-size:var(--fs-cap);font-weight:800;letter-spacing:0.04em;}
 .fml-fab-sub{font-size:var(--fs-badge);opacity:0.75;}
-/* v5.2.9 — 휴대전화는 떠 있는 단추가 통계 카드를 가려 머리 영역 안 단추로 대체 */
+
 .fml-inline{display:none;align-items:center;gap:6px;margin:0 auto 28px;padding:10px 18px;min-height:44px;border-radius:999px;border:1px solid rgba(74,222,128,.45);background:rgba(21,128,61,.18);color:#86efac;font-family:var(--font);font-size:var(--fs-sm);font-weight:800;cursor:pointer;}
 .fml-inline:hover,.fml-inline:focus{background:rgba(21,128,61,.32);outline:none;}
 @media(max-width:768px){.fml-fab{display:none!important;}.fml-inline{display:inline-flex;}}
 
-/* ── 계산식 안내 모달 ── */
 .fml-overlay{
   position:fixed;inset:0;z-index:99999;
   background:rgba(0,0,0,0.72);backdrop-filter:blur(6px);
@@ -297,14 +281,13 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 }
 @keyframes fmlUp{from{transform:translateY(28px);opacity:0;}to{transform:translateY(0);opacity:1;}}
 
-/* 모달 헤더 — 헤더 타이틀 그린 그라데이션 기준 */
 .fml-hd{
   background:linear-gradient(140deg,#052e16 0%,#14532d 40%,#15803d 100%);
   color:white;padding:18px 22px 0;flex-shrink:0;
   border-bottom:1px solid rgba(34,197,94,.25);
 }
 .fml-hd-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;}
-/* v5.2.15 2026-11-25 — 닫기 단추 보이는 크기 34px 유지, 누르는 영역 44px(건축 · 소방 교차검증 권고, §25-6-113) */
+
 .fml-close-btn::after{content:"";position:absolute;inset:-5px;border-radius:50%;}
 .fml-close-btn{
   background:rgba(255,255,255,0.1);border:none;color:white;
@@ -315,7 +298,6 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 }
 .fml-close-btn:hover{background:rgba(255,255,255,0.22);}
 
-/* 탭바 */
 .fml-tabs{
   display:flex;overflow-x:auto;gap:0;
   scrollbar-width:none;-webkit-overflow-scrolling:touch;
@@ -330,7 +312,6 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 .fml-tab.on{color:#4ade80;border-bottom-color:#22c55e;}
 .fml-tab:hover:not(.on){color:rgba(255,255,255,.85);}
 
-/* 바디 */
 .fml-bd{
   overflow-y:auto;padding:20px 22px 28px;flex:1;
   background:#0c160c;
@@ -340,7 +321,6 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 .fml-bd::-webkit-scrollbar-thumb{background:rgba(34,197,94,.3);border-radius:3px;}
 .fml-bd::-webkit-scrollbar-track{background:transparent;}
 
-/* 섹션 */
 .fml-sec{margin-bottom:20px;}
 .fml-sec-ttl{
   font-size:var(--fs-sm);font-weight:800;letter-spacing:.07em;text-transform:uppercase;
@@ -386,10 +366,9 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   50%{transform:scale(1.2);box-shadow:0 0 0 6px rgba(34,197,94,0);}
 }
 .fml-panel.hidden{display:none;}
-/* v5.2.0 — 카드별 사용자 매뉴얼 링크(카드 링크 안 중첩 a 금지 → span + 스크립트) */
+
 .card-man{font-size:var(--fs-cap);font-weight:800;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.08);color:#e2e8f0;border:1px solid rgba(255,255,255,.18);margin-left:auto;margin-right:8px;cursor:pointer;white-space:nowrap}.card-man:hover,.card-man:focus{background:rgba(255,255,255,.18);outline:none}
-/* v5.2.11 2026-11-01 — 카드 「웹 열기(→) · 📘 매뉴얼」 단추 통일(§25-6-29): 두 단추 같은 높이 32px · 모서리 8px · 카드 색 바탕 · 테두리,
-   단추 줄을 카드 맨 아래로 맞춰 같은 줄 카드끼리 단추 높이 일치, 기타 설비(제연 · 비상발전기)에도 매뉴얼 단추 */
+
 .t-green{--acc:var(--c-green);--acc-b:var(--c-green-b)}.t-teal{--acc:var(--c-teal);--acc-b:var(--c-teal-b)}.t-blue{--acc:var(--c-blue);--acc-b:var(--c-blue-b)}.t-amber{--acc:var(--c-amber);--acc-b:var(--c-amber-b)}.t-purple{--acc:var(--c-purple);--acc-b:var(--c-purple-b)}.t-rose{--acc:var(--c-rose);--acc-b:var(--c-rose-b)}.t-cyan{--acc:var(--c-cyan);--acc-b:var(--c-cyan-b)}
 .calc-card{display:flex;flex-direction:column}.calc-card>.card-body{flex:1;display:flex;flex-direction:column}
 .card-foot{margin-top:auto;gap:8px}.card-law{flex:1;min-width:0}
@@ -405,7 +384,6 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 <div class="bg-layer bg-vignette"></div>
 <div class="wrapper">
 
-<!-- HEADER -->
 <header class="header">
   <div class="header-pill"><span class="pulse-dot"></span>근거 조문 대조 2026-11-25 · NFTC 102 · 103 2026.7.1 시행 · NFPC 2026.3.1 시행</div>
   <div class="header-logo-wrap">
@@ -421,7 +399,6 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   <div class="header-line"></div>
 </header>
 
-<!-- STATS -->
 <div class="stats-bar">
   <div class="stat-box"><div class="stat-num">10</div><div class="stat-lbl">도구 종류(펌프 7 · 기타 3)</div></div>
   <div class="stat-box"><div class="stat-num">NFTC</div><div class="stat-lbl">최신 기술기준</div></div>
@@ -430,7 +407,6 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   <div class="stat-box"><div class="stat-num">A4</div><div class="stat-lbl">인쇄 최적화</div></div>
 </div>
 
-<!-- TAB FILTER -->
 <div class="tab-wrap" role="tablist">
   <button class="tab-btn active" data-tab="all" role="tab" aria-selected="true">전체 보기 <span class="tab-count">10</span></button>
   <button class="tab-btn" data-tab="single" role="tab" aria-selected="false">단독 설비 <span class="tab-count">4</span></button>
@@ -439,7 +415,6 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   <button class="tab-btn tab-man" type="button" data-href="https://manminkim-eng.github.io/portal/manual/" aria-label="포털 사용자 매뉴얼 (새 창)">📘 매뉴얼</button>
 </div>
 
-<!-- 단독 설비 -->
 <div class="card-group" id="group-single">
   <div class="sec-head" style="animation-delay:.18s;">
     <span class="sec-tag" style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);color:var(--green3);">단독 설비</span>
@@ -518,7 +493,6 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   </div>
 </div>
 
-<!-- 겸용 설비 -->
 <div class="card-group" id="group-combo">
   <div class="sec-head" style="animation-delay:.22s;">
     <span class="sec-tag" style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);color:var(--c-purple);">겸용 설비</span>
@@ -580,7 +554,6 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   </div>
 </div>
 
-<!-- 기타 설비 (제연 + 비상발전기 + 소방시설 설치검토) -->
 <div class="card-group" id="group-extra">
   <div class="sec-head" style="animation-delay:.26s;">
     <span class="sec-tag" style="background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2);color:var(--c-cyan);">기타 설비</span>
@@ -662,7 +635,6 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   </table>
 </div>
 
-<!-- LAW SECTION -->
 <div class="sec-head" style="animation-delay:.3s;">
   <span class="sec-tag" style="background:rgba(96,165,250,.07);border:1px solid rgba(96,165,250,.2);color:var(--c-blue);">법령 기준</span>
   <span class="sec-label">NFTC 화재안전기술기준 시행일 안내</span>
@@ -685,14 +657,12 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-brand">ENGINEER KIM MANMIN · MANMIN-Ver-5.2</div>
-  <p class="footer-copy">소방시설 설계 전용 계산서 &nbsp;·&nbsp; © 2025 – 2026 Engineer Kim Manmin &nbsp;·&nbsp; All rights reserved</p>
+  <p class="footer-copy">소방시설 설계 전용 계산서 &nbsp;·&nbsp; © 2025 – 2026 Engineer Kim Manmin &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; 무단 복제 · 재배포 금지</p>
 </footer>
 </div>
 
-<!-- PWA BANNER -->
 <div class="pwa-outer" id="pwa-wrap">
   <div class="pwa-inner">
     <div class="pwa-ico">🔥</div>
@@ -701,14 +671,12 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   </div>
 </div>
 
-<!-- 계산식 안내 FAB -->
 <button class="fml-fab no-print" id="fml-fab-btn" aria-label="계산식 안내 열기">
   <span class="fml-fab-icon">📐</span>
   <span class="fml-fab-label">계산식</span>
   <span class="fml-fab-sub">안내</span>
 </button>
 
-<!-- 계산식 안내 모달 -->
 <div class="fml-overlay hidden no-print" id="fml-overlay" onclick="if(event.target===this)closeFml()">
   <div class="fml-box">
     <div class="fml-hd">
@@ -730,7 +698,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
     </div>
     <div class="fml-bd">
 
-      <!-- 이용방법 -->
+      
       <div class="fml-panel" id="tab-howto">
         <div style="background:linear-gradient(140deg,#052e16,#14532d,#15803d);border-radius:13px;padding:16px 18px;margin-bottom:16px;">
           <div style="font-size:var(--fs-body);font-weight:900;color:#86efac;margin-bottom:5px;display:flex;align-items:center;gap:8px;"><span style="font-size:20px;">🚒</span> 소방 펌프 계산서 통합 포털 이용방법</div>
@@ -777,7 +745,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
         </div>
       </div>
 
-      <!-- 옥내소화전 -->
+      
       <div class="fml-panel hidden" id="tab-hydrant">
         <div class="fml-sec"><div class="fml-sec-ttl">💧 수원 (NFPC 102 제4조① · NFTC 102 2.1.1)</div><div class="fml-card"><code class="fml-eq">수원(m³) = N × 2.6 m³ (= N × 130 ℓ/min × 20분)</code><div class="fml-note">N = 설치개수 최다 층 2개 한도(고층 5개 × 5.2 · 7.8 m³ — NFTC 604 2.1.1) | 옥상수조 1/3(제4조②) | 노즐 0.17 MPa 이상 · 0.7 MPa 초과 시 감압(제5조①3호)</div></div></div>
         <div class="fml-sec"><div class="fml-sec-ttl">📏 전양정 (펌프 방식 — MANMIN 적용식)</div>
@@ -789,7 +757,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
         <div class="fml-sec"><div class="fml-sec-ttl">⚡ 전동기 동력</div><div class="fml-card"><code class="fml-eq">P = 0.163 × Q(m³/min) × H(m) × K ÷ η [kW]</code><div class="fml-note">K: 직결 1.1/이외 1.15 | η: 직접 입력(참고 40A 40 % ~ 150A 70 %) — MANMIN 참고값 | HP = P×1.341 → 상위 규격</div></div></div>
       </div>
 
-      <!-- 옥외소화전 -->
+      
       <div class="fml-panel hidden" id="tab-outdoor">
         <div class="fml-sec"><div class="fml-sec-ttl">💧 수원 (NFPC 109 제4조①)</div><div class="fml-card"><code class="fml-eq">수원(m³) = N × 7 m³  (최대 N=2개)</code><div class="fml-note">1개 → 7 m³ | 2개 → 14 m³ | 방수량 ≥ 350 ℓ/min · 방수압 ≥ 0.25 MPa · 0.7 MPa 초과 시 감압(제5조①3호)</div></div></div>
         <div class="fml-sec"><div class="fml-sec-ttl">📏 전양정 (펌프 방식 — MANMIN 적용식 · 고가수조 식 NFTC 109 2.2.2.1 참고)</div>
@@ -798,7 +766,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
         </div>
       </div>
 
-      <!-- 스프링클러 -->
+      
       <div class="fml-panel hidden" id="tab-sprinkler">
         <div class="fml-sec"><div class="fml-sec-ttl">💧 수원 (NFTC 103 2.1.1.1)</div><div class="fml-card"><code class="fml-eq">수원(m³) = 기준개수 × 1.6 m³  (고층 3.2 · 50층↑ 4.8 m³ — NFTC 604 2.2.1)</code><div class="fml-note">기준개수 = 표 2.1.1.1 설치장소별 10 · 20 · 30개(설치개수가 적으면 그 개수) — 설치장소별 값은 스프링클러 계산서 · 원문 표 확인 | 헤드 80 ℓ/min · 0.1 MPa</div></div></div>
         <div class="fml-sec"><div class="fml-sec-ttl">📏 전양정 (펌프 방식 — MANMIN 적용식)</div>
@@ -807,7 +775,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
         </div>
       </div>
 
-      <!-- 간이스프링클러 -->
+      
       <div class="fml-panel hidden" id="tab-easy">
         <div class="fml-sec"><div class="fml-sec-ttl">💧 수원 (NFPC 103A 제4조①2호 · NFTC 103A 2.1.1.2)</div>
           <div class="fml-card"><code class="fml-eq">일반형   : 2개 × 50 ℓ/min × 10분 = 1.0 m³</code><code class="fml-eq">5개 대상(영 별표 4 제1호마목2)가) 또는 6)과 8)) : 5개 × 50 ℓ/min × 20분 = 5.0 m³</code><code class="fml-eq">주차장(일반): 2개 × 80 ℓ/min × 10분 = 1.6 m³</code><code class="fml-eq">주차장(5개 대상): 5개 × 80 ℓ/min × 20분 = 8.0 m³</code><div class="fml-note">주차장 표준반응형 80 ℓ/min(2.2.1 단서)을 수원에 적용 = MANMIN 해석</div></div>
@@ -818,7 +786,7 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
         </div>
       </div>
 
-      <!-- 겸용 펌프 -->
+      
       <div class="fml-panel hidden" id="tab-combo">
         <div class="fml-sec"><div class="fml-sec-ttl">⚡ 겸용 펌프 원칙</div>
           <div class="fml-g2">
@@ -835,7 +803,6 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   </div>
 </div>
 
-<!-- PWA 설치 FAB -->
 <button class="pwa-install-fab" id="pwa-fab" style="display:none;" aria-label="앱 설치 바로가기">
   <div class="pwa-install-fab-badge">NEW</div>
   <span class="fab-icon">📲</span>
@@ -843,141 +810,13 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
   <span class="fab-sub">바로가기</span>
 </button>
 
-<script>
-(function(){
-  'use strict';
-  /* ── 탭 전환 ── */
-  var tabs=document.querySelectorAll('.tab-btn[data-tab]');
-  var gS=document.getElementById('group-single');
-  var gC=document.getElementById('group-combo');
-  var gE=document.getElementById('group-extra');
-  function setTab(t){
-    tabs.forEach(function(b){b.classList.toggle('active',b.dataset.tab===t);b.setAttribute('aria-selected',b.dataset.tab===t);});
-    if(t==='all'){gS.classList.remove('hidden');gC.classList.remove('hidden');gE.classList.remove('hidden');}
-    else if(t==='single'){gS.classList.remove('hidden');gC.classList.add('hidden');gE.classList.add('hidden');}
-    else if(t==='combo'){gS.classList.add('hidden');gC.classList.remove('hidden');gE.classList.add('hidden');}
-    else{gS.classList.add('hidden');gC.classList.add('hidden');gE.classList.remove('hidden');}
-  }
-  tabs.forEach(function(b){b.addEventListener('click',function(){setTab(b.dataset.tab);});});
+<script>!function(){"use strict";var e=document.querySelectorAll(".tab-btn[data-tab]"),t=document.getElementById("group-single"),n=document.getElementById("group-combo"),o=document.getElementById("group-extra");e.forEach(function(d){d.addEventListener("click",function(){var a;a=d.dataset.tab,e.forEach(function(e){e.classList.toggle("active",e.dataset.tab===a),e.setAttribute("aria-selected",e.dataset.tab===a)}),"all"===a?(t.classList.remove("hidden"),n.classList.remove("hidden"),o.classList.remove("hidden")):"single"===a?(t.classList.remove("hidden"),n.classList.add("hidden"),o.classList.add("hidden")):"combo"===a?(t.classList.add("hidden"),n.classList.remove("hidden"),o.classList.add("hidden")):(t.classList.add("hidden"),n.classList.add("hidden"),o.classList.remove("hidden"))})});var d=null,a=document.getElementById("pwa-wrap"),i=document.getElementById("pwa-fab");function s(){d&&(d.prompt(),d.userChoice.then(function(e){"accepted"===e.outcome&&console.log("[PWA] 설치 완료"),d=null,a.style.display="none",i.style.display="none"}))}window.addEventListener("beforeinstallprompt",function(e){e.preventDefault(),d=e,window.matchMedia("(display-mode:standalone)").matches||(a.style.display="block"),i.style.display="flex"}),document.getElementById("pwa-no").addEventListener("click",function(){a.style.display="none"}),document.getElementById("pwa-yes").addEventListener("click",s),i.addEventListener("click",s),document.querySelectorAll(".card-man,.tab-man").forEach(function(e){function t(t){if(t.preventDefault(),t.stopPropagation(),!1===navigator.onLine)return(n=document.createElement("div")).textContent="매뉴얼은 인터넷 연결 시 열립니다",n.style.cssText="position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f172a;color:#fff;padding:10px 16px;border-radius:10px;font-size:var(--fs-body);z-index:99999",document.body.appendChild(n),void setTimeout(function(){n.remove()},2200);var n;window.open(e.dataset.href,"_blank","noopener")}e.addEventListener("click",t),e.addEventListener("keydown",function(e){"Enter"!==e.key&&" "!==e.key||t(e)})});var r=document.getElementById("fml-overlay");function c(){r.classList.remove("hidden"),document.body.style.overflow="hidden"}function l(){r.classList.add("hidden"),document.body.style.overflow=""}document.getElementById("fml-fab-btn").addEventListener("click",c),document.getElementById("fml-inline-btn").addEventListener("click",c),window.closeFml=l,window.switchFml=function(e){document.querySelectorAll(".fml-tab").forEach(function(e){e.classList.remove("on")}),document.querySelectorAll(".fml-panel").forEach(function(e){e.classList.add("hidden")}),e.classList.add("on"),document.getElementById("tab-"+e.dataset.tab).classList.remove("hidden"),document.querySelector(".fml-bd").scrollTop=0},document.addEventListener("keydown",function(e){"Escape"===e.key&&l()}),"serviceWorker"in navigator&&window.addEventListener("load",function(){navigator.serviceWorker.register("./sw.js",{updateViaCache:"none"}).then(function(e){console.log("[PWA] SW 등록 — scope:",e.scope),e.addEventListener("updatefound",function(){var t=e.installing;t.addEventListener("statechange",function(){"installed"===t.state&&navigator.serviceWorker.controller&&function(){if(document.getElementById("sw-update-banner"))return;var e=document.createElement("div");e.id="sw-update-banner",e.style.cssText=["position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:99999","background:#14532d;color:white;border-radius:14px;padding:12px 18px","display:flex;align-items:center;gap:12px;box-shadow:0 8px 32px rgba(0,0,0,.5)",'font-family:var(--font,"sans-serif");font-size:var(--fs-body);white-space:nowrap',"animation:slideUp .35s ease-out","border:1px solid rgba(74,222,128,.3)"].join(";"),e.innerHTML='<span>🔄 새 버전이 있습니다</span><button onclick="(function(){document.getElementById(\'sw-update-banner\').remove();navigator.serviceWorker.ready.then(function(r){r.waiting&&r.waiting.postMessage({type:\'SKIP_WAITING\'});});})()" style="background:#22c55e;color:#052e16;border:none;border-radius:8px;padding:6px 14px;font-size:var(--fs-sm);font-weight:700;cursor:pointer;">업데이트</button><button onclick="document.getElementById(\'sw-update-banner\').remove()" style="background:rgba(255,255,255,.12);color:white;border:none;border-radius:8px;padding:6px 10px;font-size:var(--fs-sm);cursor:pointer;">나중에</button>',document.body.appendChild(e)}()})}),setInterval(function(){e.update()},36e5)}).catch(function(e){console.warn("[PWA] SW 등록 실패:",e)});var e=!1;navigator.serviceWorker.addEventListener("controllerchange",function(){e||(e=!0,location.reload())})})}();</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "e7878b8cc50d40039bb212406a3f1757"}'></script>
 
-  /* ── PWA 설치 배너 & FAB ── */
-  var dp=null;
-  var banner=document.getElementById('pwa-wrap');
-  var fab=document.getElementById('pwa-fab');
-
-  window.addEventListener('beforeinstallprompt',function(e){
-    e.preventDefault();
-    dp=e;
-    /* 배너 표시 (standalone 아닐 때만) */
-    if(!window.matchMedia('(display-mode:standalone)').matches){
-      banner.style.display='block';
-    }
-    /* FAB 버튼 표시 */
-    fab.style.display='flex';
-  });
-
-  document.getElementById('pwa-no').addEventListener('click',function(){
-    banner.style.display='none';
-    /* 배너 닫아도 FAB는 유지 */
-  });
-
-  function doInstall(){
-    if(!dp)return;
-    dp.prompt();
-    dp.userChoice.then(function(r){
-      if(r.outcome==='accepted') console.log('[PWA] 설치 완료');
-      dp=null;
-      banner.style.display='none';
-      fab.style.display='none';
-    });
-  }
-
-  document.getElementById('pwa-yes').addEventListener('click', doInstall);
-  fab.addEventListener('click', doInstall);
-
-  /* ── v5.2.0 카드 매뉴얼 링크 ── */
-  document.querySelectorAll('.card-man,.tab-man').forEach(function(m){
-    function go(e){e.preventDefault();e.stopPropagation();if(navigator.onLine===false){alertBox();return;}window.open(m.dataset.href,'_blank','noopener');}
-    m.addEventListener('click',go);m.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')go(e);});
-  });
-  function alertBox(){var t=document.createElement('div');t.textContent='매뉴얼은 인터넷 연결 시 열립니다';t.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f172a;color:#fff;padding:10px 16px;border-radius:10px;font-size:var(--fs-body);z-index:99999';document.body.appendChild(t);setTimeout(function(){t.remove();},2200);}
-
-  /* ── 계산식 안내 모달 ── */
-  var fmlOverlay=document.getElementById('fml-overlay');
-  function openFml(){fmlOverlay.classList.remove('hidden');document.body.style.overflow='hidden';}
-  document.getElementById('fml-fab-btn').addEventListener('click',openFml);
-  document.getElementById('fml-inline-btn').addEventListener('click',openFml);
-  function closeFml(){fmlOverlay.classList.add('hidden');document.body.style.overflow='';}
-  window.closeFml=closeFml;
-  function switchFml(btn){
-    document.querySelectorAll('.fml-tab').forEach(function(b){b.classList.remove('on');});
-    document.querySelectorAll('.fml-panel').forEach(function(p){p.classList.add('hidden');});
-    btn.classList.add('on');
-    document.getElementById('tab-'+btn.dataset.tab).classList.remove('hidden');
-    document.querySelector('.fml-bd').scrollTop=0;
-  }
-  window.switchFml=switchFml;
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeFml();});
-
-  /* ── Service Worker Ver-5.2 (캐시명은 sw.js CACHE_NAME) ── */
-  if('serviceWorker' in navigator){
-    window.addEventListener('load', function(){
-      navigator.serviceWorker.register('./sw.js', {updateViaCache:'none'})
-        .then(function(reg){
-          console.log('[PWA] SW 등록 — scope:', reg.scope);
-
-          reg.addEventListener('updatefound', function(){
-            var nw = reg.installing;
-            nw.addEventListener('statechange', function(){
-              if(nw.state === 'installed' && navigator.serviceWorker.controller)
-                _showUpdateBanner();
-            });
-          });
-
-          setInterval(function(){ reg.update(); }, 60 * 60 * 1000);
-        })
-        .catch(function(e){ console.warn('[PWA] SW 등록 실패:', e); });
-
-      var _ref = false;
-      navigator.serviceWorker.addEventListener('controllerchange', function(){
-        if(!_ref){ _ref = true; location.reload(); }
-      });
-    });
-  }
-
-  function _showUpdateBanner(){
-    if(document.getElementById('sw-update-banner')) return;
-    var b = document.createElement('div');
-    b.id = 'sw-update-banner';
-    b.style.cssText = [
-      'position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:99999',
-      'background:#14532d;color:white;border-radius:14px;padding:12px 18px',
-      'display:flex;align-items:center;gap:12px;box-shadow:0 8px 32px rgba(0,0,0,.5)',
-      'font-family:var(--font,"sans-serif");font-size:var(--fs-body);white-space:nowrap',
-      'animation:slideUp .35s ease-out',
-      'border:1px solid rgba(74,222,128,.3)',
-    ].join(';');
-    b.innerHTML =
-      '<span>🔄 새 버전이 있습니다</span>' +
-      '<button onclick="(function(){' +
-        'document.getElementById(\'sw-update-banner\').remove();' +
-        'navigator.serviceWorker.ready.then(function(r){r.waiting&&r.waiting.postMessage({type:\'SKIP_WAITING\'});});' +
-      '})()" style="background:#22c55e;color:#052e16;border:none;border-radius:8px;' +
-        'padding:6px 14px;font-size:var(--fs-sm);font-weight:700;cursor:pointer;">업데이트</button>' +
-      '<button onclick="document.getElementById(\'sw-update-banner\').remove()" ' +
-        'style="background:rgba(255,255,255,.12);color:white;border:none;border-radius:8px;' +
-        'padding:6px 10px;font-size:var(--fs-sm);cursor:pointer;">나중에</button>';
-    document.body.appendChild(b);
-  }
-})();
-</script>
-<!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "e7878b8cc50d40039bb212406a3f1757"}'></script><!-- End Cloudflare Web Analytics -->
-<!-- 아이폰 · 아이패드 설치 안내(2026-10-30 전수 정비) — Safari에서 앱 미설치 상태일 때 세션 1회 · 인쇄 제외 -->
 <style>#mm-ios-tip{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:99999;display:none;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:#0B1B2E;color:#F4F1EA;border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 28px rgba(0,0,0,.35);font:600 13px/1.5 'Pretendard','Noto Sans KR',system-ui,sans-serif;max-width:560px;margin:0 auto}#mm-ios-tip b{color:#86efac}#mm-ios-tip button{flex:none;margin-left:auto;padding:7px 12px;border-radius:9px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#F4F1EA;font:inherit;cursor:pointer}@media print{#mm-ios-tip{display:none!important}}
-/* 모바일 최소 11px 하한 (2026-10-30 · 4개 포털 공통) */
+
 @media (max-width:640px){:root{--fs-badge:11px}}
 
-/* ══ 4개 통합포털 헤더·버튼 통일 (2026-10-30) — 구조·치수는 공통, 색상만 포털별 ══ */
 :root{--pa:#22c55e;--pa-lt:#86efac;--pa-deep:#15803d;--pa-rgb:34,197,94}
 .header-tagline b{color:var(--green4);font-weight:700}
 .tab-btn{min-height:44px;padding:0 22px;display:inline-flex;align-items:center;justify-content:center}
@@ -996,191 +835,12 @@ footer{text-align:center;padding:28px 0 16px;border-top:1px solid var(--border);
 }
 </style>
 <div id="mm-ios-tip" role="dialog" aria-label="홈 화면에 앱 설치 안내"><span style="font-size:20px">📲</span><span>홈 화면에 앱으로 설치 — Safari <b>공유</b> 단추 → <b>홈 화면에 추가</b></span><button type="button" aria-label="설치 안내 닫기">닫기</button></div>
-<script>(function(){try{var n=navigator,ios=/iphone|ipad|ipod/i.test(n.userAgent)||(n.platform==='MacIntel'&&n.maxTouchPoints>1),sa=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||n.standalone===true;if(!ios||sa)return;try{if(sessionStorage.getItem('mm-ios-tip'))return}catch(e){}var t=document.getElementById('mm-ios-tip');if(!t)return;t.querySelector('button').addEventListener('click',function(){t.style.display='none';try{sessionStorage.setItem('mm-ios-tip','1')}catch(e){}});setTimeout(function(){t.style.display='flex'},2500)}catch(e){}})();</script>
-<!-- MM-HEADER:BEGIN v1.1 -->
-<style id="mm-header-local">@media (min-width:768px) and (min-height:600px){.mm-hdr{background:var(--bg);padding:10px 0;box-shadow:0 8px 12px -10px rgba(0,0,0,.6)}@media(max-width:1024px){.mm-hdr{flex-wrap:nowrap!important;overflow-x:auto;justify-content:flex-start;scrollbar-width:none}.mm-hdr::-webkit-scrollbar{display:none}.mm-hdr>.tab-btn{flex-shrink:0}}}</style>
-<script id="mm-header-js" data-shell="div.tab-wrap">
-/* manmin-header.js v1.1 — MANMIN 공통 헤더 고정 원본 (2026-11-25, MIN 「추천안대로 진행해줘」 — 데스크톱 · 태블릿만 고정, 휴대폰은 고정 없이)
-   v1.1 보강 — matchMedia 없는 브라우저는 고정하지 않음 · check.py 주입 누락 = 실패(Codex 지적, MIN 「1~3 모두 승인」)
-   v1.0 (2026-11-25, MIN 「추천안대로 승인」) — 처음 판(모든 화면 고정)
-   직접 고치지 말 것: 도구에는 inject.py 로만 넣고 check.py 로 확인한다(MM-PRINT · MM-PROJECT 와 같은 방식).
-   동작
-   - 고정 화면 조건(MQ, 아래 기본값: 폭 768px 이상 + 높이 600px 이상 = 태블릿 · 데스크톱)에서만 작동한다.
-     휴대폰(세로 · 가로 모두)은 조건 밖 → 머리가 지금처럼 스크롤과 함께 올라가고, 도구별 css 도 적용되지 않는다(화면이 원래와 같음).
-     화면을 돌리거나 창 크기가 바뀌어 조건이 바뀌면 그 자리에서 고정/해제가 바뀐다.
-   - data-shell 로 찾은 머리 덩어리(머리 + 탭)를 position:sticky; top:0 으로 붙인다.
-   - 내려서 머리 높이 차(Δ = 전체 − 접힘)만큼 지나면 .mm-hdr-c 를 붙여 data-hide 요소를 숨긴다(접힘).
-     접힐 때 줄어든 Δ 만큼 margin-bottom 을 주어 문서 높이를 그대로 둔다 → 내용이 튀지 않고, 스크롤 고정(앵커링) 때문에 접힘/펼침이 되풀이되지 않는다.
-   - 지금 보이는 머리 높이를 --mm-hdr-h 로 내보낸다(조건 밖이면 0) → html scroll-padding-top(앵커 · scrollIntoView 가림 방지)와 도구의 다른 sticky 패널이 쓴다.
-   - 인쇄 · JPG 출력에는 영향 없음(@media print 에서 static, 머리는 원래 no-print).
-   설정(script 태그 속성 · tools.json): data-shell(필수, CSS 선택자) · data-hide(접힐 때 숨길 요소, 없으면 접지 않고 붙이기만) · data-mq(고정 화면 조건, 없으면 MQ 기본값)
-   도구별 접힘 여백 등은 tools.json "css" → 같은 구간 안 <style id="mm-header-local"> 로 들어가며, inject 가 같은 MQ 조건(@media)으로 감싼다. */
-(function () {
-  var MQ_DEFAULT = '(min-width:768px) and (min-height:600px)';
-  var S = document.currentScript;
-  var SEL = S.getAttribute('data-shell'), HIDE = S.getAttribute('data-hide') || '', MQ = S.getAttribute('data-mq') || MQ_DEFAULT;
-  if (!SEL || !window.matchMedia) return;   /* matchMedia 모르는 옛 브라우저 → 스타일도 넣지 않고 지금처럼(휴대폰과 같게) */
-  var st = document.createElement('style');
-  st.id = 'mm-header-css';
-  st.textContent =
-    '@media ' + MQ + '{' +
-      '.mm-hdr{position:-webkit-sticky;position:sticky;top:0;z-index:1100}' +
-      'html{scroll-padding-top:calc(var(--mm-hdr-h,0px) + 8px)}' +
-      (HIDE ? '.mm-hdr.mm-hdr-c :is(' + HIDE + '){display:none!important}' : '') +
-    '}' +
-    '@media print{.mm-hdr{position:static!important;margin-bottom:0!important}html{scroll-padding-top:0!important}}';
-  document.head.appendChild(st);
-  var mql = window.matchMedia(MQ);
-  function active() { return mql.matches; }
-  var el = null, full = 0, comp = 0, on = false, raf = 0, lastW = 0;
-  function setVar() {
-    document.documentElement.style.setProperty('--mm-hdr-h', active() ? (on ? comp : full) + 'px' : '0px');
-  }
-  function apply(want) {
-    on = want;
-    el.classList.toggle('mm-hdr-c', on);
-    el.style.marginBottom = on ? (full - comp) + 'px' : '';
-    setVar();
-  }
-  function measure() {
-    var was = on;
-    el.classList.remove('mm-hdr-c'); el.style.marginBottom = '';
-    if (!active()) { on = false; full = comp = 0; setVar(); return; }   /* 휴대폰: 고정 · 접힘 없음 */
-    full = el.offsetHeight;
-    if (HIDE) { el.classList.add('mm-hdr-c'); comp = el.offsetHeight; el.classList.remove('mm-hdr-c'); } else comp = full;
-    on = false; apply(was && full - comp > 4); update();
-  }
-  function update() {
-    raf = 0;
-    if (!el || !active()) return;
-    var d = full - comp, want = d > 4 && (window.pageYOffset || document.documentElement.scrollTop) > d;
-    if (want !== on) apply(want);
-  }
-  function onScroll() { if (!raf) raf = requestAnimationFrame(update); }
-  function onResize() {
-    var w = window.innerWidth;
-    if (w === lastW) return;          /* 아이폰 주소창 높이 변화(폭 그대로)는 무시 — 높이 조건이 바뀌면 아래 mql 변화로 처리 */
-    lastW = w; measure();
-  }
-  function init() {
-    try { el = document.querySelector(SEL); } catch (e) { el = null; return true; }   /* :has() 모르는 옛 브라우저 → 고정 없이 지금처럼 */
-    if (!el) return false;
-    el.classList.add('mm-hdr');
-    lastW = window.innerWidth; measure();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onResize);
-    if (mql.addEventListener) mql.addEventListener('change', measure); else if (mql.addListener) mql.addListener(measure);   /* 화면 돌림 · 창 크기로 조건이 바뀔 때 */
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);   /* 글꼴 늦게 오면 높이 다시 */
-    window.addEventListener('load', measure);
-    return true;
-  }
-  if (!init()) {                        /* React 도구: 머리가 늦게 그려지면 나타날 때까지 기다림 */
-    var mo = new MutationObserver(function () { if (init()) mo.disconnect(); });
-    mo.observe(document.documentElement, { childList: true, subtree: true });
-    setTimeout(function () { mo.disconnect(); }, 15000);
-  }
-  window.mmHeaderRemeasure = function () { if (el) measure(); };
-})();
-</script>
-<!-- MM-HEADER:END -->
-<!-- MM-FAB:BEGIN v1.0 -->
-<script id="mm-fab-js" data-items="[&quot;#fml-fab-btn&quot;,&quot;#pwa-fab&quot;]">
-/* MANMIN 공통 하단 떠 있는 단추 원본 manmin-fab.js v1.0 (2026-11-26, 작업지시서 §25-6-117 — 샘플 v0.9 · MIN 「권장안대로 승인」)
-   정본: Z:\MIN-A\01.만민자료\02.설계자료\11.개발자료\68.개발자료[하단버튼]\버전s-1.0\manmin-fab-v1.0\
-   도구에는 inject.py 가 MM-FAB:BEGIN · MM-FAB:END 표식 사이에 그대로 끼워 넣음(외부 링크 없음). 도구에서 직접 고치지 말 것.
-   하는 일: 오른쪽 아래 떠 있는 단추(안내 · 초기화 · 앱 설치 · 건물개요 · 맨 위로)를 한 줄 기둥으로 쌓고 크기 · 여백 · 간격을 통일한다.
-     - 도구의 단추 HTML · 이벤트 · 색 · 글자는 그대로 두고, 자리와 크기만 스타일시트(!important)로 정한다(DOM 이동 없음 → React 도구도 안전).
-     - data-items = 아래 → 위 순서의 선택자 목록. 문자열은 tile(72×76), {"sel":..,"kind":"mini"} 은 44×44 원, "pill" 은 72×28.
-       건물개요(.mm-proj-btn, MM-PROJECT)는 목록에 없으면 맨 위 pill 로 자동 추가(data-pill="0" 이면 안 함).
-     - 숨겨진 단추(display:none · 조건부 앱 설치 단추)는 자리를 차지하지 않는다 → 나타나면 위 단추가 한 칸 올라가고, 사라지면 내려와 빈칸 없이 간격 8px.
-     - 앱 설치 단추(선택자에 install · pwa-fab 포함, 또는 "install":true)는 설치 완료(appinstalled) · 앱으로 실행 중(standalone)이면
-       도구가 숨기지 않아도 숨긴다(브라우저 메뉴로 설치해 도구의 설치 단추가 남는 경우 포함).
-     - 화면 아래에 붙는 띠가 보이면 그 높이 + 간격만큼 기둥 전체를 올린다. MANMIN 설치 · 업데이트 띠(AVOID0 — 클래스 · id 14종)는 기본,
-       data-avoid = 도구별 추가(점수 바 · 상태줄 등). 아래 240px 안에 걸친 띠면 화면 끝에서 조금 떠 있어도 피한다. 띠가 닫히면 다시 내려온다.
-     - 건물개요 메뉴(.mm-proj-menu)는 건물개요 단추 바로 위에 열리게 자리만 맞춘다.
-   규격(v1.0): 기준점 오른쪽 18 · 아래 18px(휴대폰 <768px: 12 · 16px) + 아이폰 홈 막대(safe-area), 간격 8px,
-     tile 72×76 · 둥근 모서리 16px, pill 72×28, mini 44×44, z-index 1200(머리 1100 위 · 창 9000 아래).
-     높이가 낮은 화면(≤500px, 휴대폰 가로): tile 60×60 · 간격 6px.
-   인쇄 · JPG: 목록의 단추 + 기본 설치 · 업데이트 띠(AVOID0) + data-print-hide 선택자를 @media print 에서 숨김. */
-(function () {
-  var me = document.currentScript; if (!me || window.MMFab) return;
-  var VER = 'v1.0';
-  function J(a, d) { try { return JSON.parse(me.getAttribute(a) || d); } catch (e) { return JSON.parse(d); } }
-  var INST_RE = /install|pwa-fab|pwa-hdr/i;   /* 앱 설치 단추로 볼 선택자(목록에서 "install":false 로 끌 수 있음) */
-  var items = J('data-items', '[]').map(function (x) {
-    var o = typeof x === 'string' ? { sel: x } : x;
-    return { sel: o.sel, kind: o.kind || 'tile', install: o.install !== undefined ? !!o.install : INST_RE.test(o.sel) };
-  });
-  if (me.getAttribute('data-pill') !== '0' && !items.some(function (x) { return x.sel === '.mm-proj-btn'; })) items.push({ sel: '.mm-proj-btn', kind: 'pill' });
-  var AVOID0 = ['.pwa-install-banner', '.pwa-banner', '.pwa-outer', '.install-banner', '.ibar', '.iosgd', '#pwa-banner', '#pwaBanner', '#pwa-install-banner', '#pwa-install-bar', '#pwa-bottom-banner', '#installBanner', '#sw-update-bar', '#mm-ios-tip'];
-  var avoid = AVOID0.concat(J('data-avoid', '[]'));   /* MANMIN 설치 · 업데이트 띠는 기본으로 피함 + 도구별 추가 */
-  if (!items.length) return;
-  var mqPhone = window.matchMedia ? matchMedia('(max-width:767px)') : null;
-  var mqShort = window.matchMedia ? matchMedia('(max-height:500px)') : null;
-  var mqApp = window.matchMedia ? matchMedia('(display-mode: standalone)') : null;
-  var justInstalled = false;   /* 이번 방문에서 설치 완료(appinstalled) — 새로 고침하면 브라우저가 설치 단추를 다시 띄우지 않으므로 저장하지 않음 */
-  function installed() { return justInstalled || !!(mqApp && mqApp.matches) || navigator.standalone === true; }
-  var live = document.createElement('style'); live.id = 'mm-fab-live';
-  var fixed = document.createElement('style'); fixed.id = 'mm-fab-style';
-  var all = items.map(function (x) { return x.sel; }).concat(AVOID0, J('data-print-hide', '[]')).join(',');   /* 설치 · 업데이트 띠(AVOID0)는 인쇄 내용이 아니므로 기본 숨김 + data-print-hide = 도구별 추가 */
-  fixed.textContent = '@media print{' + all + '{display:none!important}}';
-  document.head.appendChild(fixed); document.head.appendChild(live);
+<script>!function(){try{var t=navigator,e=/iphone|ipad|ipod/i.test(t.userAgent)||"MacIntel"===t.platform&&t.maxTouchPoints>1,i=window.matchMedia&&matchMedia("(display-mode: standalone)").matches||!0===t.standalone;if(!e||i)return;try{if(sessionStorage.getItem("mm-ios-tip"))return}catch(t){}var n=document.getElementById("mm-ios-tip");if(!n)return;n.querySelector("button").addEventListener("click",function(){n.style.display="none";try{sessionStorage.setItem("mm-ios-tip","1")}catch(t){}}),setTimeout(function(){n.style.display="flex"},2500)}catch(t){}}();</script>
 
-  function geo() {
-    var ph = mqPhone && mqPhone.matches, sh = mqShort && mqShort.matches;
-    return { R: ph ? 12 : 18, B: ph ? 16 : 18, G: sh ? 6 : 8, tile: sh ? [60, 60] : [72, 76], pill: [72, 28], mini: [44, 44] };
-  }
-  function shown(el) {
-    if (!el || !el.getClientRects().length) return false;
-    var cs = getComputedStyle(el); return cs.visibility !== 'hidden' && cs.display !== 'none';
-  }
-  var last = '', state = {};
-  function layout() {
-    var g = geo(), vw = innerWidth, vh = innerHeight, lift = 0, liftBy = [];
-    avoid.forEach(function (s) {
-      var els; try { els = document.querySelectorAll(s); } catch (e) { return; }
-      Array.prototype.forEach.call(els, function (el) {
-        if (!shown(el)) return; var r = el.getBoundingClientRect();
-        if (r.top >= vh - 1 || r.bottom < vh - 240 || r.right < vw - g.R - g.tile[0] || r.height > vh * 0.6) return;   /* 화면 아래쪽(240px 안)에 걸쳐 기둥 쪽에 있는 띠만 — 창 · 큰 패널 제외 */
-        var h = vh - r.top + g.G; if (h > lift) { lift = h; } liftBy.push(s);
-      });
-    });
-    var off = lift, css = '', slots = [], pillOff = null, inst = installed();
-    items.forEach(function (it) {
-      if (it.install && inst) { css += it.sel + '{display:none!important}'; return; }   /* 설치 뒤 · 앱 실행 중 = 설치 단추 숨기고 자리도 비우지 않음 */
-      var el; try { el = document.querySelector(it.sel); } catch (e) { return; }
-      if (!shown(el)) return;
-      var sz = g[it.kind] || g.tile, base = 'bottom:calc(' + g.B + 'px + env(safe-area-inset-bottom,0px) + ' + Math.round(off) + 'px)!important;';
-      css += it.sel + '{position:fixed!important;right:' + g.R + 'px!important;left:auto!important;top:auto!important;' + base
-        + 'width:' + sz[0] + 'px!important;height:' + sz[1] + 'px!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;'
-        + 'margin:0!important;box-sizing:border-box!important;z-index:1200!important;'
-        + (it.kind === 'tile' ? 'padding:4px 3px!important;border-radius:16px!important;justify-content:center!important;align-items:center!important;gap:2px!important;line-height:1.15!important;text-align:center!important;' : '')
-        + (it.kind === 'pill' ? 'padding:0 4px!important;border-radius:999px!important;justify-content:center!important;gap:3px!important;font-size:11.5px!important;line-height:1!important;' : '')
-        + (it.kind === 'mini' ? 'padding:0!important;border-radius:50%!important;' : '')
-        + '}';
-      if (it.kind === 'pill' && it.sel === '.mm-proj-btn') pillOff = off;
-      slots.push({ sel: it.sel, kind: it.kind, bottom: g.B + Math.round(off) });
-      off += sz[1] + g.G;
-    });
-    if (pillOff !== null) {
-      var mb = g.B + Math.round(pillOff) + g.pill[1] + 6;
-      css += '.mm-proj-menu{right:' + g.R + 'px!important;left:auto!important;top:auto!important;bottom:calc(' + mb + 'px + env(safe-area-inset-bottom,0px))!important;max-height:calc(100vh - ' + (mb + 8) + 'px)!important;overflow:auto!important}';
-    }
-    css = '@media screen{' + css + '}';
-    if (css !== last) { live.textContent = css; last = css; }
-    state = { ver: VER, geo: g, lift: Math.round(lift), liftBy: liftBy, installed: inst, slots: slots };
-  }
-  var q = 0;
-  function sched() { if (q) return; q = (window.requestAnimationFrame || setTimeout)(function () { q = 0; layout(); }); }
-  layout();
-  addEventListener('resize', sched); addEventListener('orientationchange', sched); addEventListener('load', sched);
-  addEventListener('appinstalled', function () { justInstalled = true; sched(); });
-  if (mqApp) { if (mqApp.addEventListener) mqApp.addEventListener('change', sched); else if (mqApp.addListener) mqApp.addListener(sched); }
-  document.addEventListener('transitionend', sched, true); document.addEventListener('animationend', sched, true);
-  if (window.MutationObserver) new MutationObserver(sched).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style', 'hidden'] });
-  window.MMFab = { ver: VER, layout: layout, state: function () { return state; } };
-})();
-</script>
-<!-- MM-FAB:END -->
+<style id="mm-header-local">@media (min-width:768px) and (min-height:600px){.mm-hdr{background:var(--bg);padding:10px 0;box-shadow:0 8px 12px -10px rgba(0,0,0,.6)}@media(max-width:1024px){.mm-hdr{flex-wrap:nowrap!important;overflow-x:auto;justify-content:flex-start;scrollbar-width:none}.mm-hdr::-webkit-scrollbar{display:none}.mm-hdr>.tab-btn{flex-shrink:0}}}</style>
+<script id="mm-header-js" data-shell="div.tab-wrap">!function(){var t=document.currentScript,e=t.getAttribute("data-shell"),n=t.getAttribute("data-hide")||"",i=t.getAttribute("data-mq")||"(min-width:768px) and (min-height:600px)";if(e&&window.matchMedia){var d=document.createElement("style");d.id="mm-header-css",d.textContent="@media "+i+"{.mm-hdr{position:-webkit-sticky;position:sticky;top:0;z-index:1100}html{scroll-padding-top:calc(var(--mm-hdr-h,0px) + 8px)}"+(n?".mm-hdr.mm-hdr-c :is("+n+"){display:none!important}":"")+"}@media print{.mm-hdr{position:static!important;margin-bottom:0!important}html{scroll-padding-top:0!important}}",document.head.appendChild(d);var o=window.matchMedia(i),r=null,m=0,a=0,s=!1,c=0,u=0;if(!y()){var l=new MutationObserver(function(){y()&&l.disconnect()});l.observe(document.documentElement,{childList:!0,subtree:!0}),setTimeout(function(){l.disconnect()},15e3)}window.mmHeaderRemeasure=function(){r&&w()}}function h(){return o.matches}function p(){document.documentElement.style.setProperty("--mm-hdr-h",h()?(s?a:m)+"px":"0px")}function f(t){s=t,r.classList.toggle("mm-hdr-c",s),r.style.marginBottom=s?m-a+"px":"",p()}function w(){var t=s;if(r.classList.remove("mm-hdr-c"),r.style.marginBottom="",!h())return s=!1,m=a=0,void p();m=r.offsetHeight,n?(r.classList.add("mm-hdr-c"),a=r.offsetHeight,r.classList.remove("mm-hdr-c")):a=m,s=!1,f(t&&m-a>4),v()}function v(){if(c=0,r&&h()){var t=m-a,e=t>4&&(window.pageYOffset||document.documentElement.scrollTop)>t;e!==s&&f(e)}}function g(){c||(c=requestAnimationFrame(v))}function L(){var t=window.innerWidth;t!==u&&(u=t,w())}function y(){try{r=document.querySelector(e)}catch(t){return r=null,!0}return!!r&&(r.classList.add("mm-hdr"),u=window.innerWidth,w(),window.addEventListener("scroll",g,{passive:!0}),window.addEventListener("resize",L),o.addEventListener?o.addEventListener("change",w):o.addListener&&o.addListener(w),document.fonts&&document.fonts.ready&&document.fonts.ready.then(w),window.addEventListener("load",w),!0)}}();</script>
+
+<script id="mm-fab-js" data-items="[&quot;#fml-fab-btn&quot;,&quot;#pwa-fab&quot;]">!function(){var t=document.currentScript;if(t&&!window.MMFab){var n="v1.0",e=/install|pwa-fab|pwa-hdr/i,i=f("data-items","[]").map(function(t){var n="string"==typeof t?{sel:t}:t;return{sel:n.sel,kind:n.kind||"tile",install:void 0!==n.install?!!n.install:e.test(n.sel)}});"0"===t.getAttribute("data-pill")||i.some(function(t){return".mm-proj-btn"===t.sel})||i.push({sel:".mm-proj-btn",kind:"pill"});var a=[".pwa-install-banner",".pwa-banner",".pwa-outer",".install-banner",".ibar",".iosgd","#pwa-banner","#pwaBanner","#pwa-install-banner","#pwa-install-bar","#pwa-bottom-banner","#installBanner","#sw-update-bar","#mm-ios-tip"],r=a.concat(f("data-avoid","[]"));if(i.length){var o=window.matchMedia?matchMedia("(max-width:767px)"):null,d=window.matchMedia?matchMedia("(max-height:500px)"):null,p=window.matchMedia?matchMedia("(display-mode: standalone)"):null,l=!1,m=document.createElement("style");m.id="mm-fab-live";var s=document.createElement("style");s.id="mm-fab-style";var u=i.map(function(t){return t.sel}).concat(a,f("data-print-hide","[]")).join(",");s.textContent="@media print{"+u+"{display:none!important}}",document.head.appendChild(s),document.head.appendChild(m);var c="",h={},b=0;g(),addEventListener("resize",x),addEventListener("orientationchange",x),addEventListener("load",x),addEventListener("appinstalled",function(){l=!0,x()}),p&&(p.addEventListener?p.addEventListener("change",x):p.addListener&&p.addListener(x)),document.addEventListener("transitionend",x,!0),document.addEventListener("animationend",x,!0),window.MutationObserver&&new MutationObserver(x).observe(document.body,{childList:!0,subtree:!0,attributes:!0,attributeFilter:["class","style","hidden"]}),window.MMFab={ver:n,layout:g,state:function(){return h}}}}function f(n,e){try{return JSON.parse(t.getAttribute(n)||e)}catch(t){return JSON.parse(e)}}function v(t){if(!t||!t.getClientRects().length)return!1;var n=getComputedStyle(t);return"hidden"!==n.visibility&&"none"!==n.display}function g(){var t,e,a=(t=o&&o.matches,e=d&&d.matches,{R:t?12:18,B:t?16:18,G:e?6:8,tile:e?[60,60]:[72,76],pill:[72,28],mini:[44,44]}),s=innerWidth,u=innerHeight,b=0,f=[];r.forEach(function(t){var n;try{n=document.querySelectorAll(t)}catch(t){return}Array.prototype.forEach.call(n,function(n){if(v(n)){var e=n.getBoundingClientRect();if(!(e.top>=u-1||e.bottom<u-240||e.right<s-a.R-a.tile[0]||e.height>.6*u)){var i=u-e.top+a.G;i>b&&(b=i),f.push(t)}}})});var g=b,x="",w=[],y=null,M=l||!(!p||!p.matches)||!0===navigator.standalone;if(i.forEach(function(t){if(t.install&&M)x+=t.sel+"{display:none!important}";else{var n;try{n=document.querySelector(t.sel)}catch(t){return}if(v(n)){var e=a[t.kind]||a.tile,i="bottom:calc("+a.B+"px + env(safe-area-inset-bottom,0px) + "+Math.round(g)+"px)!important;";x+=t.sel+"{position:fixed!important;right:"+a.R+"px!important;left:auto!important;top:auto!important;"+i+"width:"+e[0]+"px!important;height:"+e[1]+"px!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;margin:0!important;box-sizing:border-box!important;z-index:1200!important;"+("tile"===t.kind?"padding:4px 3px!important;border-radius:16px!important;justify-content:center!important;align-items:center!important;gap:2px!important;line-height:1.15!important;text-align:center!important;":"")+("pill"===t.kind?"padding:0 4px!important;border-radius:999px!important;justify-content:center!important;gap:3px!important;font-size:11.5px!important;line-height:1!important;":"")+("mini"===t.kind?"padding:0!important;border-radius:50%!important;":"")+"}","pill"===t.kind&&".mm-proj-btn"===t.sel&&(y=g),w.push({sel:t.sel,kind:t.kind,bottom:a.B+Math.round(g)}),g+=e[1]+a.G}}}),null!==y){var E=a.B+Math.round(y)+a.pill[1]+6;x+=".mm-proj-menu{right:"+a.R+"px!important;left:auto!important;top:auto!important;bottom:calc("+E+"px + env(safe-area-inset-bottom,0px))!important;max-height:calc(100vh - "+(E+8)+"px)!important;overflow:auto!important}"}(x="@media screen{"+x+"}")!==c&&(m.textContent=x,c=x),h={ver:n,geo:a,lift:Math.round(b),liftBy:f,installed:M,slots:w}}function x(){b||(b=(window.requestAnimationFrame||setTimeout)(function(){b=0,g()}))}}();</script>
+
 </body>
 </html>
